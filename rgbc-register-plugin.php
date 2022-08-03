@@ -1,42 +1,39 @@
 <?php
 /**
-* Plugin Name: Rgbcode Register Form
-* Plugin URI: https://rgbcode.com/
-* Description: Rgbcode Register Form.
-* Author: rgbcode
-* Author URI: https://rgbcode.com/
-* Version: 1.0.0
-* Text Domain: rgbcode-menu
-* Domain Path: /languages
-*/
+ * Plugin Name: Rgbcode Register Form
+ * Plugin URI: https://rgbcode.com/
+ * Description: Rgbcode Register Form.
+ * Author: rgbcode
+ * Author URI: https://rgbcode.com/
+ * Version: 1.0.0
+ * Text Domain: rgbcode-menu
+ * Domain Path: /languages
+ */
 
-function wpdocs_theme_name_scripts() {
-	wp_enqueue_style( 'style-name', get_stylesheet_uri() );
-	wp_enqueue_script( 'script-name', get_template_directory_uri() . '/js/example.js', array(), '1.0.0', true );
-}
-add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
 
 if ( ! function_exists( 'rgbc_register_form' ) ) {
 	function rgbc_register_form() {
 		ob_start();
-		include( plugin_dir_path( __FILE__ ) . '/templates/register-form.php');
+		include( plugin_dir_path( __FILE__ ) . '/templates/register-form.php' );
+
 		return ob_get_clean();
 	}
-	add_shortcode('rgbc-register-form', 'rgbc_register_form');
+
+	add_shortcode( 'rgbc-register-form', 'rgbc_register_form' );
 }
 
-function rgbc_scripts(){
+function rgbc_scripts() {
 //	wp_register_script('custom_js', plugins_url('/assets/js/script.js',__FILE__ ), array('jquery'), '', true);
 //	wp_enqueue_script('custom_js');
 //
 //	wp_register_script('dataTables_js', 'https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js', '', true);
 //	wp_enqueue_script('dataTables_js');
 
-	wp_register_style( 'style-front', plugins_url( 'rgbc-register-plugin/assets/css/front/style.min.css') );
+	wp_register_style( 'style-front', plugins_url( 'rgbc-register-plugin/assets/css/front/style.min.css' ) );
 	wp_enqueue_style( 'style-front' );
-
 }
-add_action('wp_enqueue_scripts', 'rgbc_scripts');
+
+add_action( 'wp_enqueue_scripts', 'rgbc_scripts' );
 
 //namespace Rgbcode_menu;
 //
