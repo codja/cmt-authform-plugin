@@ -1,1 +1,1 @@
-# rgbcode-menu
+# rgbcode-register-pligin
