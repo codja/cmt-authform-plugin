@@ -6,10 +6,27 @@
  * Author: rgbcode
  * Author URI: https://rgbcode.com/
  * Version: 1.0.0
- * Text Domain: rgbcode-menu
+ * Text Domain: rgbcode-register-plugin
  * Domain Path: /languages
  */
 
+function rgbc_register_plugin_menu() {
+	add_menu_page(
+		'RGBC Register Plugin',
+		'RGBC Register Plugin',
+		'manage_options',
+		'rgbc-register-plugin',
+		'display_top_level_menu_page',
+		'',
+		6
+	);
+}
+
+add_action( 'admin_menu', 'rgbc_register_plugin_menu' );
+
+function display_top_level_menu_page() {
+	include( plugin_dir_path( __FILE__ ) . 'templates/dashboard-settings.php' );
+}
 
 if ( ! function_exists( 'rgbc_register_form' ) ) {
 	function rgbc_register_form() {
@@ -23,110 +40,330 @@ if ( ! function_exists( 'rgbc_register_form' ) ) {
 }
 
 function rgbc_scripts() {
-//	wp_register_script('custom_js', plugins_url('/assets/js/script.js',__FILE__ ), array('jquery'), '', true);
-//	wp_enqueue_script('custom_js');
-//
-//	wp_register_script('dataTables_js', 'https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js', '', true);
-//	wp_enqueue_script('dataTables_js');
-
 	wp_register_style( 'style-front', plugins_url( 'rgbc-register-plugin/assets/css/front/style.min.css' ) );
 	wp_enqueue_style( 'style-front' );
 }
 
 add_action( 'wp_enqueue_scripts', 'rgbc_scripts' );
 
-//namespace Rgbcode_menu;
-//
-//use Rgbcode_menu\traits\Singleton;
-//
-//if ( ! defined( 'ABSPATH' ) ) {
-//	exit();
-//}
-//
-//if ( ! function_exists( 'is_plugin_active' ) ) {
-//	include_once ABSPATH . 'wp-admin/includes/plugin.php';
-//	if ( ! is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) {
-//		exit();
-//	}
-//}
-//
-//define( 'RGBCODE_MENU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-//define( 'RGBCODE_MENU_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-//define( 'RGBCODE_MENU_VERSION', '1.0.6' );
-//define( 'RGBCODE_MENU_IMAGES', RGBCODE_MENU_PLUGIN_URL . 'assets/images' );
-//define( 'RGBCODE_MENU_IMAGES_DIR', RGBCODE_MENU_PLUGIN_DIR . 'assets/images' );
-//
-//if ( ! class_exists( 'Mobile_Detect' ) ) {
-//	require_once RGBCODE_MENU_PLUGIN_DIR . 'inc/libs/Mobile-Detect-2.8.39/Mobile_Detect.php';
-//}
-//require_once RGBCODE_MENU_PLUGIN_DIR . 'inc/autoload.php';
-//require_once RGBCODE_MENU_PLUGIN_DIR . 'inc/functions.php';
-//
-//register_activation_hook( __FILE__, [ __NAMESPACE__ . '\\Rgbcode_menu', 'activation' ] );
-//register_deactivation_hook( __FILE__, [ __NAMESPACE__ . '\\Rgbcode_menu', 'deactivation' ] );
-//register_uninstall_hook( __FILE__, [ __NAMESPACE__ . '\\Rgbcode_menu', 'uninstall' ] );
-//
-//add_action( 'plugins_loaded', [ __NAMESPACE__ . '\\Rgbcode_menu', 'instance' ] );
-//
-//class Rgbcode_Menu {
-//
-//	use Singleton;
-//
-//	public function __construct() {
-//		load_plugin_textdomain(
-//			'rgbcode-menu',
-//			false,
-//			dirname( plugin_basename( __FILE__ ) ) . '/languages/'
-//		);
-//	}
-//
-//	/*
-//	 * Plugin activation actions
-//	*/
-//	public static function activation(): void {
-//		if ( ! current_user_can( 'activate_plugins' ) ) {
-//			return;
-//		}
-//
-//		$plugin = $_REQUEST['plugin'] ?? ''; // phpcs:ignore
-//		check_admin_referer( "activate-plugin_{$plugin}" );
-//
-//		flush_rewrite_rules();
-//	}
-//
-//	/*
-//	 * Plugin deactivation actions
-//	*/
-//	public static function deactivation(): void {
-//		if ( ! current_user_can( 'activate_plugins' ) ) {
-//			return;
-//		}
-//
-//		$plugin = $_REQUEST['plugin'] ?? ''; // phpcs:ignore
-//		check_admin_referer( "deactivate-plugin_{$plugin}" );
-//
-//		flush_rewrite_rules();
-//	}
-//
-//	/*
-//	 * Plugin uninstall actions
-//	*/
-//	public static function uninstall(): void {
-//		if ( ! current_user_can( 'activate_plugins' ) ) {
-//			return;
-//		}
-//
-//		self::remove_options();
-//	}
-//
-//	/*
-//	 * Delete all options that the plugin has created
-//	*/
-//	private static function remove_options(): void {
-//		$options = [];
-//
-//		foreach ( $options as $option ) {
-//			delete_option( $option );
-//		}
-//	}
-//}
+define( 'MY_ACF_PATH', plugin_dir_path( __FILE__ ) . '/includes/acf/' );
+define( 'MY_ACF_URL', plugin_dir_path( __FILE__ ) . '/includes/acf/' );
+
+include_once( MY_ACF_PATH . 'acf.php' );
+
+add_filter( 'acf/settings/url', 'my_acf_settings_url' );
+function my_acf_settings_url( $url ) {
+	return MY_ACF_URL;
+}
+
+function rgb_code_acf_form_fields() {
+	acf_add_local_field_group( [
+		'key'                   => 'group_62eb94e23b40f',
+		'title'                 => 'Form Fields',
+		'fields'                => [
+			[
+				'key'               => 'field_62eb94edd501a',
+				'label'             => 'Title',
+				'name'              => 'title',
+				'type'              => 'text',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'default_value'     => '',
+				'placeholder'       => '',
+				'prepend'           => '',
+				'append'            => '',
+				'maxlength'         => '',
+			],
+			[
+				'key'               => 'field_62eb94fdd501b',
+				'label'             => 'Subtitle',
+				'name'              => 'subtitle',
+				'type'              => 'text',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'default_value'     => '',
+				'placeholder'       => '',
+				'prepend'           => '',
+				'append'            => '',
+				'maxlength'         => '',
+			],
+			[
+				'key'               => 'field_62eb9503d501c',
+				'label'             => 'First Name Placeholder',
+				'name'              => 'first_name_placeholder',
+				'type'              => 'text',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'default_value'     => '',
+				'placeholder'       => '',
+				'prepend'           => '',
+				'append'            => '',
+				'maxlength'         => '',
+			],
+			[
+				'key'               => 'field_62eb9512d501d',
+				'label'             => 'Last Name Placeholder',
+				'name'              => 'last_name_placeholder',
+				'type'              => 'text',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'default_value'     => '',
+				'placeholder'       => '',
+				'prepend'           => '',
+				'append'            => '',
+				'maxlength'         => '',
+			],
+			[
+				'key'               => 'field_62eb951bd501e',
+				'label'             => 'Email Placeholder',
+				'name'              => 'email_placeholder',
+				'type'              => 'text',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'default_value'     => '',
+				'placeholder'       => '',
+				'prepend'           => '',
+				'append'            => '',
+				'maxlength'         => '',
+			],
+			[
+				'key'               => 'field_62eb9547d501f',
+				'label'             => 'Phone Placeholder',
+				'name'              => 'phone_placeholder',
+				'type'              => 'text',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'default_value'     => '',
+				'placeholder'       => '',
+				'prepend'           => '',
+				'append'            => '',
+				'maxlength'         => '',
+			],
+			[
+				'key'               => 'field_62eb9550d5020',
+				'label'             => 'Password Placeholder',
+				'name'              => 'password_placeholder',
+				'type'              => 'text',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'default_value'     => '',
+				'placeholder'       => '',
+				'prepend'           => '',
+				'append'            => '',
+				'maxlength'         => '',
+			],
+			[
+				'key'               => 'field_62eb95d3d5021',
+				'label'             => 'Password Strength Field',
+				'name'              => 'password_strength_field',
+				'type'              => 'text',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'default_value'     => '',
+				'placeholder'       => '',
+				'prepend'           => '',
+				'append'            => '',
+				'maxlength'         => '',
+			],
+			[
+				'key'               => 'field_62eb95e4d5022',
+				'label'             => 'Password Messages',
+				'name'              => 'password_messages',
+				'type'              => 'repeater',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'collapsed'         => '',
+				'min'               => 0,
+				'max'               => 0,
+				'layout'            => 'table',
+				'button_label'      => '',
+				'sub_fields'        => [
+					[
+						'key'               => 'field_62eb95f0d5023',
+						'label'             => 'Required Password Text Field',
+						'name'              => 'required_password_text_field',
+						'type'              => 'text',
+						'instructions'      => '',
+						'required'          => 0,
+						'conditional_logic' => 0,
+						'wrapper'           => [
+							'width' => '',
+							'class' => '',
+							'id'    => '',
+						],
+						'default_value'     => '',
+						'placeholder'       => '',
+						'prepend'           => '',
+						'append'            => '',
+						'maxlength'         => '',
+					],
+					[
+						'key'               => 'field_62eb9618d5024',
+						'label'             => 'Password Error Message',
+						'name'              => 'password_error_message',
+						'type'              => 'text',
+						'instructions'      => '',
+						'required'          => 0,
+						'conditional_logic' => 0,
+						'wrapper'           => [
+							'width' => '',
+							'class' => '',
+							'id'    => '',
+						],
+						'default_value'     => '',
+						'placeholder'       => '',
+						'prepend'           => '',
+						'append'            => '',
+						'maxlength'         => '',
+					],
+				],
+			],
+			[
+				'key'               => 'field_62eb9652d5025',
+				'label'             => 'Terms and Conditions Field Text',
+				'name'              => 'terms_and_conditions_field_text',
+				'type'              => 'wysiwyg',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'default_value'     => '',
+				'tabs'              => 'all',
+				'toolbar'           => 'full',
+				'media_upload'      => 1,
+				'delay'             => 0,
+			],
+			[
+				'key'               => 'field_62eb9663d5026',
+				'label'             => 'Submit Button Text',
+				'name'              => 'submit_button_text',
+				'type'              => 'text',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'default_value'     => '',
+				'placeholder'       => '',
+				'prepend'           => '',
+				'append'            => '',
+				'maxlength'         => '',
+			],
+			[
+				'key'               => 'field_62eb967bd5027',
+				'label'             => 'Text After Button',
+				'name'              => 'text_after_button',
+				'type'              => 'text',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'default_value'     => '',
+				'placeholder'       => '',
+				'prepend'           => '',
+				'append'            => '',
+				'maxlength'         => '',
+			],
+			[
+				'key'               => 'field_62eb9692d5028',
+				'label'             => 'Already have account link',
+				'name'              => 'already_have_account_link',
+				'type'              => 'link',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'wrapper'           => [
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				],
+				'return_format'     => 'array',
+			],
+		],
+		'location'              => [
+			[
+				[
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'post',
+				],
+			],
+		],
+		'menu_order'            => 0,
+		'position'              => 'normal',
+		'style'                 => 'default',
+		'label_placement'       => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen'        => '',
+		'active'                => true,
+		'description'           => '',
+		'show_in_rest'          => 0,
+	] );
+}
+
+add_action( 'acf/init', 'rgb_code_acf_form_fields' );

@@ -1,3 +1,4 @@
+<?php the_field('already_have_account_link'); ?>
 <div class="_form_wrap">
 	<div class="form_title">
 		<h4> Sign up and Start Trading </h4>
