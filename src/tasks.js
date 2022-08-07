@@ -14,7 +14,7 @@ import { env } from './env.js';
 const mode = process.env.MODE;
 export const isDeploy = mode === 'deploy';
 const destDir = 'assets';
-const minifiedJsBundleName = 'rgbcode-menu';
+const minifiedJsBundleName = 'rgbcode-authform';
 
 const styles = ( srcPath, destPath, remotePath ) => {
 	return gulp
