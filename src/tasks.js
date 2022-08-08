@@ -124,17 +124,17 @@ export const scriptsFront = () => {
 
 export const images = () => {
 	return gulp
-		.src( [ 'src/img/**/*' ] )
+		.src( [ 'img/**/*' ] )
 		.pipe( imagemin() )
 		.pipe( gulp.dest( `../${ destDir }/img/` ) );
 };
 
 export const fonts = () => {
 	return gulp
-		.src( [ 'src/fonts/**/*' ], {
+		.src( [ 'fonts/**/*' ], {
 			base: 'src/',
 		} )
-		.pipe( gulp.dest( `../${ destDir }` ) );
+		.pipe( gulp.dest( `../${ destDir }/fonts/` ) );
 };
 
 export const cleanAssets = () => {
