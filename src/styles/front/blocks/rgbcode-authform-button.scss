@@ -1,0 +1,24 @@
+.rgbcode-authform-button {
+	width: 100%;
+	padding-top: 0.85em;
+	padding-bottom: 0.85em;
+
+	font: 400 18px $basefont;
+
+	color: #fff;
+	background-color: #0063ff;
+	border-radius: 0;
+	border-color: transparent;
+
+	white-space: nowrap;
+	transition: all .3s ease;
+
+	&:hover {
+		background-color: darken( #0063ff, 15% );
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+		background-color: #C9CBCD;
+	}
+}

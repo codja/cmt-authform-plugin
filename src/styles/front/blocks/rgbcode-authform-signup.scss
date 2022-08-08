@@ -1,5 +1,6 @@
 .rgbcode-authform-signup {
-	padding-inline: 20px;
+	max-width: 470px;
+	padding-inline: 32px;
 	padding-top: 32px;
 	padding-bottom: 20px;
 	border-radius: 4px;
@@ -18,5 +19,63 @@
 
 	&__subtitle {
 		font: 300 19px/34px $basefont;
+	}
+
+	&__inputs {
+		margin-top: 30px;
+
+		display: grid;
+		grid-row-gap: 17px;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: repeat(4,minmax(43px,auto));
+		grid-column-gap: 10px;
+		grid-template-areas:
+		"first first first last last last"
+		"email email email email email email"
+		"country phone phone phone phone phone"
+		"pass pass pass . . .";
+
+		.rgbcode-authform-input_user {
+
+			&:first-child {
+				grid-area: first;
+			}
+
+			&:nth-child(2){
+				grid-area: last;
+			}
+
+		}
+
+		.rgbcode-authform-flag-input {
+			grid-area: country;
+		}
+
+		.rgbcode-authform-input_email {
+			grid-area: email;
+		}
+
+		.rgbcode-authform-input_phone {
+			grid-area: phone;
+		}
+
+		.rgbcode-authform-input_key {
+			grid-area: pass;
+		}
+	}
+
+	&__link {
+		margin-top: 1.5em;
+		display: block;
+		font: 400 14px $basefont;
+		text-align: center;
+	}
+
+	a {
+		color: #0063ff;
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }
