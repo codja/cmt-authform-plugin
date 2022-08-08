@@ -3,6 +3,7 @@
 namespace Rgbcode_authform;
 
 use Rgbcode_authform\classes\core\Error;
+use Rgbcode_authform\classes\authform\Authform;
 use Rgbcode_authform\classes\core\Setup;
 use Rgbcode_authform\classes\plugins\ACF;
 
@@ -39,5 +40,6 @@ if ( function_exists( '__autoload' ) ) {
 
 // ... and call
 new Setup();
+new Authform();
 Error::instance();
 ACF::instance();

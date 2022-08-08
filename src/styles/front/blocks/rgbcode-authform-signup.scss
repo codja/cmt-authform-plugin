@@ -1,0 +1,18 @@
+.rgbcode-authform-signup {
+	padding-inline: 20px;
+	padding-top: 32px;
+	padding-bottom: 20px;
+	border-radius: 4px;
+	background-color: #fff;
+
+	&__title,
+	&__subtitle {
+		text-align: center;
+		color: #051225;
+	}
+
+	&__title {
+		font: 300 30px/34px ;
+		padding-inline: 25px;
+	}
+}
