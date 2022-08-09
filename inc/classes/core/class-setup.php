@@ -44,10 +44,10 @@ class Setup {
 		// Localize our ajax
 		wp_localize_script(
 			'rgbcode_authform_script',
-			'rgbcode_authform_ajax',
+			'rgbcode_authform',
 			[
 				'url'   => admin_url( 'admin-ajax.php' ),
-				'nonce' => wp_create_nonce( 'rgbcode-authform-nonce' ),
+				'nonce' => wp_create_nonce( 'wp_rest' ),
 			]
 		);
 	}
