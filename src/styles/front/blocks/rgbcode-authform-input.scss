@@ -2,6 +2,67 @@
 	position: relative;
 	width: 100%;
 
+	&__error {
+		display: none;
+		height: 5px;
+		margin-top: 0.2em;
+		font: 300 12px/13px $basefont;
+		color: #d44242;
+	}
+
+	&__label {
+		position: relative;
+		width: 100%;
+
+		&::after {
+			position: absolute;
+			top: 50%;
+			right: 10px;
+			transform: translateY(-50%);
+
+			font-family: rgbcicons, sans-serif;
+			font-size: 26px;
+		}
+	}
+
+	&_user {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e903";
+		}
+	}
+
+	&_email {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e902";
+		}
+	}
+
+	&_phone {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e004";
+		}
+	}
+
+	&_key {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e02c";
+		}
+	}
+
+	input {
+		font: 400 14px/21px $basefont;
+		border-radius: 4px;
+		border-color: #c9cbcd;
+		padding-inline: 16px 45px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		box-shadow: 0 3px 3px 0 rgba(#000, 0.05);
+	}
+
 	&.valid input {
 		border-bottom-color: #0ea97b;
 	}
@@ -9,53 +70,4 @@
 	&.invalid input {
 		border-bottom-color: #d44242;
 	}
-
-	&::after {
-		position: absolute;
-		top: 50%;
-		right: 10px;
-		transform: translateY(-50%);
-
-		font-family: rgbcicons, sans-serif;
-		font-size: 26px;
-	}
-
-	&_user {
-
-		&::after {
-			content: '\e903';
-		}
-	}
-
-	&_email {
-
-		&::after {
-			content: '\e902';
-		}
-	}
-
-	&_phone {
-
-		&::after {
-			content: '\e004';
-		}
-	}
-
-	&_key {
-
-		&::after {
-			content: '\e02c';
-		}
-	}
-
-	input {
-		font: 400 14px/21px $basefont;
-		border-radius: 4px;
-		border-color: #C9CBCD;
-		padding-inline: 16px 45px;
-		padding-top: 10px;
-		padding-bottom: 10px;
-		box-shadow: 0 3px 3px 0 rgba( #000, 0.05);
-	}
-
 }

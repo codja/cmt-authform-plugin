@@ -6,7 +6,7 @@ class Authform {
 
 	const ACTIVE_FORMS = [
 		'Sign_Up',
-		'Login',
+	//      'Login',
 	];
 
 	public function __construct() {
@@ -25,6 +25,7 @@ class Authform {
 
 	private function include_form( string $form ): void {
 		$class = __NAMESPACE__ . '\\forms\\' . $form;
-		include RGBCODE_AUTHFORM_TEMPLATES . '/' . $class::TEMPLATE_NAME . '.php';
+		$args  = $class::instance()->get_template_data();
+		include_once RGBCODE_AUTHFORM_TEMPLATES . '/' . $class::TEMPLATE_NAME . '.php';
 	}
 }

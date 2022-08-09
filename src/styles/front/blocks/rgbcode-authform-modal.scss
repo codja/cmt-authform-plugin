@@ -1,6 +1,10 @@
 .rgbcode-authform-modal {
 	position: relative;
 
+	@media screen and ( max-height: 768px ) {
+		overflow-y: scroll;
+	}
+
 	&__close {
 		position: absolute;
 		right: 10px;

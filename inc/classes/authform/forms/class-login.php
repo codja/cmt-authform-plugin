@@ -2,7 +2,11 @@
 
 namespace Rgbcode_authform\classes\authform\forms;
 
-class Login {
+use Rgbcode_authform\traits\Singleton;
+
+class Login extends Baseform {
+
+	use Singleton;
 
 	const TEMPLATE_NAME = 'login';
 

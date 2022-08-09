@@ -25,26 +25,18 @@
 		margin-top: 30px;
 
 		display: grid;
-		grid-row-gap: 17px;
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-		grid-template-rows: repeat(4,minmax(43px,auto));
+		grid-row-gap: 18px;
+		grid-template-columns: 65px 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: repeat(4, minmax(43px, auto));
 		grid-column-gap: 10px;
 		grid-template-areas:
-		"first first first last last last"
-		"email email email email email email"
-		"country phone phone phone phone phone"
-		"pass pass pass . . .";
+			"name name name name name name"
+			"email email email email email email"
+			"country phone phone phone phone phone"
+			"pass pass pass . . .";
 
 		.rgbcode-authform-input_user {
-
-			&:first-child {
-				grid-area: first;
-			}
-
-			&:nth-child(2){
-				grid-area: last;
-			}
-
+			grid-area: name;
 		}
 
 		.rgbcode-authform-flag-input {
