@@ -1,4 +1,4 @@
-<div class="rgbcode-authform-modal">
+<div class="rgbcode-authform-modal" id="signup">
 	<button class="rgbcode-authform-modal__close" type="button"></button>
 	<form class="rgbcode-authform-signup">
 

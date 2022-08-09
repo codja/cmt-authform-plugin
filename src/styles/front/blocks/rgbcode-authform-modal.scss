@@ -1,8 +1,9 @@
 .rgbcode-authform-modal {
 	position: relative;
+	display: none;
 
 	@media screen and ( max-height: 768px ) {
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 
 	&__close {

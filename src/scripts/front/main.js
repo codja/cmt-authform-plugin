@@ -1,6 +1,5 @@
+import {initModal} from "./components/modal";
 
 document.addEventListener( 'DOMContentLoaded', () => {
-	// if ( ! document.getElementById( 'rgbcode-authform-header' ) ) {
-	// 	return;
-	// }
+	initModal();
 } );

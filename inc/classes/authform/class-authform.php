@@ -14,6 +14,7 @@ class Authform {
 	}
 
 	public function render_forms() {
+		echo '<button class="js-rgbcode-modal" data-target="signup">Modal</button>'; // TODO: remove it (only for dev)
 		printf( '<div class="rgbcode-authform-back">' );
 
 		foreach ( self::ACTIVE_FORMS as $form ) {
