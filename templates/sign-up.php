@@ -103,8 +103,8 @@
 			</div>
 		</div>
 
-		<div class="rgbcode-authform-pass-strength">
-			<div class="rgbcode-authform-pass-strength__indicator" data-msgs="<?php echo esc_attr( wp_json_encode( $args['msgs'] ) ); ?>">
+		<div class="rgbcode-authform-pass-strength" data-msgs="<?php echo esc_attr( wp_json_encode( $args['msgs'] ) ); ?>">
+			<div class="rgbcode-authform-pass-strength__indicator">
 				<div class="rgbcode-authform-pass-strength__item"></div>
 				<div class="rgbcode-authform-pass-strength__item"></div>
 				<div class="rgbcode-authform-pass-strength__item"></div>

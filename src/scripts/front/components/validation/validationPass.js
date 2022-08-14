@@ -1,3 +1,5 @@
+import {passIndicate} from "./passIndicate";
+
 const validClass = 'valid';
 const checkCountChar = i => i.length >= 6 && i.length < 20;
 const checkIfOneLowercase = i => /[a-z]/.test( i );
@@ -38,7 +40,13 @@ export const checkPass = value => {
 		? successCheck( number )
 		: failCheck( number );
 
-	return count === 4;
+	const minValid = count === 4;
+
+	if ( minValid ) {
+		passIndicate( value );
+	}
+
+	return minValid;
 }
 
 export const togglePassHelper = ( input ) => {

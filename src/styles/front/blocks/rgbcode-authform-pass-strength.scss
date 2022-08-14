@@ -10,22 +10,34 @@
 	&__indicator {
 		display: flex;
 		justify-content: space-between;
+	}
 
-		&.weak .rgbcode-authform-pass-strength__item {
+	&.weak {
+		color: $red;
+
+		.rgbcode-authform-pass-strength__item {
 
 			&:first-child {
 				background-color: $red;
 			}
 		}
+	}
 
-		&.medium .rgbcode-authform-pass-strength__item {
+	&.medium {
+		color: #ffac00;
+
+		.rgbcode-authform-pass-strength__item {
 
 			&:nth-child(-n+2) {
 				background-color: #ffac00;
 			}
 		}
+	}
 
-		&.strong .rgbcode-authform-pass-strength__item {
+	&.strong {
+		color: $green;
+
+		.rgbcode-authform-pass-strength__item {
 
 			&:nth-child(-n+3) {
 				background-color: $green;

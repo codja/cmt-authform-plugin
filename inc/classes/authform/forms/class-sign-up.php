@@ -22,9 +22,9 @@ class Sign_Up extends Baseform {
 			'message'     => get_field( 'rgbc_authform_message', 'option' ),
 			'bottom_link' => get_field( 'rgbc_authform_link', 'option' ),
 			'msgs'        => [
-				'weak'   => 'Weak Password',
-				'medium' => 'Medium Password',
-				'strong' => 'Strong Password',
+				'weak'   => __( 'Weak Password', 'rgbcode-authform' ),
+				'medium' => __( 'Medium Password', 'rgbcode-authform' ),
+				'strong' => __( 'Strong Password', 'rgbcode-authform' ),
 			],
 		];
 	}
