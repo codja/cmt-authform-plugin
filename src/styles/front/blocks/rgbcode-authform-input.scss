@@ -3,11 +3,10 @@
 	width: 100%;
 
 	&__error {
-		display: none;
 		height: 5px;
 		margin-top: 0.2em;
 		font: 300 12px/13px $basefont;
-		color: #d44242;
+		color: $red;
 	}
 
 	&__label {
@@ -53,6 +52,20 @@
 		}
 	}
 
+	&_eye {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e901";
+		}
+	}
+
+	&_eye-hidden {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e900";
+		}
+	}
+
 	input {
 		font: 400 14px/21px $basefont;
 		border-radius: 4px;
@@ -61,13 +74,15 @@
 		padding-top: 10px;
 		padding-bottom: 10px;
 		box-shadow: 0 3px 3px 0 rgba(#000, 0.05);
+
+		&.valid {
+			border-bottom-color: $green;
+		}
+
+		&.invalid {
+			border-bottom-color: $red;
+		}
 	}
 
-	&.valid input {
-		border-bottom-color: #0ea97b;
-	}
 
-	&.invalid input {
-		border-bottom-color: #d44242;
-	}
 }

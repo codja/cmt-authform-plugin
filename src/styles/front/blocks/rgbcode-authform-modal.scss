@@ -1,6 +1,6 @@
 .rgbcode-authform-modal {
 	position: relative;
-	display: none;
+	//display: none;
 
 	@media screen and ( max-height: 768px ) {
 		overflow-y: auto;
@@ -20,7 +20,7 @@
 			position: absolute;
 			top: 5px;
 			left: 15px;
-			content: ' ';
+			content: " ";
 			height: 20px;
 			width: 2px;
 			background-color: #333;

@@ -27,7 +27,7 @@
 						required
 					>
 				</label>
-				<span class="rgbcode-authform-input__error">
+				<span class="rgbcode-authform-input__error rgbcode-hidden">
 					<?php echo esc_html( $args['full_name']['error_text'] ); ?>
 				</span>
 			</div>
@@ -42,7 +42,7 @@
 						required
 					>
 				</label>
-				<span class="rgbcode-authform-input__error">
+				<span class="rgbcode-authform-input__error rgbcode-hidden">
 					<?php echo esc_html( $args['email']['error_text'] ); ?>
 				</span>
 			</div>
@@ -61,24 +61,45 @@
 						required
 					>
 				</label>
-				<span class="rgbcode-authform-input__error">
+				<span class="rgbcode-authform-input__error rgbcode-hidden">
 					<?php echo esc_html( $args['phone']['error_text'] ); ?>
 				</span>
 			</div>
 
-			<div class="rgbcode-authform-input rgbcode-authform-input_key">
-				<label class="rgbcode-authform-input__label">
+			<div class="rgbcode-authform-input rgbcode-authform-input_eye">
+				<div class="rgbcode-authform-input__label">
 					<input
+						id="pass"
 						type="password"
 						name="password"
 						placeholder="<?php echo esc_attr( $args['pass']['placeholder'] ); ?>"
 						tabindex="5"
 						required
 					>
-				</label>
-				<span class="rgbcode-authform-input__error">
+				</div>
+				<span class="rgbcode-authform-input__error rgbcode-hidden">
 					<?php echo esc_html( $args['pass']['error_text'] ); ?>
 				</span>
+				<section class="rgbcode-authform-tooltip rgbcode-hidden">
+					<h5 class="rgbcode-authform-tooltip__title">
+						<?php echo esc_html__( 'Your Password Must have:', 'rgbcode-authform' ); ?>
+					</h5>
+					<span class="rgbcode-authform-tooltip__triangle"></span>
+					<ul class="rgbcode-authform-tooltip__list">
+						<li id="rgbc-length" class="rgbcode-authform-tooltip__item">
+							<?php echo esc_html__( 'Length between 6 and 20 characters', 'rgbcode-authform' ); ?>
+						</li>
+						<li id="rgbc-lower" class="rgbcode-authform-tooltip__item">
+							<?php echo esc_html__( 'At least one lowercase character', 'rgbcode-authform' ); ?>
+						</li>
+						<li id="rgbc-upper" class="rgbcode-authform-tooltip__item">
+							<?php echo esc_html__( 'At least one uppercase character', 'rgbcode-authform' ); ?>
+						</li>
+						<li id="rgbc-num" class="rgbcode-authform-tooltip__item">
+							<?php echo esc_html__( 'At least one number', 'rgbcode-authform' ); ?>
+						</li>
+					</ul>
+				</section>
 			</div>
 		</div>
 
