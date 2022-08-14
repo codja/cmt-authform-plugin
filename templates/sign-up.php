@@ -66,7 +66,7 @@
 				</span>
 			</div>
 
-			<div class="rgbcode-authform-input rgbcode-authform-input_eye">
+			<div class="rgbcode-authform-input rgbcode-authform-input_pass">
 				<div class="rgbcode-authform-input__label">
 					<input
 						id="pass"
@@ -76,6 +76,7 @@
 						tabindex="5"
 						required
 					>
+					<button type="button" class="rgbcode-authform-pass-toggle"></button>
 				</div>
 				<span class="rgbcode-authform-input__error rgbcode-hidden">
 					<?php echo esc_html( $args['pass']['error_text'] ); ?>
