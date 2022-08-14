@@ -1,4 +1,4 @@
-import {passIndicate} from "./passIndicate";
+import {passIndicate, resetIndicate} from "./passIndicate";
 
 const validClass = 'valid';
 const checkCountChar = i => i.length >= 6 && i.length < 20;
@@ -42,9 +42,9 @@ export const checkPass = value => {
 
 	const minValid = count === 4;
 
-	if ( minValid ) {
-		passIndicate( value );
-	}
+	minValid
+		? passIndicate( value )
+		: resetIndicate()
 
 	return minValid;
 }

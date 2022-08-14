@@ -109,7 +109,11 @@
 				<div class="rgbcode-authform-pass-strength__item"></div>
 				<div class="rgbcode-authform-pass-strength__item"></div>
 			</div>
-			<span class="rgbcode-authform-pass-strength__msg"></span>
+			<span
+				class="rgbcode-authform-pass-strength__msg"
+				data-default="<?php echo esc_attr__( 'Password Strength', 'rgbcode-authform' ); ?>">
+				<?php echo esc_html__( 'Password Strength', 'rgbcode-authform' ); ?>
+			</span>
 		</div>
 
 		<?php if ( $args['terms'] ) : ?>
