@@ -1,5 +1,3 @@
-// string = string.replace(/\s\s+/g, ' '); str = str.replace(/\s{2,}/g,' ');
-
 import {checkPass, togglePassHelper} from "./validationPass";
 import {emailTest, fullNameTest, phoneTest} from "./checks";
 
@@ -28,6 +26,20 @@ const checkAgree = i => {
 	i.addEventListener( 'change', ( evt ) => {
 		context.globalCheck.agree = evt.target.checked;
 		checkPermissionSubmit();
+	} );
+}
+
+const fullNameHandler = ( input ) => {
+	let timeout = null;
+	input.addEventListener( 'input', () => {
+		if ( timeout !== null ) {
+			clearTimeout( timeout );
+		}
+
+		timeout = setTimeout( () => {
+			input.value = input.value.replace(/\s{2,}/g,' ');
+			input.dispatchEvent( new Event( 'keyup' ) );
+		}, 1000 );
 	} );
 }
 
@@ -73,6 +85,7 @@ export function initValidate() {
 		switch( input.name ) {
 			case 'full_name':
 				enableValidation( 'fullNameTest', input );
+				fullNameHandler( input );
 			break;
 			case 'email':
 				enableValidation( 'emailTest', input );
