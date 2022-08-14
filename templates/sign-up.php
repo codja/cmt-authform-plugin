@@ -118,14 +118,14 @@
 		</div>
 
 		<?php if ( $args['terms'] ) : ?>
-		<label class="rgbcode-authform-checkbox">
-			<input type="checkbox" class="rgbcode-authform-checkbox__input" tabindex="6" required>
+		<label class="rgbcode-authform-input__label rgbcode-authform-checkbox">
+			<input type="checkbox" class="rgbcode-authform-checkbox__input" name="agree" tabindex="6" required>
 			<span class="rgbcode-authform-checkbox__box"></span>
 			<?php echo wp_kses_post( $args['terms'] ); ?>
 		</label>
 		<?php endif; ?>
 
-		<button class="rgbcode-authform-button" type="submit" disabled>
+		<button id="rgbcode-signup-submit" class="rgbcode-authform-button" type="submit" disabled>
 			<?php echo esc_html( $args['submit'] ); ?>
 		</button>
 

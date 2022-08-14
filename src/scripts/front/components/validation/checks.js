@@ -4,6 +4,9 @@ export const checkIfOneLowercase = i => /[a-z]/.test( i );
 export const checkIfOneUppercase = i => /[A-Z]/.test( i );
 export const checkIfOneDigit = i => /[0-9]/.test( i );
 export const checkRepeatedChars = i => /([a-z])\1/ig.test( i );
+export const fullNameTest = i => /^[a-zA-Zء-ي]{2,50}\s[a-zA-Zء-ي]{2,50}$/.test( i );
+export const emailTest = i => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test( i );
+export const phoneTest = i => /^[0-9]{6,12}$/.test( i );
 export const checkSeriesKeyboardChars = s => {
 	// Check for sequential numerical characters
 	for ( let i in s ) {

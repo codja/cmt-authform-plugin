@@ -1,17 +1,17 @@
 // string = string.replace(/\s\s+/g, ' '); str = str.replace(/\s{2,}/g,' ');
 
 import {checkPass, togglePassHelper} from "./validationPass";
+import {emailTest, fullNameTest, phoneTest} from "./checks";
 
-const fullNameTest = i =>
-	/^[a-zA-Zء-ي]{2,50}\s[a-zA-Zء-ي]{2,50}$/.test( i );
-
-const emailTest = i =>
-	/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test( i );
-
-const phoneTest = i =>
-	/^[0-9]{6,12}$/.test( i );
-
+const submit = document.getElementById( 'rgbcode-signup-submit' );
 const context = {
+	globalCheck: {
+		full_name: false,
+		email: false,
+		phone: false,
+		password: false,
+		agree: false
+	},
 	fullNameTest,
 	emailTest,
 	phoneTest,
@@ -24,13 +24,33 @@ function execFn(fnName, ctx )
 	return ctx[fnName].apply(ctx, args);
 }
 
-const hideError = input => {
+const checkAgree = i => {
+	i.addEventListener( 'change', ( evt ) => {
+		context.globalCheck.agree = evt.target.checked;
+		checkPermissionSubmit();
+	} );
+}
+
+const isFormValidate = () => {
+	const result = Object.values( context.globalCheck );
+	return ! result.includes( false );
+}
+
+const checkPermissionSubmit = () => {
+	isFormValidate()
+		? submit.disabled = false
+		: submit.disabled = true;
+}
+
+const successValid = input => {
+	context.globalCheck[input.name] = true;
 	input.classList.add( 'valid' );
 	input.classList.remove( 'invalid' )
 	input.parentElement.nextElementSibling.classList.add( 'rgbcode-hidden' );
 }
 
-const showError = input => {
+const unsuccessfulValid = input => {
+	context.globalCheck[input.name] = false;
 	input.classList.add( 'invalid' );
 	input.classList.remove( 'valid' )
 	input.parentElement.nextElementSibling.classList.remove( 'rgbcode-hidden' );
@@ -39,8 +59,9 @@ const showError = input => {
 const enableValidation = ( handlerName, input ) => {
 	input.addEventListener( 'keyup', ( evt ) => {
 			execFn( handlerName, context, evt.target.value )
-				? hideError( input )
-				: showError( input )
+				? successValid( input )
+				: unsuccessfulValid( input );
+			checkPermissionSubmit();
 		}
 	);
 }
@@ -62,6 +83,9 @@ export function initValidate() {
 			case 'password':
 				enableValidation( 'checkPass', input )
 				togglePassHelper( input );
+			break;
+			case 'agree':
+				checkAgree( input );
 			break;
 		}
 	} );

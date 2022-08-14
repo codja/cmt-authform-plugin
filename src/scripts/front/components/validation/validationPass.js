@@ -3,7 +3,6 @@ import {checkCountChar, checkIfOneDigit, checkIfOneLowercase, checkIfOneUppercas
 
 const validClass = 'valid';
 
-
 export const checkPass = value => {
 	const
 		length = document.getElementById('rgbc-length'),
