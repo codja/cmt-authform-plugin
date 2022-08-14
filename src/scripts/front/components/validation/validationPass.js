@@ -1,10 +1,8 @@
 import {passIndicate, resetIndicate} from "./passIndicate";
+import {checkCountChar, checkIfOneDigit, checkIfOneLowercase, checkIfOneUppercase} from "./checks";
 
 const validClass = 'valid';
-const checkCountChar = i => i.length >= 6 && i.length < 20;
-const checkIfOneLowercase = i => /[a-z]/.test( i );
-const checkIfOneUppercase = i => /[A-Z]/.test( i );
-const checkIfOneDigit = i => /[0-9]/.test( i );
+
 
 export const checkPass = value => {
 	const

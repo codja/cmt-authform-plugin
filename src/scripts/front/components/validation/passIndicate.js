@@ -1,15 +1,27 @@
+import {checkIfTwoUppercase, checkRepeatedChars, checkSeriesKeyboardChars} from "./checks";
+
 const indicator = document.querySelector( '.rgbcode-authform-pass-strength' );
 const msgBlock = document.querySelector( '.rgbcode-authform-pass-strength__msg' );
 const msgs = JSON.parse( indicator.dataset.msgs );
+const indicateClasses = Object.keys( msgs );
 
 const getStrengthLevelPass = value => {
-	//return string(weak, medium, strong)
-	return 'weak';
+	const weakRules = checkRepeatedChars( value ) || ! checkSeriesKeyboardChars( value );
+	const mediumRules = value.length > 6 && value.length <= 12 && checkIfTwoUppercase( value );
+	const strongRules = value.length > 12 && checkIfTwoUppercase( value );
+
+	switch ( true ) {
+		default:
+		case weakRules:
+			return 'weak';
+		case mediumRules:
+			return 'medium';
+		case strongRules:
+			return 'strong';
+	}
 }
 
 const showPassStrengthLevel = level => {
-	// get keys from msgs
-	const indicateClasses = Object.keys( msgs );
 	// get all values without current level
 	const anotherClasses = indicateClasses.filter( item => item !== level );
 	// add current level classes
@@ -31,7 +43,6 @@ export const passIndicate = value => {
 }
 
 export const resetIndicate = () => {
-	const indicateClasses = Object.keys( msgs );
 	indicateClasses.forEach( className => indicator.classList.remove( className ) );
 	msgBlock.textContent = msgBlock.dataset.default;
 }
