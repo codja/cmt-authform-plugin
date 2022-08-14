@@ -103,6 +103,15 @@
 			</div>
 		</div>
 
+		<div class="rgbcode-authform-pass-strength">
+			<div class="rgbcode-authform-pass-strength__indicator" data-msgs="<?php echo esc_attr( wp_json_encode( $args['msgs'] ) ); ?>">
+				<div class="rgbcode-authform-pass-strength__item"></div>
+				<div class="rgbcode-authform-pass-strength__item"></div>
+				<div class="rgbcode-authform-pass-strength__item"></div>
+			</div>
+			<span class="rgbcode-authform-pass-strength__msg"></span>
+		</div>
+
 		<?php if ( $args['terms'] ) : ?>
 		<label class="rgbcode-authform-checkbox">
 			<input type="checkbox" class="rgbcode-authform-checkbox__input" tabindex="6" required>
