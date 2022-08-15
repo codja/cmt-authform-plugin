@@ -5,7 +5,7 @@ import {
 	scriptsFront,
 	scriptsAdmin,
 	isDeploy,
-	// images,
+	images,
 	fonts,
 	cleanAssets,
 } from './tasks.js';
@@ -18,7 +18,7 @@ export const watch = () => {
 	gulp.watch( 'styles/admin/**/*.*', gulp.series( stylesAdmin ) );
 	gulp.watch( 'scripts/front/**/*.*', gulp.series( scriptsFront ) );
 	gulp.watch( 'scripts/admin/**/*.*', gulp.series( scriptsAdmin ) );
-	// gulp.watch( 'images/**/*.{jpg,jpeg,png,webp,svg,gif}', images );
+	gulp.watch( 'img/**/*.{jpg,jpeg,png,webp,svg,gif}', images );
 	gulp.watch( 'fonts/**/*.{woff,woff2}', fonts );
 };
 
@@ -32,7 +32,7 @@ export default gulp.series(
 		scriptsFront,
 		scriptsAdmin,
 		fonts,
-		// images,
+		images,
 	),
 	watch
 );
@@ -47,6 +47,6 @@ export const build = gulp.series(
 		scriptsFront,
 		scriptsAdmin,
 		fonts,
-		// images,
+		images,
 	)
 );

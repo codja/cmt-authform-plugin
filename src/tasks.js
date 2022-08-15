@@ -125,7 +125,7 @@ export const scriptsFront = () => {
 export const images = () => {
 	return gulp
 		.src( [ 'img/**/*' ] )
-		.pipe( imagemin() )
+		// .pipe( imagemin() )
 		.pipe( gulp.dest( `../${ destDir }/img/` ) );
 };
 
