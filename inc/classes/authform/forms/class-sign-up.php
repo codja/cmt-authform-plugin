@@ -147,11 +147,6 @@ class Sign_Up extends Baseform {
 			'code' => '237',
 		],
 		[
-			'name' => 'Canada',
-			'iso'  => 'CA',
-			'code' => '1',
-		],
-		[
 			'name' => 'Cape Verde',
 			'iso'  => 'CV',
 			'code' => '238',
@@ -360,11 +355,6 @@ class Sign_Up extends Baseform {
 			'name' => 'Kiribati',
 			'iso'  => 'KI',
 			'code' => '686',
-		],
-		[
-			'name' => 'Korea, North',
-			'iso'  => 'KP',
-			'code' => '850',
 		],
 		[
 			'name' => 'Korea, South',
@@ -1172,11 +1162,6 @@ class Sign_Up extends Baseform {
 			'code' => '0',
 		],
 		[
-			'name' => 'Kosovo',
-			'iso'  => 'XK',
-			'code' => '383',
-		],
-		[
 			'name' => 'Congo, (Congo ? Kinshasa)',
 			'iso'  => 'CD',
 			'code' => '243',
@@ -1215,21 +1200,40 @@ class Sign_Up extends Baseform {
 
 	public function get_template_data(): array {
 		return [
-			'title_block' => get_field( 'rgbc_authform_title_block', 'option' ),
-			'full_name'   => get_field( 'rgbc_authform_full_name', 'option' ),
-			'email'       => get_field( 'rgbc_authform_email', 'option' ),
-			'phone'       => get_field( 'rgbc_authform_phone', 'option' ),
-			'pass'        => get_field( 'rgbc_authform_pass', 'option' ),
-			'terms'       => get_field( 'rgbc_authform_terms', 'option' ),
-			'submit'      => get_field( 'rgbc_authform_submit', 'option' ),
-			'message'     => get_field( 'rgbc_authform_message', 'option' ),
-			'bottom_link' => get_field( 'rgbc_authform_link', 'option' ),
-			'msgs'        => [
+			'title_block'     => get_field( 'rgbc_authform_title_block', 'option' ),
+			'full_name'       => get_field( 'rgbc_authform_full_name', 'option' ),
+			'email'           => get_field( 'rgbc_authform_email', 'option' ),
+			'phone'           => get_field( 'rgbc_authform_phone', 'option' ),
+			'pass'            => get_field( 'rgbc_authform_pass', 'option' ),
+			'terms'           => get_field( 'rgbc_authform_terms', 'option' ),
+			'submit'          => get_field( 'rgbc_authform_submit', 'option' ),
+			'message'         => get_field( 'rgbc_authform_message', 'option' ),
+			'bottom_link'     => get_field( 'rgbc_authform_link', 'option' ),
+			'msgs'            => [
 				'weak'   => __( 'Weak Password', 'rgbcode-authform' ),
 				'medium' => __( 'Medium Password', 'rgbcode-authform' ),
 				'strong' => __( 'Strong Password', 'rgbcode-authform' ),
 			],
+			'countries'       => self::COUNTRIES,
+			'default_country' => $this->get_default_country(),
 		];
+	}
+
+	private function get_default_country(): array {
+		$current_country = $_SERVER['HTTP_CF_IPCOUNTRY'] ?? false;
+		$default         = self::COUNTRIES[0];
+
+		if ( ! $current_country ) {
+			return $default;
+		}
+
+		foreach ( self::COUNTRIES as $country ) {
+			if ( $current_country === $country['iso'] ) {
+				return $country;
+			}
+		}
+
+		return $default;
 	}
 
 }

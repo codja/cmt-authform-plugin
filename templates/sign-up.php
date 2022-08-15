@@ -49,7 +49,32 @@
 				</span>
 			</div>
 
-			<div class="rgbcode-authform-flag-input" tabindex="3">+ 46</div>
+			<div class="rgbcode-authform-flag-input" tabindex="3">
+				<img
+					class="rgbcode-authform-flag-input__flag"
+					src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $args['default_country']['iso'] ) . '.svg' ); ?>" alt=""
+				>
+
+				+ <span class="rgbcode-authform-flag-input__code">
+					<?php echo esc_html( $args['default_country']['code'] ); ?>
+				</span>
+
+				<div class="rgbcode-authform-flag-input__select rgbcode-hidden">
+					<ul class="rgbcode-authform-flag-input__ul">
+						<?php foreach ( $args['countries'] as $country ) : ?>
+							<li
+								class="rgbcode-authform-flag-input__option"
+								data-code="<?php echo esc_attr( $country['code'] ); ?>"
+								data-iso="<?php echo esc_attr( $country['iso'] ); ?>"
+								data-src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $country['iso'] ) . '.svg' ); ?>"
+							>
+								<?php echo esc_html( $country['name'] ); ?>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+
+			</div>
 
 			<div class="rgbcode-authform-input rgbcode-authform-input_phone">
 				<label class="rgbcode-authform-input__label">

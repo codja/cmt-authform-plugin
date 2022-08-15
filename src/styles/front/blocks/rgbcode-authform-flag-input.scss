@@ -1,9 +1,52 @@
 .rgbcode-authform-flag-input {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 	font: 400 14px/21px $basefont;
 	align-self: baseline;
-	border-radius: 4px;
-	border: 1px solid #c9cbcd;
-	padding-inline: 10px;
+
+	padding-inline-end: 10px;
+	padding-inline-start: 2px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+
+	border-radius: 4px;
+	border: 1px solid #c9cbcd;
+	cursor: pointer;
+
+	&__flag {
+		width: 25px;
+		height: 18px;
+	}
+
+	&__select {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+
+		padding-top: 2em;
+		padding-bottom: 2em;
+
+		background-color: #fff;
+		border-radius: 4px;
+		overflow-y: hidden;
+	}
+
+	&__ul {
+		max-height: 600px;
+		overflow-y: auto;
+	}
+
+	&__option {
+		padding: 3px 0;
+		list-style: none;
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 }

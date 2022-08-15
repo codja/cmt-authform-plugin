@@ -28,7 +28,7 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 define( 'RGBCODE_AUTHFORM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'RGBCODE_AUTHFORM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'RGBCODE_AUTHFORM_VERSION', '1.0.0' );
-define( 'RGBCODE_AUTHFORM_IMAGES', RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/images' );
+define( 'RGBCODE_AUTHFORM_IMAGES', RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/img' );
 define( 'RGBCODE_AUTHFORM_TEMPLATES', RGBCODE_AUTHFORM_PLUGIN_DIR . 'templates' );
 define( 'RGBCODE_AUTHFORM_IMAGES_DIR', RGBCODE_AUTHFORM_PLUGIN_DIR . 'assets/images' );
 
