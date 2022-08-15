@@ -39,7 +39,7 @@ abstract class Request_Api {
 			Error::instance()->log_error( 'request_api', $request->get_error_message() );
 			return false;
 		} else {
-			return json_decode( wp_remote_retrieve_body( $request ) );
+			return json_decode( wp_remote_retrieve_body( $request ), true );
 		}
 	}
 }

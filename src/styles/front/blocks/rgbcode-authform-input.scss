@@ -7,6 +7,13 @@
 		margin-top: 0.2em;
 		font: 300 12px/13px $basefont;
 		color: $red;
+
+		&_submit {
+			padding-bottom: 0.3em;
+			font: 400 14px/1 $basefont;
+			text-align: center;
+			height: initial;
+		}
 	}
 
 	&__label {

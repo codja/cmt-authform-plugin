@@ -31,8 +31,6 @@ abstract class Base_Route {
 			wp_send_json_error( __( 'Error on client server. Check Request_Api log', 'rgbcode-authform' ) );
 		}
 
-		$response = json_decode( $response, true );
-
 		if ( isset( $response['error'] ) ) {
 			wp_send_json_error( $response['error'][0]['description'] );
 		}
@@ -47,14 +45,14 @@ abstract class Base_Route {
 
 	protected function get_body( array $data ): array {
 		$referral_data = $this->extract_referral_data( $data );
+		$full_name     = $this->get_full_name( sanitize_text_field( $data['full_name'] ?? '' ) );
 
 		$result = array(
 			'email'     => sanitize_email( $data['email'] ?? '' ),
-			'country'   => sanitize_text_field( $data['countryiso2'] ?? '' ),
-			'firstName' => sanitize_text_field( $data['firstname'] ?? '' ),
-			'lastName'  => sanitize_text_field( $data['lastname'] ?? '' ),
+			'country'   => sanitize_text_field( $data['iso'] ?? '' ),
+			'firstName' => $full_name['first_name'] ?? '',
+			'lastName'  => $full_name['last_name'] ?? '',
 			'phone'     => sanitize_text_field( ( $data['phonecountry'] ?? '' ) . ( $data['phone'] ?? '' ) ),
-			'language'  => $this->get_site_language( sanitize_text_field( $data['language'] ?? '' ) ),
 		);
 
 		if ( $referral_data['referral'] ) {
@@ -144,8 +142,6 @@ abstract class Base_Route {
 			wp_send_json_error( __( 'Error on client server. Check Request_Api log', 'rgbcode-authform' ) );
 		}
 
-		$authorization = json_decode( $authorization, true );
-
 		if ( isset( $authorization['error'] ) ) {
 			wp_send_json_error( $authorization['error'][0]['description'] );
 		}
@@ -180,20 +176,6 @@ abstract class Base_Route {
 		wp_send_json_error( $error[0] );
 	}
 
-	private function get_site_language( $language ): ?string {
-		if ( ! $language ) {
-			return null;
-		}
-
-		$convert = [
-			'en-US' => 'enu',
-			'ar-SA' => 'ara',
-			'ru-RU' => 'rus',
-		];
-
-		return $convert[ $language ] ?? 'enu';
-	}
-
 	private function get_response_link( $url, $param ) {
 		if ( ! $url ) {
 			return get_home_url();
@@ -211,6 +193,19 @@ abstract class Base_Route {
 		$new_query = http_build_query( $parameters );
 
 		return $base_url . '?' . $new_query;
+	}
+
+	private function get_full_name( string $full_name ): array {
+		if ( ! $full_name ) {
+			return [];
+		}
+
+		$full_name = explode( ' ', trim( $full_name ) );
+
+		return [
+			'first_name' => $full_name[0],
+			'last_name'  => $full_name[1],
+		];
 	}
 
 }

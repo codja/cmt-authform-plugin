@@ -17,3 +17,18 @@ export async function postData( url = '', data = {},  method = 'POST' ) {
 	const response = await fetch( url, init );
 	return response.json();
 }
+
+export function serializeArray ( form ) {
+	// Create a new FormData object
+	const formData = new FormData( form );
+
+	// Create an array to hold the name/value pairs
+	const pairs = {};
+
+	// Add each name/value pair to the array
+	for ( const [ name, value ] of formData ) {
+		pairs[name] = value;
+	}
+
+	return pairs;
+}

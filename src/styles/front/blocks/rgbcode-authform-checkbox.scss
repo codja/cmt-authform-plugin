@@ -17,7 +17,7 @@
 		&:focus + .rgbcode-authform-checkbox__box {
 			box-shadow:
 				0 0 0 0.1em #909090,
-				0 0 0 0.15em #0063ff;
+				0 0 0 0.15em $accent;
 		}
 
 		&:disabled + .rgbcode-authform-checkbox__box {

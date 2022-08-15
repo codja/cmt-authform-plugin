@@ -12,6 +12,7 @@ export function initFlagSelect() {
 	options.forEach( option => {
 		option.addEventListener( 'click', () => {
 			flagImg.src = option.dataset.src;
+			telephoneCode.dataset.iso = option.dataset.iso;
 			telephoneCode.textContent = option.dataset.code;
 		} );
 	} )

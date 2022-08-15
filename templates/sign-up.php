@@ -1,4 +1,4 @@
-<div class="rgbcode-authform-modal" id="signup">
+<div class="rgbcode-authform-modal" id="rgbcode-signup">
 	<button class="rgbcode-authform-modal__close" type="button"></button>
 	<form class="rgbcode-authform-signup">
 
@@ -55,7 +55,7 @@
 					src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $args['default_country']['iso'] ) . '.svg' ); ?>" alt=""
 				>
 
-				+ <span class="rgbcode-authform-flag-input__code">
+				<span class="rgbcode-authform-flag-input__code" data-iso="<?php echo esc_attr( $args['default_country']['iso'] ); ?>">
 					<?php echo esc_html( $args['default_country']['code'] ); ?>
 				</span>
 
@@ -154,6 +154,7 @@
 		</label>
 		<?php endif; ?>
 
+		<div class="rgbcode-authform-input__error rgbcode-authform-input__error_submit rgbcode-hidden"></div>
 		<button id="rgbcode-signup-submit" class="rgbcode-authform-button" type="submit" disabled>
 			<?php echo esc_html( $args['submit'] ); ?>
 		</button>

@@ -6,19 +6,21 @@
 	font: 400 18px $basefont;
 
 	color: #fff;
-	background-color: #0063ff;
+	background-color: $accent;
 	border-radius: 0;
 	border-color: transparent;
 
 	white-space: nowrap;
 	transition: all .3s ease;
 
-	&:hover {
-		background-color: darken( #0063ff, 15% );
+	&:hover,
+	&:focus {
+		background-color: darken($accent, 15%);
+		outline: none;
 	}
 
 	&:disabled {
 		cursor: not-allowed;
-		background-color: #C9CBCD;
+		background-color: #c9cbcd;
 	}
 }
