@@ -22,13 +22,6 @@ function execFn(fnName, ctx )
 	return ctx[fnName].apply(ctx, args);
 }
 
-const checkAgree = i => {
-	i.addEventListener( 'change', ( evt ) => {
-		context.globalCheck.agree = evt.target.checked;
-		checkPermissionSubmit();
-	} );
-}
-
 const fullNameHandler = ( input ) => {
 	let timeout = null;
 	input.addEventListener( 'input', () => {
@@ -38,7 +31,7 @@ const fullNameHandler = ( input ) => {
 
 		timeout = setTimeout( () => {
 			input.value = input.value.replace(/\s{2,}/g,' ');
-			input.dispatchEvent( new Event( 'keyup' ) );
+			input.dispatchEvent( new Event( 'input' ) );
 		}, 1000 );
 	} );
 }
@@ -52,6 +45,13 @@ const checkPermissionSubmit = () => {
 	isFormValidate()
 		? submit.disabled = false
 		: submit.disabled = true;
+}
+
+const checkAgree = i => {
+	i.addEventListener( 'change', ( evt ) => {
+		context.globalCheck.agree = evt.target.checked;
+		checkPermissionSubmit();
+	} );
 }
 
 const successValid = input => {
@@ -69,7 +69,7 @@ const unsuccessfulValid = input => {
 }
 
 const enableValidation = ( handlerName, input ) => {
-	input.addEventListener( 'keyup', ( evt ) => {
+	input.addEventListener( 'input', ( evt ) => {
 			execFn( handlerName, context, evt.target.value )
 				? successValid( input )
 				: unsuccessfulValid( input );

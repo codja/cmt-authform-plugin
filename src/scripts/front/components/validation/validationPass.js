@@ -26,11 +26,11 @@ export const checkPass = value => {
 		: failCheck( length );
 
 	checkIfOneLowercase( value )
-		? successCheck(lowercase )
+		? successCheck( lowercase )
 		: failCheck( lowercase );
 
 	checkIfOneUppercase( value )
-		? successCheck(uppercase )
+		? successCheck( uppercase )
 		: failCheck( uppercase );
 
 	checkIfOneDigit( value )

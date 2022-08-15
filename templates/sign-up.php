@@ -24,6 +24,7 @@
 						minlength="4"
 						placeholder="<?php echo esc_attr( $args['full_name']['placeholder'] ); ?>"
 						tabindex="1"
+						autocomplete="off"
 						required
 					>
 				</label>
@@ -39,6 +40,7 @@
 						name="email"
 						placeholder="<?php echo esc_attr( $args['email']['placeholder'] ); ?>"
 						tabindex="2"
+						autocomplete="off"
 						required
 					>
 				</label>
@@ -58,6 +60,7 @@
 						name="phone"
 						placeholder="<?php echo esc_attr( $args['phone']['placeholder'] ); ?>"
 						tabindex="4"
+						autocomplete="off"
 						required
 					>
 				</label>
@@ -74,6 +77,7 @@
 						name="password"
 						placeholder="<?php echo esc_attr( $args['pass']['placeholder'] ); ?>"
 						tabindex="5"
+						autocomplete="off"
 						required
 					>
 					<button type="button" class="rgbcode-authform-pass-toggle"></button>
