@@ -29,7 +29,8 @@ export function initModal() {
 
 	buttons.forEach( button => {
 		button.addEventListener( 'click', ( evt ) => {
-			const target = evt.target.dataset.target;
+			evt.preventDefault();
+			const target = button.dataset.target;
 			showModal( target );
 		} )
 	} );
