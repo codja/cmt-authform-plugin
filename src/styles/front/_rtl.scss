@@ -1,1 +1,24 @@
-[dir="rtl"] {}
+[dir="rtl"] {
+
+	.rgbcode-authform-close,
+	.rgbcode-authform-input__label::after {
+		right: initial;
+		left: 10px;
+	}
+
+	.rgbcode-authform-pass-toggle {
+		right: initial;
+		left: 5px;
+	}
+
+	.rgbcode-authform-checkbox {
+		padding-right: 1.7em;
+		padding-left: initial;
+
+		&__box {
+			margin-right: -1.6em;
+			margin-left: initial;
+		}
+	}
+
+}
