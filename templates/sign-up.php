@@ -1,5 +1,13 @@
 <div class="rgbcode-authform-modal" id="rgbcode-signup">
-	<button class="rgbcode-authform-modal__close" type="button"></button>
+	<button class="rgbcode-authform-modal__close rgbcode-authform-close" type="button"></button>
+
+	<div class="rgbcode-authform-message <?php echo esc_attr( ! $args['default_country']['not_allowed'] ? 'rgbcode-hidden' : '' ); ?>">
+		<button class="rgbcode-authform-message__close rgbcode-authform-close"></button>
+		<div class="rgbcode-authform-message__txt">
+			<?php echo esc_html__( 'We currently do not accept customers from your region', 'rgbcode-authform' ); ?>
+		</div>
+	</div>
+
 	<form class="rgbcode-authform-signup">
 
 		<?php if ( $args['title_block']['title'] ) : ?>
@@ -52,11 +60,11 @@
 			<div class="rgbcode-authform-flag-input" tabindex="3">
 				<img
 					class="rgbcode-authform-flag-input__flag"
-					src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $args['default_country']['iso'] ) . '.svg' ); ?>" alt=""
+					src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $args['default_country']['country']['iso'] ) . '.svg' ); ?>" alt=""
 				>
 
-				<span class="rgbcode-authform-flag-input__code" data-iso="<?php echo esc_attr( $args['default_country']['iso'] ); ?>">
-					<?php echo esc_html( $args['default_country']['code'] ); ?>
+				<span class="rgbcode-authform-flag-input__code" data-iso="<?php echo esc_attr( $args['default_country']['country']['iso'] ); ?>">
+					<?php echo esc_html( $args['default_country']['country']['code'] ); ?>
 				</span>
 
 				<div class="rgbcode-authform-flag-input__select rgbcode-hidden">

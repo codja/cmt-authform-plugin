@@ -1,22 +1,23 @@
 const html = document.querySelector( 'html' ),
 	modalWrap = document.querySelector( '.rgbcode-authform-back' ),
 	allModals = modalWrap.querySelectorAll( '.rgbcode-authform-modal' ),
-	buttonsInModal = modalWrap.querySelectorAll( '.rgbcode-authform-modal__close' );
+	buttonsInModal = modalWrap.querySelectorAll( '.rgbcode-authform-modal__close' ),
+	closeMsgBtn = modalWrap.querySelector( '.rgbcode-authform-message__close' );
 
 const showModal = ( target ) => {
 	html.style.overflow = 'hidden';
-	modalWrap.style.display = 'flex';
+	modalWrap.classList.remove( 'rgbcode-hidden' );
 	if ( target ) {
-		modalWrap.querySelector( `#${target}` ).style.display = 'block';
+		modalWrap.querySelector( `#${target}` ).classList.remove( 'rgbcode-hidden' );
 	}
 };
 
 const hideModal = () => {
 	html.style.overflow = '';
 	allModals.forEach( modal => {
-		modal.style.display = 'none';
+		modal.classList.add( 'rgbcode-hidden' );
 	} )
-	modalWrap.style.display = 'none';
+	modalWrap.classList.add( 'rgbcode-hidden' );
 };
 
 export function initModal() {
@@ -37,4 +38,7 @@ export function initModal() {
 			hideModal();
 		} )
 	} );
+	closeMsgBtn.addEventListener( 'click', ( evt ) => {
+		closeMsgBtn.parentElement.classList.add( 'rgbcode-hidden' );
+	} )
 }

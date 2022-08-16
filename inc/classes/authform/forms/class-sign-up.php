@@ -1221,19 +1221,24 @@ class Sign_Up extends Baseform {
 
 	private function get_default_country(): array {
 		$current_country = $_SERVER['HTTP_CF_IPCOUNTRY'] ?? false;
-		$default         = self::COUNTRIES[0];
+		$result         = [
+			'country'     => self::COUNTRIES[0],
+			'not_allowed' => false,
+		];
 
 		if ( ! $current_country ) {
-			return $default;
+			return $result;
 		}
 
 		foreach ( self::COUNTRIES as $country ) {
 			if ( $current_country === $country['iso'] ) {
-				return $country;
+				$result['country'] = $country;
+				return $result;
 			}
 		}
 
-		return $default;
+		$result['not_allowed'] = true;
+		return $result;
 	}
 
 }
