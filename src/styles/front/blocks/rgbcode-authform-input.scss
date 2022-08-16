@@ -3,10 +3,17 @@
 	width: 100%;
 
 	&__error {
-		height: 5px;
-		margin-top: 0.2em;
+		height: 7px;
+		margin-top: 0.4em;
+		display: block;
 		font: 300 12px/13px $basefont;
 		color: $red;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			height: 5px;
+			font-size: 11px;
+			margin-top: 0.3em;
+		}
 
 		&_submit {
 			padding-bottom: 0.3em;
@@ -81,6 +88,11 @@
 		padding-top: 10px;
 		padding-bottom: 10px;
 		box-shadow: 0 3px 3px 0 rgba(#000, 0.05);
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			padding-top: 8px;
+			padding-bottom: 8px;
+		}
 
 		&.valid {
 			border-bottom-color: $green;

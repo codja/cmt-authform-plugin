@@ -48,6 +48,10 @@
 	&__msg {
 		padding: 10px 0;
 		font: 400 12px/18px $basefont;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			font-size: 11px;
+		}
 	}
 
 }

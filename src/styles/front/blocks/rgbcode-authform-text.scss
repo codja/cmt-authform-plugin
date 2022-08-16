@@ -2,6 +2,11 @@
 	font: 400 14px/17px $basefont;
 	margin: 1em 0;
 
+	@include media_max( map-get( $breaks, mobile ) ) {
+		font-size: 11px;
+		line-height: 1.2;
+	}
+
 	&_center {
 		text-align: center;
 	}

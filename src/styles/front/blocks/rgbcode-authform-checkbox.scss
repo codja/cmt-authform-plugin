@@ -3,6 +3,12 @@
 	margin: 1.5em 0;
 	font: 400 13px/18px $basefont;
 
+	@include media_max( map-get( $breaks, mobile ) ) {
+		margin: 0.5em 0;
+		font-size: 11px;
+		line-height: 1.2;
+	}
+
 	&__input {
 		position: absolute;
 		width: 1px;
@@ -43,5 +49,9 @@
 		background-repeat: no-repeat;
 		background-position: 50% 50%;
 		box-shadow: 0 0 0 0.1em #909090;
+	}
+
+	p {
+		margin-bottom: 0;
 	}
 }

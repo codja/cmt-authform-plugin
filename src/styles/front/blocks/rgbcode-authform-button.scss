@@ -12,7 +12,12 @@
 	border-color: transparent;
 
 	white-space: nowrap;
-	transition: all .3s ease;
+	transition: all 0.3s ease;
+
+	@include media_max( map-get( $breaks, mobile ) ) {
+		padding-top: 0.55em;
+		padding-bottom: 0.55em;
+	}
 
 	&:hover,
 	&:focus {

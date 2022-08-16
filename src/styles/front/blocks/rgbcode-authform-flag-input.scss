@@ -14,6 +14,11 @@
 	border: 1px solid #c9cbcd;
 	cursor: pointer;
 
+	@include media_max( map-get( $breaks, mobile ) ) {
+		padding-top: 8px;
+		padding-bottom: 8px;
+	}
+
 	&__flag {
 		width: 25px;
 		height: 18px;
@@ -36,7 +41,7 @@
 	}
 
 	&__ul {
-		max-height: 600px;
+		max-height: 100%;
 		overflow-y: auto;
 	}
 

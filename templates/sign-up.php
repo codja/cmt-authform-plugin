@@ -87,7 +87,7 @@
 			<div class="rgbcode-authform-input rgbcode-authform-input_phone">
 				<label class="rgbcode-authform-input__label">
 					<input
-						type="text"
+						type="tel"
 						maxlength="17"
 						minlength="5"
 						name="phone"
