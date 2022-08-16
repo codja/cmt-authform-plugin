@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rgbcode-authform\n"
-"POT-Creation-Date: 2022-06-07 15:43+0300\n"
+"POT-Creation-Date: 2022-08-16 16:37+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ruslan <ruslan@rgbcode.com>\n"
 "Language-Team: Rgbcode\n"
@@ -19,3 +19,52 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: src\n"
 "X-Poedit-SearchPathExcluded-1: assets\n"
+
+#: inc/classes/authform/forms/class-sign-up.php:1213
+msgid "Weak Password"
+msgstr "كلمة مرور ضعيفة"
+
+#: inc/classes/authform/forms/class-sign-up.php:1214
+msgid "Medium Password"
+msgstr "كلمة مرور متوسطة"
+
+#: inc/classes/authform/forms/class-sign-up.php:1215
+msgid "Strong Password"
+msgstr "كلمة مرور قوية"
+
+#: inc/classes/plugins/class-acf.php:25 inc/classes/plugins/class-acf.php:26
+msgid "Authform"
+msgstr ""
+
+#: inc/classes/routes/api/class-base-route.php:31
+#: inc/classes/routes/api/class-base-route.php:143
+msgid "Error on client server. Check Request_Api log"
+msgstr ""
+
+#: templates/sign-up.php:7
+msgid "We currently do not accept customers from your region"
+msgstr "لا نقبل حاليًا عملاء من منطقتك"
+
+#: templates/sign-up.php:125
+msgid "Your Password Must have:"
+msgstr "يجب أن تحتوي كلمة المرور الخاصة بك على:"
+
+#: templates/sign-up.php:130
+msgid "Length between 6 and 20 characters"
+msgstr "يتراوح طولها بين 6 و 20 حرفًا"
+
+#: templates/sign-up.php:133
+msgid "At least one lowercase character"
+msgstr "حرف صغير واحد على الأقل"
+
+#: templates/sign-up.php:136
+msgid "At least one uppercase character"
+msgstr "حرف كبير واحد على الأقل"
+
+#: templates/sign-up.php:139
+msgid "At least one number"
+msgstr "رقم واحد على الأقل"
+
+#: templates/sign-up.php:154 templates/sign-up.php:155
+msgid "Password Strength"
+msgstr "قوة كلمة المرور"
