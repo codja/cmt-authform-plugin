@@ -5,6 +5,10 @@ import {initFlagSelect} from "./components/flagSelect";
 import {initFormSubmit} from "./components/formSubmit";
 
 document.addEventListener( 'DOMContentLoaded', () => {
+	if ( ! document.getElementById( 'rgbcode-authform' ) ) {
+		return;
+	}
+
 	initModal();
 	initValidate();
 	initTogglePass();

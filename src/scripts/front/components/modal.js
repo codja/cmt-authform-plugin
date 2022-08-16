@@ -21,7 +21,7 @@ const hideModal = () => {
 };
 
 export function initModal() {
-	const buttons = document.querySelectorAll( '.js-rgbcode-modal' );
+	const buttons = document.querySelectorAll( '.js-rgbcode-authform' );
 
 	if ( ! buttons.length ) {
 		return;

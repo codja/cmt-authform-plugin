@@ -68,6 +68,7 @@
 				</span>
 
 				<div class="rgbcode-authform-flag-input__select rgbcode-hidden">
+					<button class="rgbcode-authform-close"></button>
 					<ul class="rgbcode-authform-flag-input__ul">
 						<?php foreach ( $args['countries'] as $country ) : ?>
 							<li
