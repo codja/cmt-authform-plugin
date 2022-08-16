@@ -1,4 +1,4 @@
-import {postData, serializeArray} from "./utils";
+import {getCookie, postData, serializeArray} from "./utils";
 
 const formSignUp = document.querySelector( '.rgbcode-authform-signup' );
 const phoneCountry = formSignUp.querySelector( '.rgbcode-authform-flag-input__code' );
@@ -10,8 +10,16 @@ export function initFormSubmit() {
 		evt.preventDefault();
 
 		const data = serializeArray( formSignUp );
+		const referralFromCookie = getCookie('referral_params');
 		data.phonecountry = phoneCountry.textContent.trim();
 		data.iso = phoneCountry.dataset.iso;
+
+		if ( referralFromCookie ) {
+			data.referral = referralFromCookie
+				.substr( 1 )
+				.replaceAll( '&', '|' );
+		}
+
 		submitBtn.classList.add( 'rgbcode-authform-button_loader' );
 
 		postData( '/wp-json/rgbcode/v1/create_account', data )
