@@ -53,6 +53,7 @@ abstract class Base_Route {
 			'firstName' => $full_name['first_name'] ?? '',
 			'lastName'  => $full_name['last_name'] ?? '',
 			'phone'     => sanitize_text_field( ( $data['phonecountry'] ?? '' ) . ( $data['phone'] ?? '' ) ),
+			'language'  => $this->get_site_language(),
 		);
 
 		if ( $referral_data['referral'] ) {
@@ -176,6 +177,22 @@ abstract class Base_Route {
 		wp_send_json_error( $error[0] );
 	}
 
+	private function get_site_language(): ?string {
+		$language = get_field( 'rgbc_authform_lang', 'option' );
+
+		if ( ! $language ) {
+			return 'enu';
+		}
+
+		$convert = [
+			'en' => 'enu',
+			'ar' => 'ara',
+			'es' => 'spa',
+		];
+
+		return $convert[ $language ] ?? 'enu';
+	}
+
 	private function get_response_link( $url, $param ) {
 		if ( ! $url ) {
 			return get_home_url();
@@ -185,14 +202,12 @@ abstract class Base_Route {
 			return $url;
 		}
 
-		$base_url = strtok( $url, '?' );
-		$query    = wp_parse_url( $url )['query'];
-
-		parse_str( $query, $parameters );
+		$base_url = wp_parse_url( $url );
+		parse_str( $base_url['query'], $parameters );
 		unset( $parameters[ $param ] );
 		$new_query = http_build_query( $parameters );
 
-		return $base_url . '?' . $new_query;
+		return $base_url['path'] . '?' . $new_query;
 	}
 
 	private function get_full_name( string $full_name ): array {
