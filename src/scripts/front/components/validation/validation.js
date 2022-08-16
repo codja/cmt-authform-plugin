@@ -30,7 +30,7 @@ const fullNameHandler = ( input ) => {
 		}
 
 		timeout = setTimeout( () => {
-			input.value = input.value.replace(/\s{2,}/g,' ');
+			input.value = input.value.replaceAll(/\s{2,}/g,' ');
 			input.dispatchEvent( new Event( 'input' ) );
 		}, 1000 );
 	} );
