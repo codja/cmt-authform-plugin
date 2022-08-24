@@ -5,6 +5,7 @@ namespace Rgbcode_authform;
 use Rgbcode_authform\classes\core\Error;
 use Rgbcode_authform\classes\authform\Authform;
 use Rgbcode_authform\classes\core\Setup;
+use Rgbcode_authform\classes\Endpoint;
 use Rgbcode_authform\classes\plugins\ACF;
 use Rgbcode_authform\classes\routes\Routes;
 
@@ -40,8 +41,11 @@ if ( function_exists( '__autoload' ) ) {
 }
 
 // ... and call
-new Setup();
-new Authform();
-new Routes();
 Error::instance();
 ACF::instance();
+if ( Error::instance()->is_defined_constants() ) {
+	new Setup();
+	new Authform();
+	new Routes();
+	new Endpoint();
+}
