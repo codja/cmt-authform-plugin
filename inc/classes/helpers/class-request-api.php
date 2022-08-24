@@ -42,4 +42,21 @@ abstract class Request_Api {
 			return json_decode( wp_remote_retrieve_body( $request ), true );
 		}
 	}
+
+	public static function get_response_link( $url, $param ) {
+		if ( ! $url ) {
+			return get_home_url();
+		}
+
+		if ( ! $param ) {
+			return $url;
+		}
+
+		$base_url = wp_parse_url( $url );
+		parse_str( $base_url['query'], $parameters );
+		unset( $parameters[ $param ] );
+		$new_query = http_build_query( $parameters );
+
+		return $base_url['path'] . '?' . $new_query;
+	}
 }
