@@ -43,9 +43,7 @@ if ( function_exists( '__autoload' ) ) {
 // ... and call
 Error::instance();
 ACF::instance();
-if ( Error::instance()->is_defined_constants() ) {
-	new Setup();
-	new Authform();
-	new Routes();
-	new Endpoint();
-}
+new Setup();
+new Authform();
+new Routes();
+new Endpoint();

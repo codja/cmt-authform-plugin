@@ -12,7 +12,7 @@ class Endpoint {
 
 	public function __construct() {
 		$this->auth = new Authorization();
-		add_action( 'init', [ $this, 'autologin' ] );
+		add_action( 'template_redirect', [ $this, 'autologin' ] );
 	}
 
 	public function autologin() {
@@ -32,6 +32,7 @@ class Endpoint {
 		$user            = get_user_by( 'email', $email );
 		$user_registered = $user->user_registered;
 		$partner_id      = sanitize_text_field( $_GET['partner_id'] ?? '' );
+		$action          = sanitize_text_field( $_GET['action'] ?? '' );
 
 		if ( $user_registered !== $registration_date ) {
 			return;
@@ -50,7 +51,6 @@ class Endpoint {
 				'Content-Type'  => 'application/json',
 			]
 		);
-
 		if ( ! $response ) {
 			return;
 		}
@@ -59,7 +59,12 @@ class Endpoint {
 			Error::instance()->log_error( 'class-endpoint-error', $response['error'][0]['description'] );
 		}
 
-		$link_for_redirect = Request_Api::get_response_link( $response['data']['url'] ?? '', 'action' );
+		$link_for_redirect = Request_Api::get_response_link(
+			$response['data']['url'] ?? '',
+			'action',
+			true,
+			$action
+		);
 
 		wp_safe_redirect( $link_for_redirect );
 		exit;

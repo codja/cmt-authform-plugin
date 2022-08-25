@@ -43,7 +43,7 @@ abstract class Request_Api {
 		}
 	}
 
-	public static function get_response_link( $url, $param ) {
+	public static function get_response_link( $url, $param, $change = false, $changeable_value = '' ) {
 		if ( ! $url ) {
 			return get_home_url();
 		}
@@ -54,7 +54,13 @@ abstract class Request_Api {
 
 		$base_url = wp_parse_url( $url );
 		parse_str( $base_url['query'], $parameters );
-		unset( $parameters[ $param ] );
+
+		if ( $change && $changeable_value ) {
+			$parameters[ $param ] = $changeable_value;
+		} else {
+			unset( $parameters[ $param ] );
+		}
+
 		$new_query = http_build_query( $parameters );
 
 		return $base_url['path'] . '?' . $new_query;
