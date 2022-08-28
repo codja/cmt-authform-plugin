@@ -1,0 +1,107 @@
+.rgbcode-authform-input {
+	position: relative;
+	width: 100%;
+
+	&__error {
+		height: 7px;
+		margin-top: 0.4em;
+		display: block;
+		font: 300 12px/13px $basefont;
+		color: $red;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			height: 5px;
+			font-size: 11px;
+			margin-top: 0.3em;
+		}
+
+		&_submit {
+			padding-bottom: 0.3em;
+			font: 400 14px/1 $basefont;
+			text-align: center;
+			height: initial;
+		}
+	}
+
+	&__label {
+		position: relative;
+		width: 100%;
+
+		&::after {
+			position: absolute;
+			top: 50%;
+			right: 10px;
+			transform: translateY(-50%);
+
+			font-family: rgbcicons, sans-serif;
+			font-size: 26px;
+		}
+	}
+
+	&_user {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e903";
+		}
+	}
+
+	&_email {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e902";
+		}
+	}
+
+	&_phone {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e004";
+		}
+	}
+
+	&_key {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e02c";
+		}
+	}
+
+	&_eye {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e901";
+		}
+	}
+
+	&_eye-hidden {
+
+		.rgbcode-authform-input__label::after {
+			content: "\e900";
+		}
+	}
+
+	input {
+		font: 400 14px/21px $basefont;
+		border-radius: 4px;
+		border-color: #c9cbcd;
+		padding-inline: 16px 45px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		box-shadow: 0 3px 3px 0 rgba(#000, 0.05);
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			padding-top: 8px;
+			padding-bottom: 8px;
+		}
+
+		&.valid {
+			border-bottom-color: $green;
+		}
+
+		&.invalid {
+			border-bottom-color: $red;
+		}
+	}
+
+
+}

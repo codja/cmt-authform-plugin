@@ -1,0 +1,32 @@
+.rgbcode-authform-pass-toggle {
+	position: absolute;
+	top: 0;
+	right: 5px;
+
+	padding: 0;
+	display: block;
+
+	font-size: 31px;
+	border: none;
+	color: #000;
+
+	&:hover,
+	&:active,
+	&:focus {
+		background: transparent;
+		outline: none;
+		color: #000;
+	}
+
+	&::before {
+		font-family: rgbcicons, sans-serif;
+		content: "\e900";
+	}
+
+	&.rgbcode-active {
+
+		&::before {
+			content: "\e901";
+		}
+	}
+}

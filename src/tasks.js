@@ -14,7 +14,7 @@ import { env } from './env.js';
 const mode = process.env.MODE;
 export const isDeploy = mode === 'deploy';
 const destDir = 'assets';
-const minifiedJsBundleName = 'rgbcode-menu';
+const minifiedJsBundleName = 'rgbcode-authform';
 
 const styles = ( srcPath, destPath, remotePath ) => {
 	return gulp
@@ -124,17 +124,17 @@ export const scriptsFront = () => {
 
 export const images = () => {
 	return gulp
-		.src( [ 'src/img/**/*' ] )
-		.pipe( imagemin() )
+		.src( [ 'img/**/*' ] )
+		// .pipe( imagemin() )
 		.pipe( gulp.dest( `../${ destDir }/img/` ) );
 };
 
 export const fonts = () => {
 	return gulp
-		.src( [ 'src/fonts/**/*' ], {
+		.src( [ 'fonts/**/*' ], {
 			base: 'src/',
 		} )
-		.pipe( gulp.dest( `../${ destDir }` ) );
+		.pipe( gulp.dest( `../${ destDir }/fonts/` ) );
 };
 
 export const cleanAssets = () => {

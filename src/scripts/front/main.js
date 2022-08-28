@@ -1,16 +1,17 @@
-import { initLinks } from './components/links';
-import { initVideo } from './components/modalVideo';
-import { initMobileMenu } from './components/mobileMenu';
-import linksByPlatform from './components/linksByPlatform.js';
-import dynamicContent from './components/dynamicContent.js';
+import {initModal} from "./components/modal";
+import {initValidate} from "./components/validation/validation";
+import {initTogglePass} from "./components/togglePassword";
+import {initFlagSelect} from "./components/flagSelect";
+import {initFormSubmit} from "./components/formSubmit";
 
 document.addEventListener( 'DOMContentLoaded', () => {
-	if ( ! document.getElementById( 'rgbcode-menu-header' ) ) {
+	if ( ! document.getElementById( 'rgbcode-authform' ) ) {
 		return;
 	}
-	initMobileMenu();
-	initLinks();
-	initVideo();
-	linksByPlatform();
-	dynamicContent();
+
+	initModal();
+	initValidate();
+	initTogglePass();
+	initFlagSelect();
+	initFormSubmit();
 } );

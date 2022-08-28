@@ -1,0 +1,57 @@
+.rgbcode-authform-checkbox {
+	padding-left: 1.7em;
+	margin: 1.5em 0;
+	font: 400 13px/18px $basefont;
+
+	@include media_max( map-get( $breaks, mobile ) ) {
+		margin: 0.5em 0;
+		font-size: 11px;
+		line-height: 1.2;
+	}
+
+	&__input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+
+		&:checked + .rgbcode-authform-checkbox__box {
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpolyline fill='%23fff' stroke='%230063ff' stroke-width='2' points='1.079 4.999 5 9 10.837 2'%3E%3C/polyline%3E%3C/svg%3E");
+		}
+
+		&:focus + .rgbcode-authform-checkbox__box {
+			box-shadow:
+				0 0 0 0.1em #909090,
+				0 0 0 0.15em $accent;
+		}
+
+		&:disabled + .rgbcode-authform-checkbox__box {
+			background-color: #c5c3c3;
+		}
+
+		&:checked:disabled + .rgbcode-authform-checkbox__box {
+			background-color: #c5c3c3;
+		}
+
+	}
+
+	&__box {
+		position: absolute;
+		margin-top: 0.35em;
+		margin-left: -1.6em;
+		width: 1em;
+		height: 1em;
+
+		overflow: hidden;
+		border-radius: .2em;
+		background-color: white;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		box-shadow: 0 0 0 0.1em #909090;
+	}
+
+	p {
+		margin-bottom: 0;
+	}
+}

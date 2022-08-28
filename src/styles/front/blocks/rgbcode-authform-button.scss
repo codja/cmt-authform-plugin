@@ -1,0 +1,44 @@
+.rgbcode-authform-button {
+	position: relative;
+	width: 100%;
+	padding-top: 0.85em;
+	padding-bottom: 0.85em;
+
+	font: 400 18px $basefont;
+
+	color: #fff;
+	background-color: $accent;
+	border-radius: 0;
+	border-color: transparent;
+
+	white-space: nowrap;
+	transition: all 0.3s ease;
+
+	@include media_max( map-get( $breaks, mobile ) ) {
+		padding-top: 0.55em;
+		padding-bottom: 0.55em;
+	}
+
+	&:hover,
+	&:focus {
+		background-color: darken($accent, 15%);
+		outline: none;
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+		background-color: #c9cbcd;
+	}
+
+	&_loader::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: url(../../img/loader-white.svg) no-repeat center center;
+		background-color: inherit;
+		border-radius: inherit;
+	}
+}

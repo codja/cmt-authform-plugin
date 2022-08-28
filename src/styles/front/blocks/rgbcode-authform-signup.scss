@@ -1,0 +1,95 @@
+.rgbcode-authform-signup {
+	max-width: 470px;
+	padding-inline: 32px;
+	padding-top: 32px;
+	padding-bottom: 20px;
+	border-radius: 4px;
+	background-color: #fff;
+
+	@include media_max( map-get( $breaks, mobile ) ) {
+		padding-inline: 20px;
+	}
+
+	&__title,
+	&__subtitle {
+		text-align: center;
+		color: #051225;
+	}
+
+	&__title {
+		font: 300 30px/34px $basefont;
+		padding-inline: 25px;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			font: 300 20px/1.8 $basefont;
+		}
+	}
+
+	&__subtitle {
+		font: 300 19px/34px $basefont;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			font: 300 14px/1.1 $basefont;
+		}
+	}
+
+	&__inputs {
+		margin-top: 30px;
+
+		display: grid;
+		grid-row-gap: 18px;
+		grid-template-columns: 80px 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: repeat(4, minmax(43px, auto));
+		grid-column-gap: 10px;
+		grid-template-areas:
+			"name name name name name name"
+			"email email email email email email"
+			"country phone phone phone phone phone"
+			"pass pass pass . . .";
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			margin-top: 20px;
+			grid-row-gap: 12px;
+		}
+
+		.rgbcode-authform-input_user {
+			grid-area: name;
+		}
+
+		.rgbcode-authform-flag-input {
+			grid-area: country;
+		}
+
+		.rgbcode-authform-input_email {
+			grid-area: email;
+		}
+
+		.rgbcode-authform-input_phone {
+			grid-area: phone;
+		}
+
+		.rgbcode-authform-input_pass {
+			grid-area: pass;
+		}
+	}
+
+	&__link {
+		margin-top: 1.5em;
+		display: block;
+		font: 400 14px $basefont;
+		text-align: center;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			margin-top: 1em;
+			font-size: 12px;
+		}
+	}
+
+	a {
+		color: $accent;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

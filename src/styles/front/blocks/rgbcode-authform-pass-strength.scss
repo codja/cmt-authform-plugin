@@ -1,0 +1,57 @@
+.rgbcode-authform-pass-strength {
+	padding-top: 15px;
+
+	&__item {
+		width: 33%;
+		height: 12px;
+		border: 1px solid #808080;
+	}
+
+	&__indicator {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&.weak {
+		color: $red;
+
+		.rgbcode-authform-pass-strength__item {
+
+			&:first-child {
+				background-color: $red;
+			}
+		}
+	}
+
+	&.medium {
+		color: #ffac00;
+
+		.rgbcode-authform-pass-strength__item {
+
+			&:nth-child(-n+2) {
+				background-color: #ffac00;
+			}
+		}
+	}
+
+	&.strong {
+		color: $green;
+
+		.rgbcode-authform-pass-strength__item {
+
+			&:nth-child(-n+3) {
+				background-color: $green;
+			}
+		}
+	}
+
+	&__msg {
+		padding: 10px 0;
+		font: 400 12px/18px $basefont;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			font-size: 11px;
+		}
+	}
+
+}

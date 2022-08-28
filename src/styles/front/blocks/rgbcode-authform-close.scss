@@ -1,0 +1,36 @@
+.rgbcode-authform-close {
+	position: absolute;
+	right: 10px;
+	top: 9px;
+	width: 32px;
+	height: 30px;
+
+	border: none;
+
+	&::before,
+	&::after {
+		position: absolute;
+		top: 5px;
+		left: 15px;
+		content: " ";
+		height: 20px;
+		width: 2px;
+		background-color: #333;
+	}
+
+	&::before {
+		transform: rotate(45deg);
+	}
+
+	&::after {
+		transform: rotate(-45deg);
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		border: none;
+		background-color: transparent;
+		outline: none;
+	}
+}
