@@ -20,27 +20,28 @@ class Endpoint {
 			return;
 		}
 
-		$url               = trim(
+		$url = trim(
 			wp_parse_url( $_SERVER['REQUEST_URI'] )['path'],
 			'/'
 		);
-		$email             = sanitize_email( $_GET['emailaddress'] ?? '' );
-		$registration_date = sanitize_text_field( $_GET['registration_date'] ?? '' );
 
-		if ( $url !== 'autologin'
-			|| ! $email
-			|| ! $registration_date
-		) {
+		if ( $url !== 'autologin' ) {
 			return;
 		}
 
-		$user            = get_user_by( 'email', $email );
-		$user_registered = $user->user_registered;
-		$partner_id      = sanitize_text_field( $_GET['partner_id'] ?? '' );
-		$action          = sanitize_text_field( $_GET['action'] ?? '' );
+		$email             = sanitize_email( $_GET['emailaddress'] ?? '' );
+		$registration_date = sanitize_text_field( $_GET['registration_date'] ?? '' );
+		$partner_id        = sanitize_text_field( $_GET['partner_id'] ?? '' );
+		$action            = sanitize_text_field( $_GET['action'] ?? '' );
 
-		if ( $user_registered !== $registration_date ) {
-			return;
+		$user              = get_user_by( 'email', $email );
+		$user_registered   = strtotime( $user->user_registered );
+		$registration_date = $registration_date ? strtotime( $registration_date . ' -3 hours +2 seconds' ) : 0;
+		$error_redirect    = '/webtrader/?action=forexLogin';
+
+		if ( $user_registered !== $registration_date || ! $email ) {
+			wp_safe_redirect( $error_redirect );
+			exit;
 		}
 
 		$response = Request_Api::send_api(
@@ -58,7 +59,8 @@ class Endpoint {
 		);
 
 		if ( ! $response ) {
-			return;
+			wp_safe_redirect( $error_redirect );
+			exit;
 		}
 
 		if ( isset( $response['error'] ) ) {
