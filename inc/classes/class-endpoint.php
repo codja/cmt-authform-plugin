@@ -51,6 +51,7 @@ class Endpoint {
 				'Content-Type'  => 'application/json',
 			]
 		);
+
 		if ( ! $response ) {
 			return;
 		}
