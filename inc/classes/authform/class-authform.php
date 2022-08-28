@@ -2,6 +2,8 @@
 
 namespace Rgbcode_authform\classes\authform;
 
+use Rgbcode_authform\classes\core\Error;
+
 class Authform {
 
 	const ACTIVE_FORMS = [
@@ -14,6 +16,10 @@ class Authform {
 	}
 
 	public function render_forms() {
+		if ( ! Error::instance()->is_form_enabled() ) {
+			return;
+		}
+
 		printf( '<div id="rgbcode-authform" class="rgbcode-authform-back rgbcode-hidden">' );
 
 		foreach ( self::ACTIVE_FORMS as $form ) {

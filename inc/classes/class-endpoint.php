@@ -29,6 +29,7 @@ class Endpoint {
 		) {
 			return;
 		}
+
 		$user            = get_user_by( 'email', $email );
 		$user_registered = $user->user_registered;
 		$partner_id      = sanitize_text_field( $_GET['partner_id'] ?? '' );

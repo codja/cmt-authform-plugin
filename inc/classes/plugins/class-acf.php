@@ -43,6 +43,49 @@ class ACF {
 					'title'                 => 'Authform settings',
 					'fields'                => array(
 						array(
+							'key'               => 'field_630b0fb1d97ad',
+							'label'             => 'Enable forms',
+							'name'              => 'rgbc_authform_enable',
+							'type'              => 'true_false',
+							'instructions'      => '',
+							'required'          => 0,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'message'           => '',
+							'default_value'     => 0,
+							'ui'                => 1,
+							'ui_on_text'        => '',
+							'ui_off_text'       => '',
+						),
+						array(
+							'key'               => 'field_630b1083d97ae',
+							'label'             => 'Sign Up',
+							'name'              => '',
+							'type'              => 'tab',
+							'instructions'      => '',
+							'required'          => 0,
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_630b0fb1d97ad',
+										'operator' => '==',
+										'value'    => '1',
+									),
+								),
+							),
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'placement'         => 'left',
+							'endpoint'          => 0,
+						),
+						array(
 							'key'               => 'field_62fb555a5a210',
 							'label'             => 'Language',
 							'name'              => 'rgbc_authform_lang',

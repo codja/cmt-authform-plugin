@@ -11,6 +11,10 @@ class Setup {
 	}
 
 	public function enqueue_admin() {
+		if ( ! Error::instance()->is_form_enabled() ) {
+			return;
+		}
+
 		wp_enqueue_style(
 			'rgbcode_authform_style_admin',
 			RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/css/admin/rgbcode-authform.min.css',
@@ -27,6 +31,10 @@ class Setup {
 	}
 
 	public function enqueue_front() {
+		if ( ! Error::instance()->is_form_enabled() ) {
+			return;
+		}
+
 		wp_enqueue_style(
 			'rgbcode_authform_style',
 			RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/css/front/rgbcode-authform.min.css',

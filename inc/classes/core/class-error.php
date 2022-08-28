@@ -33,4 +33,10 @@ class Error {
 	public function is_defined_constants(): bool {
 		return defined( 'PANDA_PARTNER_ID' ) && defined( 'PANDA_PARTNER_SECRET_KEY' );
 	}
+
+	public function is_form_enabled(): bool {
+		$enable = get_field( 'rgbc_authform_enable', 'option' );
+		$enable = ! is_null( $enable ) ? $enable : false;
+		return $enable && $this->is_defined_constants();
+	}
 }
