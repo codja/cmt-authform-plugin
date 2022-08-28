@@ -16,6 +16,10 @@ class Endpoint {
 	}
 
 	public function autologin() {
+		if ( ! Error::instance()->is_defined_constants() ) {
+			return;
+		}
+
 		$url               = trim(
 			wp_parse_url( $_SERVER['REQUEST_URI'] )['path'],
 			'/'
