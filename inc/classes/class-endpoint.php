@@ -29,17 +29,23 @@ class Endpoint {
 			return;
 		}
 
+		$error_redirect = '/webtrader/?action=forexLogin';
+
+		if (
+			! defined( 'PANDA_DB_USER' )
+			|| ! defined( 'PANDA_DB_PASS' )
+			|| ! defined( 'PANDA_DB_NAME' )
+			|| ! defined( 'PANDA_DB_HOST' ) ) {
+			wp_safe_redirect( $error_redirect );
+			exit;
+		}
+
 		$email             = sanitize_email( $_GET['emailaddress'] ?? '' );
 		$registration_date = sanitize_text_field( $_GET['registration_date'] ?? '' );
-		$partner_id        = sanitize_text_field( $_GET['partner_id'] ?? '' );
 		$action            = sanitize_text_field( $_GET['action'] ?? '' );
+		$user_registered   = $this->get_user_register_from_panda( $email );
 
-		$user              = get_user_by( 'email', $email );
-		$user_registered   = strtotime( $user->user_registered );
-		$registration_date = $registration_date ? strtotime( $registration_date . ' -3 hours +2 seconds' ) : 0;
-		$error_redirect    = '/webtrader/?action=forexLogin';
-
-		if ( $user_registered !== $registration_date || ! $email ) {
+		if ( is_null( $user_registered ) || $user_registered !== $registration_date ) {
 			wp_safe_redirect( $error_redirect );
 			exit;
 		}
@@ -76,5 +82,34 @@ class Endpoint {
 
 		wp_safe_redirect( $link_for_redirect );
 		exit;
+	}
+
+	private function get_user_register_from_panda( string $email ): ?string {
+		if ( ! $email ) {
+			return null;
+		}
+
+		$panda_db = new \Wpdb(
+			PANDA_DB_USER,
+			PANDA_DB_PASS,
+			PANDA_DB_NAME,
+			PANDA_DB_HOST
+		);
+
+		if ( ! $panda_db->check_connection() ) {
+			return null;
+		}
+
+		$base_request = $panda_db->get_results(
+			$panda_db->prepare(
+				"SELECT createdtime FROM vtiger_account WHERE email = %s",
+				$email
+			),
+			ARRAY_A
+		);
+
+		return $base_request
+			? reset( $base_request )['createdtime']
+			: null;
 	}
 }
