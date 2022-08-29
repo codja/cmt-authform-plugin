@@ -45,7 +45,7 @@ class Endpoint {
 		$action            = sanitize_text_field( $_GET['action'] ?? '' );
 		$user_registered   = $this->get_user_register_from_panda( $email );
 
-		if ( is_null( $user_registered ) || $user_registered !== $registration_date ) {
+		if ( is_null( $user_registered ) || $user_registered !== strtotime( $registration_date ) ) {
 			wp_safe_redirect( $error_redirect );
 			exit;
 		}
@@ -84,7 +84,7 @@ class Endpoint {
 		exit;
 	}
 
-	private function get_user_register_from_panda( string $email ): ?string {
+	private function get_user_register_from_panda( string $email ): ?int {
 		if ( ! $email ) {
 			return null;
 		}
@@ -109,7 +109,7 @@ class Endpoint {
 		);
 
 		return $base_request
-			? reset( $base_request )['createdtime']
+			? strtotime( reset( $base_request )['createdtime'] . ' +3 hours' )
 			: null;
 	}
 }
