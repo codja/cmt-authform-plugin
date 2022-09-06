@@ -45,7 +45,7 @@ class Endpoint {
 		$action            = sanitize_text_field( $_GET['action'] ?? '' );
 		$user_registered   = $this->get_user_register_from_panda( $email );
 
-		if ( is_null( $user_registered ) || $user_registered !== strtotime( $registration_date ) ) {
+		if ( is_null( $user_registered ) || ! $this->is_dates_match( $user_registered, $registration_date ) ) {
 			wp_safe_redirect( $error_redirect );
 			exit;
 		}
@@ -84,7 +84,7 @@ class Endpoint {
 		exit;
 	}
 
-	private function get_user_register_from_panda( string $email ): ?int {
+	private function get_user_register_from_panda( string $email ): ?string {
 		if ( ! $email ) {
 			return null;
 		}
@@ -102,14 +102,23 @@ class Endpoint {
 
 		$base_request = $panda_db->get_results(
 			$panda_db->prepare(
-				"SELECT createdtime FROM vtiger_account WHERE email = %s",
+				'SELECT createdtime FROM vtiger_account WHERE email = %s',
 				$email
 			),
 			ARRAY_A
 		);
 
 		return $base_request
-			? strtotime( reset( $base_request )['createdtime'] . ' +3 hours' )
+			? reset( $base_request )['createdtime']
 			: null;
+	}
+
+	private function is_dates_match( string $user_registered, string $registration_date ): bool {
+		if ( ! $user_registered || ! $registration_date ) {
+			return false;
+		}
+
+		$date_without_time = explode( ' ', $user_registered, 2 );
+		return reset( $date_without_time ) === $registration_date;
 	}
 }
