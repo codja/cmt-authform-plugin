@@ -40,12 +40,12 @@ class Endpoint {
 			exit;
 		}
 
-		$email             = sanitize_email( $_GET['emailaddress'] ?? '' );
-		$registration_date = sanitize_text_field( $_GET['registration_date'] ?? '' );
-		$action            = sanitize_text_field( $_GET['action'] ?? '' );
-		$user_registered   = $this->get_user_register_from_panda( $email );
+		$email             	= sanitize_email( $_GET['emailaddress'] ?? '' );
+		$account_no			= sanitize_text_field( $_GET['account_no'] ?? '' );
+		$action            	= sanitize_text_field( $_GET['action'] ?? '' );
+		$user_registered	= $this->get_user_register_from_panda( $email );
 
-		if ( is_null( $user_registered ) || ! $this->is_dates_match( $user_registered, $registration_date ) ) {
+		if ( is_null( $user_registered ) || ! $this->is_account_no_match( $user_registered, $account_no ) ) {
 			wp_safe_redirect( $error_redirect );
 			exit;
 		}
@@ -102,7 +102,7 @@ class Endpoint {
 
 		$base_request = $panda_db->get_results(
 			$panda_db->prepare(
-				'SELECT createdtime FROM vtiger_account WHERE email = %s',
+				'SELECT account_no FROM vtiger_account WHERE email = %s',
 				$email
 			),
 			ARRAY_A
@@ -120,5 +120,13 @@ class Endpoint {
 
 		$date_without_time = explode( ' ', $user_registered, 2 );
 		return reset( $date_without_time ) === $registration_date;
+	}
+
+	private function is_account_no_match( string $user_registered, string $account_no ): bool {
+		if ( ! $user_registered || ! $account_no ) {
+			return false;
+		}
+
+		return $user_registered === $account_no;
 	}
 }
