@@ -90,8 +90,8 @@
 					<input
 						type="number"
 						inputmode="tel"
-						maxlength="17"
-						minlength="5"
+						maxlength="10"
+						minlength="6"
 						name="phone"
 						placeholder="<?php echo esc_attr( $args['phone']['placeholder'] ); ?>"
 						tabindex="4"

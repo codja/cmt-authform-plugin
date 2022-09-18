@@ -1,5 +1,5 @@
 import {checkPass, togglePassHelper} from "./validationPass";
-import {emailTest, fullNameTest, phoneTest} from "./checks";
+import {emailTest, fullNameTest, limitPhone, phoneTest} from "./checks";
 
 const submit = document.getElementById( 'rgbcode-signup-submit' );
 const context = {
@@ -91,10 +91,11 @@ export function initValidate() {
 				enableValidation( 'emailTest', input );
 			break;
 			case 'phone':
-				enableValidation( 'phoneTest', input )
+				enableValidation( 'phoneTest', input );
+				limitPhone( input );
 			break;
 			case 'password':
-				enableValidation( 'checkPass', input )
+				enableValidation( 'checkPass', input );
 				togglePassHelper( input );
 			break;
 			case 'agree':
