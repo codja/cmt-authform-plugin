@@ -91,8 +91,8 @@ export function initValidate() {
 				enableValidation( 'emailTest', input );
 			break;
 			case 'phone':
-				enableValidation( 'phoneTest', input );
 				limitPhone( input );
+				enableValidation( 'phoneTest', input );
 			break;
 			case 'password':
 				enableValidation( 'checkPass', input );

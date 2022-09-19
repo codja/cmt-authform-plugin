@@ -26,9 +26,13 @@ export const checkSeriesKeyboardChars = s => {
 }
 export const limitPhone = ( input ) => {
 	const maxChars = 10;
-	input.addEventListener( 'input', () => {
+	const limitHandler = ( evt ) => {
+		const input = evt.target;
+		input.value = input.value.replace( /[\D]/g, '' );
 		if ( input.value.length > maxChars ) {
 			input.value = input.value.substr( 0, maxChars );
 		}
-	} );
+	};
+
+	input.addEventListener( 'input', limitHandler );
 }
