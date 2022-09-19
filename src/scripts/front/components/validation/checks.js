@@ -6,7 +6,7 @@ export const checkIfOneDigit = i => /[0-9]/.test( i );
 export const checkRepeatedChars = i => /([a-z])\1{2}/ig.test( i );
 export const fullNameTest = i => /^[a-zA-Zء-ي]{2,50}\s[a-zA-Zء-ي\s]{2,50}$/.test( i );
 export const emailTest = i => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test( i );
-export const phoneTest = i => /^[0-9]{6,12}$/.test( i );
+export const phoneTest = i => /^[0-9]{6,}$/.test( i );
 export const checkSeriesKeyboardChars = s => {
 	// Check for sequential numerical characters
 	for ( let i in s ) {
@@ -23,4 +23,16 @@ export const checkSeriesKeyboardChars = s => {
 		}
 	}
 	return true;
+}
+export const limitPhone = ( input ) => {
+	const maxChars = 10;
+	const limitHandler = ( evt ) => {
+		const input = evt.target;
+		input.value = input.value.replace( /[\D]/g, '' );
+		if ( input.value.length > maxChars ) {
+			input.value = input.value.substr( 0, maxChars );
+		}
+	};
+
+	input.addEventListener( 'input', limitHandler );
 }

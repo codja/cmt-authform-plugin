@@ -88,10 +88,10 @@
 			<div class="rgbcode-authform-input rgbcode-authform-input_phone">
 				<label class="rgbcode-authform-input__label">
 					<input
-						type="number"
+						type="text"
 						inputmode="tel"
-						maxlength="17"
-						minlength="5"
+						maxlength="10"
+						minlength="6"
 						name="phone"
 						placeholder="<?php echo esc_attr( $args['phone']['placeholder'] ); ?>"
 						tabindex="4"
