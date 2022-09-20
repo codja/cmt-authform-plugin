@@ -1,5 +1,5 @@
 export const checkIfTwoUppercase = i => /[A-Z][^A-Z]*[A-Z]/.test( i );
-export const checkCountChar = i => i.length >= 6 && i.length < 20;
+export const checkCountChar = i => i.length >= 6 && i.length <= 12;
 export const checkIfOneLowercase = i => /[a-z]/.test( i );
 export const checkIfOneUppercase = i => /[A-Z]/.test( i );
 export const checkIfOneDigit = i => /[0-9]/.test( i );

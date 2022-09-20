@@ -7,8 +7,8 @@ const indicateClasses = Object.keys( msgs );
 
 const getStrengthLevelPass = value => {
 	const weakRules = checkRepeatedChars( value ) || ! checkSeriesKeyboardChars( value );
-	const mediumRules = value.length > 6 && value.length <= 12 && checkIfTwoUppercase( value );
-	const strongRules = value.length > 12 && checkIfTwoUppercase( value );
+	const mediumRules = value.length > 7 && value.length <= 10 && checkIfTwoUppercase( value );
+	const strongRules = value.length > 10 && checkIfTwoUppercase( value );
 
 	switch ( true ) {
 		default:
