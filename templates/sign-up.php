@@ -127,7 +127,7 @@
 					<span class="rgbcode-authform-tooltip__triangle"></span>
 					<ul class="rgbcode-authform-tooltip__list">
 						<li id="rgbc-length" class="rgbcode-authform-tooltip__item">
-							<?php echo esc_html__( 'Length between 6 and 20 characters', 'rgbcode-authform' ); ?>
+							<?php echo esc_html__( 'Length between 6 and 12 characters', 'rgbcode-authform' ); ?>
 						</li>
 						<li id="rgbc-lower" class="rgbcode-authform-tooltip__item">
 							<?php echo esc_html__( 'At least one lowercase character', 'rgbcode-authform' ); ?>

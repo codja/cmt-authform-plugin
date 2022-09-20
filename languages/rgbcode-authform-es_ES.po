@@ -50,8 +50,8 @@ msgid "Your Password Must have:"
 msgstr "Su Contraseña debe tener:"
 
 #: templates/sign-up.php:130
-msgid "Length between 6 and 20 characters"
-msgstr "Longitud entre 6 y 20 caracteres"
+msgid "Length between 6 and 12 characters"
+msgstr "Longitud entre 6 y 12 caracteres"
 
 #: templates/sign-up.php:133
 msgid "At least one lowercase character"

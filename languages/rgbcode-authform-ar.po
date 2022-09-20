@@ -50,7 +50,7 @@ msgid "Your Password Must have:"
 msgstr "يجب أن تحتوي كلمة المرور الخاصة بك على:"
 
 #: templates/sign-up.php:130
-msgid "Length between 6 and 20 characters"
+msgid "Length between 6 and 12 characters"
 msgstr "يتراوح طولها بين 6 و 20 حرفًا"
 
 #: templates/sign-up.php:133
