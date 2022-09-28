@@ -23,21 +23,39 @@
 		<?php endif; ?>
 
 		<div class="rgbcode-authform-signup__inputs">
-			<div class="rgbcode-authform-input rgbcode-authform-input_user">
+			<div class="rgbcode-authform-input rgbcode-authform-input_user rgbcode-authform-input_firstname">
 				<label class="rgbcode-authform-input__label">
 					<input
 						type="text"
-						name="full_name"
+						name="firstname"
 						maxlength="100"
 						minlength="4"
-						placeholder="<?php echo esc_attr( $args['full_name']['placeholder'] ); ?>"
+						placeholder="<?php echo esc_attr( $args['first_name']['placeholder'] ); ?>"
 						tabindex="1"
 						autocomplete="off"
 						required
 					>
 				</label>
 				<span class="rgbcode-authform-input__error rgbcode-hidden">
-					<?php echo esc_html( $args['full_name']['error_text'] ); ?>
+					<?php echo esc_html( $args['first_name']['error_text'] ); ?>
+				</span>
+			</div>
+
+			<div class="rgbcode-authform-input rgbcode-authform-input_user rgbcode-authform-input_lastname">
+				<label class="rgbcode-authform-input__label">
+					<input
+						type="text"
+						name="lastname"
+						maxlength="100"
+						minlength="4"
+						placeholder="<?php echo esc_attr( $args['last_name']['placeholder'] ); ?>"
+						tabindex="2"
+						autocomplete="off"
+						required
+					>
+				</label>
+				<span class="rgbcode-authform-input__error rgbcode-hidden">
+					<?php echo esc_html( $args['last_name']['error_text'] ); ?>
 				</span>
 			</div>
 
@@ -47,7 +65,7 @@
 						type="email"
 						name="email"
 						placeholder="<?php echo esc_attr( $args['email']['placeholder'] ); ?>"
-						tabindex="2"
+						tabindex="3"
 						autocomplete="off"
 						required
 					>
@@ -57,7 +75,7 @@
 				</span>
 			</div>
 
-			<div class="rgbcode-authform-flag-input" tabindex="3">
+			<div class="rgbcode-authform-flag-input" tabindex="4">
 				<img
 					class="rgbcode-authform-flag-input__flag"
 					src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $args['default_country']['country']['iso'] ) . '.svg' ); ?>" alt=""
@@ -94,7 +112,7 @@
 						minlength="6"
 						name="phone"
 						placeholder="<?php echo esc_attr( $args['phone']['placeholder'] ); ?>"
-						tabindex="4"
+						tabindex="5"
 						autocomplete="off"
 						required
 					>
@@ -111,7 +129,7 @@
 						type="password"
 						name="password"
 						placeholder="<?php echo esc_attr( $args['pass']['placeholder'] ); ?>"
-						tabindex="5"
+						tabindex="6"
 						autocomplete="off"
 						required
 					>
@@ -158,7 +176,7 @@
 
 		<?php if ( $args['terms'] ) : ?>
 		<label class="rgbcode-authform-input__label rgbcode-authform-checkbox">
-			<input type="checkbox" class="rgbcode-authform-checkbox__input" name="agree" tabindex="6" required>
+			<input type="checkbox" class="rgbcode-authform-checkbox__input" name="agree" tabindex="7" required>
 			<span class="rgbcode-authform-checkbox__box"></span>
 			<?php echo wp_kses_post( $args['terms'] ); ?>
 		</label>
