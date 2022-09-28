@@ -49,13 +49,12 @@ abstract class Base_Route {
 
 	protected function get_body( array $data ): array {
 		$referral_data = $this->extract_referral_data( $data );
-		$full_name     = $this->get_full_name( sanitize_text_field( $data['full_name'] ?? '' ) );
 
 		$result = array(
 			'email'     => sanitize_email( $data['email'] ?? '' ),
 			'country'   => sanitize_text_field( $data['iso'] ?? '' ),
-			'firstName' => $full_name['first_name'] ?? '',
-			'lastName'  => $full_name['last_name'] ?? '',
+			'firstName' => sanitize_text_field( $data['firstname'] ?? '' ),
+			'lastName'  => sanitize_text_field( $data['lastname'] ?? '' ),
 			'phone'     => sanitize_text_field( ( $data['phonecountry'] ?? '' ) . ( $data['phone'] ?? '' ) ),
 			'language'  => $this->get_site_language(),
 		);
@@ -143,19 +142,6 @@ abstract class Base_Route {
 		];
 
 		return $convert[ $language ] ?? 'enu';
-	}
-
-	private function get_full_name( string $full_name ): array {
-		if ( ! $full_name ) {
-			return [];
-		}
-
-		$full_name = explode( ' ', trim( $full_name ) );
-
-		return [
-			'first_name' => $full_name[0],
-			'last_name'  => $full_name[1],
-		];
 	}
 
 }

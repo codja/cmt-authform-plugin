@@ -4,7 +4,8 @@ import {emailTest, nameTest, limitPhone, phoneTest} from "./checks";
 const submit = document.getElementById( 'rgbcode-signup-submit' );
 const context = {
 	globalCheck: {
-		full_name: false,
+		firstname: false,
+		lastname: false,
 		email: false,
 		phone: false,
 		password: false,
