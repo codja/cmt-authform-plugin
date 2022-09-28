@@ -28,7 +28,7 @@
 					<input
 						type="text"
 						name="firstname"
-						maxlength="100"
+						maxlength="50"
 						minlength="4"
 						placeholder="<?php echo esc_attr( $args['first_name']['placeholder'] ); ?>"
 						tabindex="1"
@@ -46,7 +46,7 @@
 					<input
 						type="text"
 						name="lastname"
-						maxlength="100"
+						maxlength="50"
 						minlength="4"
 						placeholder="<?php echo esc_attr( $args['last_name']['placeholder'] ); ?>"
 						tabindex="2"
