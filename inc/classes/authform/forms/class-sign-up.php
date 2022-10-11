@@ -1201,7 +1201,8 @@ class Sign_Up extends Baseform {
 	public function get_template_data(): array {
 		return [
 			'title_block'     => get_field( 'rgbc_authform_title_block', 'option' ),
-			'full_name'       => get_field( 'rgbc_authform_full_name', 'option' ),
+			'first_name'      => get_field( 'rgbc_authform_first_name', 'option' ),
+			'last_name'       => get_field( 'rgbc_authform_last_name', 'option' ),
 			'email'           => get_field( 'rgbc_authform_email', 'option' ),
 			'phone'           => get_field( 'rgbc_authform_phone', 'option' ),
 			'pass'            => get_field( 'rgbc_authform_pass', 'option' ),

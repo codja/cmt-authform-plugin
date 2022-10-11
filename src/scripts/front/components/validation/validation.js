@@ -1,16 +1,17 @@
 import {checkPass, togglePassHelper} from "./validationPass";
-import {emailTest, fullNameTest, limitPhone, phoneTest} from "./checks";
+import {emailTest, nameTest, limitPhone, phoneTest} from "./checks";
 
 const submit = document.getElementById( 'rgbcode-signup-submit' );
 const context = {
 	globalCheck: {
-		full_name: false,
+		firstname: false,
+		lastname: false,
 		email: false,
 		phone: false,
 		password: false,
 		agree: false
 	},
-	fullNameTest,
+	nameTest,
 	emailTest,
 	phoneTest,
 	checkPass
@@ -22,7 +23,7 @@ function execFn(fnName, ctx )
 	return ctx[fnName].apply(ctx, args);
 }
 
-const fullNameHandler = ( input ) => {
+const nameHandler = ( input ) => {
 	let timeout = null;
 	input.addEventListener( 'input', () => {
 		if ( timeout !== null ) {
@@ -30,7 +31,7 @@ const fullNameHandler = ( input ) => {
 		}
 
 		timeout = setTimeout( () => {
-			input.value = input.value.replaceAll(/\s{2,}/g,' ');
+			input.value = input.value.replaceAll(/\s/g,'');
 			input.dispatchEvent( new Event( 'input' ) );
 		}, 1000 );
 	} );
@@ -83,9 +84,10 @@ const inputs = document.querySelectorAll( '.rgbcode-authform-input__label input'
 export function initValidate() {
 	inputs.forEach( input => {
 		switch( input.name ) {
-			case 'full_name':
-				enableValidation( 'fullNameTest', input );
-				fullNameHandler( input );
+			case 'firstname':
+			case 'lastname':
+				enableValidation( 'nameTest', input );
+				nameHandler( input );
 			break;
 			case 'email':
 				enableValidation( 'emailTest', input );
