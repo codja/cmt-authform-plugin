@@ -1,4 +1,4 @@
-<div class="rgbcode-authform-modal rgbcode-hidden" id="rgbcode-signup">
+<div class="rgbcode-authform-modal <?php echo esc_attr( $args['visibility_class'] ); ?>" id="rgbcode-signup">
 	<button class="rgbcode-authform-modal__close rgbcode-authform-close" type="button"></button>
 
 	<div class="rgbcode-authform-message <?php echo esc_attr( ! $args['default_country']['not_allowed'] ? 'rgbcode-hidden' : '' ); ?>">

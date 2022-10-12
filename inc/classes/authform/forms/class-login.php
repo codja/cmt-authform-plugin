@@ -10,4 +10,6 @@ class Login extends Baseform {
 
 	const TEMPLATE_NAME = 'login';
 
+	const ACTION = 'forexLogin';
+
 }

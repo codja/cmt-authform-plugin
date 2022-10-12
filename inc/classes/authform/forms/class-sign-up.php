@@ -10,6 +10,8 @@ class Sign_Up extends Baseform {
 
 	const TEMPLATE_NAME = 'sign-up';
 
+	const ACTION = 'forexSignup';
+
 	const COUNTRIES = [
 		[
 			'name' => 'Afghanistan',
@@ -1200,29 +1202,30 @@ class Sign_Up extends Baseform {
 
 	public function get_template_data(): array {
 		return [
-			'title_block'     => get_field( 'rgbc_authform_title_block', 'option' ),
-			'first_name'      => get_field( 'rgbc_authform_first_name', 'option' ),
-			'last_name'       => get_field( 'rgbc_authform_last_name', 'option' ),
-			'email'           => get_field( 'rgbc_authform_email', 'option' ),
-			'phone'           => get_field( 'rgbc_authform_phone', 'option' ),
-			'pass'            => get_field( 'rgbc_authform_pass', 'option' ),
-			'terms'           => get_field( 'rgbc_authform_terms', 'option' ),
-			'submit'          => get_field( 'rgbc_authform_submit', 'option' ),
-			'message'         => get_field( 'rgbc_authform_message', 'option' ),
-			'bottom_link'     => get_field( 'rgbc_authform_link', 'option' ),
-			'msgs'            => [
+			'title_block'      => get_field( 'rgbc_authform_title_block', 'option' ),
+			'first_name'       => get_field( 'rgbc_authform_first_name', 'option' ),
+			'last_name'        => get_field( 'rgbc_authform_last_name', 'option' ),
+			'email'            => get_field( 'rgbc_authform_email', 'option' ),
+			'phone'            => get_field( 'rgbc_authform_phone', 'option' ),
+			'pass'             => get_field( 'rgbc_authform_pass', 'option' ),
+			'terms'            => get_field( 'rgbc_authform_terms', 'option' ),
+			'submit'           => get_field( 'rgbc_authform_submit', 'option' ),
+			'message'          => get_field( 'rgbc_authform_message', 'option' ),
+			'bottom_link'      => get_field( 'rgbc_authform_link', 'option' ),
+			'visibility_class' => $this->get_visibility_class(),
+			'msgs'             => [
 				'weak'   => __( 'Weak Password', 'rgbcode-authform' ),
 				'medium' => __( 'Medium Password', 'rgbcode-authform' ),
 				'strong' => __( 'Strong Password', 'rgbcode-authform' ),
 			],
-			'countries'       => self::COUNTRIES,
-			'default_country' => $this->get_default_country(),
+			'countries'        => self::COUNTRIES,
+			'default_country'  => $this->get_default_country(),
 		];
 	}
 
 	private function get_default_country(): array {
 		$current_country = $_SERVER['HTTP_CF_IPCOUNTRY'] ?? false;
-		$result         = [
+		$result          = [
 			'country'     => self::COUNTRIES[0],
 			'not_allowed' => false,
 		];
