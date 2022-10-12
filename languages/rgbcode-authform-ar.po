@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rgbcode-authform\n"
-"POT-Creation-Date: 2022-08-16 16:37+0300\n"
+"POT-Creation-Date: 2022-10-12 10:24+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ruslan <ruslan@rgbcode.com>\n"
 "Language-Team: Rgbcode\n"
@@ -15,56 +15,62 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
 "_nx_noop:1,2,3c;esc_attr__;esc_attr_e;esc_html__;esc_html_e\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: src\n"
 "X-Poedit-SearchPathExcluded-1: assets\n"
 
-#: inc/classes/authform/forms/class-sign-up.php:1213
+#: inc/classes/authform/forms/class-sign-up.php:1217
 msgid "Weak Password"
 msgstr "كلمة مرور ضعيفة"
 
-#: inc/classes/authform/forms/class-sign-up.php:1214
+#: inc/classes/authform/forms/class-sign-up.php:1218
 msgid "Medium Password"
 msgstr "كلمة مرور متوسطة"
 
-#: inc/classes/authform/forms/class-sign-up.php:1215
+#: inc/classes/authform/forms/class-sign-up.php:1219
 msgid "Strong Password"
 msgstr "كلمة مرور قوية"
 
-#: inc/classes/plugins/class-acf.php:25 inc/classes/plugins/class-acf.php:26
-msgid "Authform"
+#: inc/classes/core/class-error.php:28
+msgid ""
+"You need add constants PANDA_PARTNER_ID and PANDA_PARTNER_SECRET_KEY in "
+"wp_config."
 msgstr ""
 
-#: inc/classes/routes/api/class-base-route.php:31
-#: inc/classes/routes/api/class-base-route.php:143
+#: inc/classes/helpers/class-authorization.php:44
+#: inc/classes/routes/api/class-base-route.php:35
 msgid "Error on client server. Check Request_Api log"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:25 inc/classes/plugins/class-acf.php:26
+msgid "Authform"
 msgstr ""
 
 #: templates/sign-up.php:7
 msgid "We currently do not accept customers from your region"
 msgstr "لا نقبل حاليًا عملاء من منطقتك"
 
-#: templates/sign-up.php:125
+#: templates/sign-up.php:143
 msgid "Your Password Must have:"
 msgstr "يجب أن تحتوي كلمة المرور الخاصة بك على:"
 
-#: templates/sign-up.php:130
+#: templates/sign-up.php:148
 msgid "Length between 6 and 12 characters"
 msgstr "يتراوح طولها بين 6 و 20 حرفًا"
 
-#: templates/sign-up.php:133
+#: templates/sign-up.php:151
 msgid "At least one lowercase character"
 msgstr "حرف صغير واحد على الأقل"
 
-#: templates/sign-up.php:136
+#: templates/sign-up.php:154
 msgid "At least one uppercase character"
 msgstr "حرف كبير واحد على الأقل"
 
-#: templates/sign-up.php:139
+#: templates/sign-up.php:157
 msgid "At least one number"
 msgstr "رقم واحد على الأقل"
 
-#: templates/sign-up.php:154 templates/sign-up.php:155
+#: templates/sign-up.php:172 templates/sign-up.php:173
 msgid "Password Strength"
 msgstr "قوة كلمة المرور"
