@@ -53,7 +53,7 @@ class Authorization {
 			'expire' => strtotime( $authorization['data']['expire'] ),
 		];
 
-		update_option( 'panda_token', wp_json_encode( $token_data ) );
+		update_option( 'panda_token', wp_json_encode( $token_data ), false );
 
 		return $token_data['token'];
 	}
