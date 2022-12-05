@@ -29,7 +29,7 @@ class Simple_Form extends Widget_Base {
 	public function get_style_depends() {
 		wp_register_style(
 			'rgbc-simple-form-style',
-			RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/css/elementor/simple-form.css',
+			RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/css/elementor/simple-form.min.css',
 			[],
 			filemtime( RGBCODE_AUTHFORM_PLUGIN_DIR . 'assets/css/elementor/simple-form.min.css' )
 		);
@@ -180,6 +180,29 @@ class Simple_Form extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		?>
+		<form action="" class="rgbcode-simple-form">
+			<h3
+				class="rgbcode-simple-form__title"
+				style="font-size: <?php echo esc_attr( $settings['title_size'] ); ?>px"
+			>
+				<?php echo esc_html( $settings['title'] ); ?>
+			</h3>
+			<input
+				class="rgbcode-simple-form__input"
+				type="text"
+				name="firstname"
+				placeholder="<?php echo esc_html( $settings['firstname_placeholder'] ); ?>"
+				required
+			>
+			<input
+				class="rgbcode-simple-form__input"
+				type="text"
+				name="lastname"
+				placeholder="<?php echo esc_html( $settings['lastname_placeholder'] ); ?>"
+				required
+			>
+			<button type="submit" class="rgbcode-simple-form__btn"><?php echo esc_html( $settings['submit_text'] ); ?></button>
+		</form>
 <!--		<label>-->
 <!--			<span>--><?php //echo esc_html( $settings['search'] ); ?><!--</span>-->
 <!--			<input-->
