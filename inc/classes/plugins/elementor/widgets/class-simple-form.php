@@ -17,9 +17,9 @@ class Simple_Form extends Widget_Base {
 	public function get_script_depends() {
 		wp_register_script(
 			'rgbc-simple-form-script',
-			RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/js/elementor/widgets/simple-form.js',
+			RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/js/elementor/simple-form.js',
 			[ 'elementor-frontend' ],
-			filemtime( RGBCODE_AUTHFORM_PLUGIN_DIR . 'assets/js/elementor/widgets/simple-form.js' ),
+			filemtime( RGBCODE_AUTHFORM_PLUGIN_DIR . 'assets/js/elementor/simple-form.js' ),
 			true
 		);
 
@@ -29,9 +29,9 @@ class Simple_Form extends Widget_Base {
 	public function get_style_depends() {
 		wp_register_style(
 			'rgbc-simple-form-style',
-			RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/css/elementor/widgets/simple-form.css',
+			RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/css/elementor/simple-form.css',
 			[],
-			filemtime( RGBCODE_AUTHFORM_PLUGIN_DIR . 'assets/css/elementor/widgets/simple-form.css' )
+			filemtime( RGBCODE_AUTHFORM_PLUGIN_DIR . 'assets/css/elementor/simple-form.min.css' )
 		);
 
 		return [ 'rgbc-simple-form-style' ];
@@ -110,20 +110,34 @@ class Simple_Form extends Widget_Base {
 		);
 
 		$this->add_control(
+			'title',
+			array(
+				'label'       => __( 'Title', 'rgbcode-authform' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'Start Trading Now', 'rgbcode-authform' ),
+				'placeholder' => __( 'Enter your title', 'rgbcode-authform' ),
+			)
+		);
+
+		$this->add_control(
+			'title_size',
+			array(
+				'label'     => __( 'Title Font Size', 'elementor-cm-addons' ),
+				'type'      => Controls_Manager::NUMBER,
+				'min'       => 5,
+				'max'       => 100,
+				'step'      => 1,
+				'default'   => 35,
+				'condition' => [ 'title!' => '' ],
+			)
+		);
+
+		$this->add_control(
 			'firstname_placeholder',
 			[
 				'label'   => __( 'First Name Placeholder', 'rgbcode-authform' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => 'First Name',
-			]
-		);
-
-		$this->add_control(
-			'firstname_error',
-			[
-				'label'   => __( 'First Name Error Text', 'rgbcode-authform' ),
-				'type'    => Controls_Manager::TEXT,
-				'default' => 'Please Enter Valid First Name',
 			]
 		);
 
@@ -140,15 +154,6 @@ class Simple_Form extends Widget_Base {
 				'label'   => __( 'Last name Placeholder', 'rgbcode-authform' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => 'Last Name',
-			]
-		);
-
-		$this->add_control(
-			'lastname_error',
-			[
-				'label'   => __( 'Last Name Error Text', 'rgbcode-authform' ),
-				'type'    => Controls_Manager::TEXT,
-				'default' => 'Please Enter Valid Last Name',
 			]
 		);
 
