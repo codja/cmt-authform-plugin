@@ -203,49 +203,34 @@ class Simple_Form extends Widget_Base {
 			>
 			<button type="submit" class="rgbcode-simple-form__btn"><?php echo esc_html( $settings['submit_text'] ); ?></button>
 		</form>
-<!--		<label>-->
-<!--			<span>--><?php //echo esc_html( $settings['search'] ); ?><!--</span>-->
-<!--			<input-->
-<!--				class="search_input"-->
-<!--				type="text"-->
-<!--				name="search_input"-->
-<!--				data-empty-text="--><?php //echo esc_attr( $settings['not_found_text'] ); ?><!--"-->
-<!--			>-->
-<!--			<img class="search_spinner" src="/wp-admin/images/spinner.gif" alt="risco_loading">-->
-<!--		</label>-->
-<!--		<table class="part_products_table">-->
-<!--			<thead>-->
-<!--				<tr>-->
-<!--					<th>--><?php //echo esc_html( $settings['title_first_column'] ); ?><!--</th>-->
-<!--					<th>--><?php //echo esc_html( $settings['title_second_column'] ); ?><!--</th>-->
-<!--				</tr>-->
-<!--			</thead>-->
-<!--			<tbody></tbody>-->
-<!--		</table>-->
 		<?php
 	}
 
 	protected function content_template() {
 		?>
-<!--		<label>-->
-<!--			<span>{{{settings.search}}}</span>-->
-<!--			<input-->
-<!--				class="search_input"-->
-<!--				type="text"-->
-<!--				name="search_input"-->
-<!--				data-empty-text="{{{settings.not_found_text}}}"-->
-<!--			>-->
-<!--			<img class="search_spinner" src="/wp-admin/images/spinner.gif" alt="risco_loading">-->
-<!--		</label>-->
-<!--		<table class="part_products_table">-->
-<!--			<thead>-->
-<!--			<tr>-->
-<!--				<th>{{{settings.title_first_column}}}</th>-->
-<!--				<th>{{{settings.title_second_column}}}</th>-->
-<!--			</tr>-->
-<!--			</thead>-->
-<!--			<tbody></tbody>-->
-<!--		</table>-->
+		<form action="" class="rgbcode-simple-form">
+			<h3
+				class="rgbcode-simple-form__title"
+				style="font-size: {{{settings.title_size}}}px"
+			>
+				{{{settings.title}}}
+			</h3>
+			<input
+				class="rgbcode-simple-form__input"
+				type="text"
+				name="firstname"
+				placeholder="{{{settings.firstname_placeholder}}}"
+				required
+			>
+			<input
+				class="rgbcode-simple-form__input"
+				type="text"
+				name="lastname"
+				placeholder="{{{settings.lastname_placeholder}}}"
+				required
+			>
+			<button type="submit" class="rgbcode-simple-form__btn">{{{settings.submit_text}}}</button>
+		</form>
 		<?php
 	}
 

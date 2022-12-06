@@ -7,6 +7,10 @@
 	max-width: 350px;
 	background-color: #fff;
 
+	@media ( max-width: 1024px ) {
+		position: static;
+	}
+
 	&__title {
 		font-family: 'Lato', sans-serif;
 		font-weight: 700;
