@@ -41,7 +41,7 @@ register_uninstall_hook( __FILE__, [ __NAMESPACE__ . '\\Rgbcode_authform', 'unin
 
 add_action( 'plugins_loaded', [ __NAMESPACE__ . '\\Rgbcode_authform', 'instance' ] );
 
-class Rgbcode_Authform {
+final class Rgbcode_Authform {
 
 	use Singleton;
 

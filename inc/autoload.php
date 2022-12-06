@@ -7,6 +7,7 @@ use Rgbcode_authform\classes\authform\Authform;
 use Rgbcode_authform\classes\core\Setup;
 use Rgbcode_authform\classes\Endpoint;
 use Rgbcode_authform\classes\plugins\ACF;
+use Rgbcode_authform\classes\plugins\elementor\Elementor;
 use Rgbcode_authform\classes\routes\Routes;
 
 // find any classes from your code
@@ -43,6 +44,7 @@ if ( function_exists( '__autoload' ) ) {
 // ... and call
 Error::instance();
 ACF::instance();
+new Elementor();
 new Setup();
 new Authform();
 new Routes();

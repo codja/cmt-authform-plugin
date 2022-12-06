@@ -1,20 +1,21 @@
-import gulp from 'gulp';
-import sass from 'gulp-sass';
-import rename from 'gulp-rename';
-import sassglob from 'gulp-sass-glob';
-import cleancss from 'gulp-clean-css';
-import gcmq from 'gulp-group-css-media-queries';
+import gulp         from 'gulp';
+import sass         from 'gulp-sass';
+import rename       from 'gulp-rename';
+import sassglob	    from 'gulp-sass-glob';
+import cleancss     from 'gulp-clean-css';
+import gcmq         from 'gulp-group-css-media-queries';
 import autoprefixer from 'gulp-autoprefixer';
-import sftp from 'gulp-sftp-up4';
-import del from 'del';
-import webpack from 'webpack-stream';
-import when from 'gulp-if';
-import { env } from './env.js';
+import sftp         from 'gulp-sftp-up4';
+import del          from 'del';
+import webpack      from 'webpack-stream';
+import when         from 'gulp-if';
+import uglifyim     from 'gulp-uglify-es'
+const  uglify       = uglifyim.default
+import { env }      from './env.js';
 
 const mode = process.env.MODE;
 export const isDeploy = mode === 'deploy';
 const destDir = 'assets';
-const minifiedJsBundleName = 'rgbcode-authform';
 
 const styles = ( srcPath, destPath, remotePath ) => {
 	return gulp
@@ -66,7 +67,15 @@ export const stylesFront = () => {
 	);
 };
 
-export const scripts = ( srcPath, destPath, remotePath ) => {
+export const stylesElementor = () => {
+	return styles(
+		[ `styles/elementor/*.*`, `!styles/elementor/_*.*` ],
+		`../${ destDir }/css/elementor`,
+		`${ env.remotePath }/${ destDir }/css/elementor`
+	);
+};
+
+export const scripts = ( srcPath, destPath, remotePath, fileName = 'rgbcode-authform' ) => {
 	return gulp
 		.src( srcPath )
 		.pipe(
@@ -91,7 +100,7 @@ export const scripts = ( srcPath, destPath, remotePath ) => {
 		.on( 'error', function handleError() {
 			this.emit( 'end' );
 		} )
-		.pipe( rename( `${ minifiedJsBundleName }.min.js` ) )
+		.pipe( rename( `${ fileName }.min.js` ) )
 		.pipe( gulp.dest( destPath ) )
 		.pipe(
 			when(
@@ -120,6 +129,25 @@ export const scriptsFront = () => {
 		`../${ destDir }/js/front`,
 		`${ env.remotePath }/${ destDir }/js/front`
 	);
+};
+
+export const scriptsElementor = () => {
+	const remotePath = `${ env.remotePath }/${ destDir }/js/elementor`;
+	return gulp
+		.src( [ `scripts/elementor/*.*` ] )
+		.pipe( uglify() )
+		.pipe( gulp.dest( `../${ destDir }/js/elementor` ) )
+		.pipe(
+			when(
+				isDeploy,
+				sftp( {
+					host: env.ftp.host,
+					user: env.ftp.user,
+					pass: env.ftp.password,
+					remotePath, // need create directory on server
+				} )
+			)
+		);
 };
 
 export const images = () => {

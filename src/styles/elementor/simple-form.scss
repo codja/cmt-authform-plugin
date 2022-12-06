@@ -1,0 +1,39 @@
+.rgbcode-simple-form {
+	position: fixed;
+	top: 20%;
+	right: 5%;
+	z-index: 99;
+	padding: 20px;
+	max-width: 350px;
+	background-color: #fff;
+
+	@media ( max-width: 1024px ) {
+		position: static;
+	}
+
+	&__title {
+		font-family: 'Lato', sans-serif;
+		font-weight: 700;
+	}
+
+	&__input {
+		margin-bottom: 15px;
+		padding: 8px 16px;
+	}
+
+	&__btn {
+		width: 100%;
+		font-size: 20px;
+		font-weight: normal;
+		background-color: #0063ff;
+		color: #fff;
+		border: none;
+		border-radius: 36px;
+
+		&:hover,
+		&:active,
+		&:focus {
+			background-color: #0063ff;
+		}
+	}
+}
