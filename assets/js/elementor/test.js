@@ -1,1 +1,0 @@
-const c=document.querySelector("hello");
