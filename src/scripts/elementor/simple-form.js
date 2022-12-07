@@ -27,16 +27,38 @@ class SimpleForm extends elementorModules.frontend.handlers.Base {
 		event.preventDefault();
 		const authformContainer = jQuery( '#rgbcode-authform' );
 		const signUp = jQuery( '#rgbcode-signup' );
+		const isNotExistAuthform = ! authformContainer.length || ! signUp.length;
 
-		if ( ! authformContainer || ! signUp ) {
+		isNotExistAuthform
+			? this.showPandaForm()
+			: this.showAuthform( signUp, authformContainer );
+	}
+
+	showPandaForm() {
+		if ( ! window.runPlugin ) {
 			return;
 		}
+		runPlugin( 'forexSignup' );
+		const wait = setInterval( () => {
+			const pandaForm = jQuery( 'signup-long' );
+			if ( pandaForm.length ) {
+				const firstNameInput = pandaForm.find( 'input[name=firstName]' );
+				const lastNameInput = pandaForm.find( 'input[name=lastName]' );
 
+				firstNameInput.val( this.elements.$firstname.val() );
+				lastNameInput.val( this.elements.$lastname.val() );
+
+				clearInterval( wait );
+			}
+		}, 500 );
+	}
+
+	showAuthform( signUp, container ) {
 		const hideClass = 'rgbcode-hidden';
 		const signUpFirstname = signUp.find( 'input[name=firstname]' );
 		const signUpLastname = signUp.find( 'input[name=lastname]' );
 
-		authformContainer.removeClass( hideClass );
+		container.removeClass( hideClass );
 		signUp.removeClass( hideClass );
 
 		signUpFirstname.val( this.elements.$firstname.val() );
