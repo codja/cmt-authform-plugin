@@ -30,6 +30,15 @@
 		border: none;
 		border-radius: 36px;
 
+		&:disabled {
+			cursor: not-allowed;
+		}
+
+		&:disabled,
+		&:disabled:hover{
+			background-color: #949495;
+		}
+
 		&:hover,
 		&:active,
 		&:focus {

@@ -201,7 +201,7 @@ class Simple_Form extends Widget_Base {
 				placeholder="<?php echo esc_html( $settings['lastname_placeholder'] ); ?>"
 				required
 			>
-			<button type="submit" class="rgbcode-simple-form__btn"><?php echo esc_html( $settings['submit_text'] ); ?></button>
+			<button type="submit" class="rgbcode-simple-form__btn" disabled><?php echo esc_html( $settings['submit_text'] ); ?></button>
 		</form>
 		<?php
 	}
@@ -229,7 +229,7 @@ class Simple_Form extends Widget_Base {
 				placeholder="{{{settings.lastname_placeholder}}}"
 				required
 			>
-			<button type="submit" class="rgbcode-simple-form__btn">{{{settings.submit_text}}}</button>
+			<button type="submit" class="rgbcode-simple-form__btn" disabled>{{{settings.submit_text}}}</button>
 		</form>
 		<?php
 	}
