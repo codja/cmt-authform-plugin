@@ -73,9 +73,7 @@ class SimpleForm extends elementorModules.frontend.handlers.Base {
 				const firstNameInput = pandaForm.find( 'input[name=firstName]' );
 				const lastNameInput = pandaForm.find( 'input[name=lastName]' );
 
-				firstNameInput.val( this.elements.$firstname.val() );
-				lastNameInput.val( this.elements.$lastname.val() );
-
+				this.changeValueInExternalForm( firstNameInput, lastNameInput );
 				clearInterval( wait );
 			}
 		}, 500 );
@@ -89,8 +87,15 @@ class SimpleForm extends elementorModules.frontend.handlers.Base {
 		this.authformContainer.removeClass( hideClass );
 		this.signUp.removeClass( hideClass );
 
-		signUpFirstname.val( this.elements.$firstname.val() );
-		signUpLastname.val( this.elements.$lastname.val() );
+		this.changeValueInExternalForm( signUpFirstname, signUpLastname );
+	}
+
+	changeValueInExternalForm( firstName, lastName ) {
+		firstName.val( this.elements.$firstname.val() );
+		lastName.val( this.elements.$lastname.val() );
+
+		firstName[0].dispatchEvent( new Event( 'input' ) );
+		lastName[0].dispatchEvent( new Event( 'input' ) );
 	}
 
 }

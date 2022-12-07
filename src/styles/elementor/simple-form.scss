@@ -29,6 +29,7 @@
 		color: #fff;
 		border: none;
 		border-radius: 36px;
+		transition: background-color .3s ease-in;
 
 		&:disabled {
 			cursor: not-allowed;
