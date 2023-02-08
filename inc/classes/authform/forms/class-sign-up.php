@@ -129,6 +129,11 @@ class Sign_Up extends Baseform {
 			'code' => '+673',
 		],
 		[
+			'name' => 'Bulgaria',
+			'iso'  => 'BG',
+			'code' => '+359',
+		],
+		[
 			'name' => 'Burkina Faso',
 			'iso'  => 'BF',
 			'code' => '+226',
