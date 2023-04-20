@@ -8,6 +8,11 @@ use Rgbcode_authform\classes\helpers\Request_Api;
 
 class Endpoint {
 
+	const ENDPOINTS = [
+		'autologin'     => 'account_no',
+		'autologin_new' => 'customer_id',
+	];
+
 	protected $auth;
 
 	public function __construct() {
@@ -25,7 +30,7 @@ class Endpoint {
 			'/'
 		);
 
-		if ( $url !== 'autologin' ) {
+		if ( ! array_key_exists( $url, self::ENDPOINTS ) ) {
 			return;
 		}
 
@@ -40,10 +45,10 @@ class Endpoint {
 			exit;
 		}
 
-		$email             	= sanitize_email( $_GET['emailaddress'] ?? '' );
-		$account_no			= sanitize_text_field( $_GET['account_no'] ?? '' );
-		$action            	= sanitize_text_field( $_GET['action'] ?? '' );
-		$user_registered	= $this->get_user_register_from_panda( $email );
+		$email           = sanitize_email( $_GET['emailaddress'] ?? '' );
+		$account_no      = sanitize_text_field( $_GET['account_no'] ?? '' );
+		$action          = sanitize_text_field( $_GET['action'] ?? '' );
+		$user_registered = $this->get_user_register_from_panda( $email, self::ENDPOINTS[ $url ] );
 
 		if ( is_null( $user_registered ) || ! $this->is_account_no_match( $user_registered, $account_no ) ) {
 			wp_safe_redirect( $error_redirect );
@@ -84,7 +89,7 @@ class Endpoint {
 		exit;
 	}
 
-	private function get_user_register_from_panda( string $email ): ?string {
+	private function get_user_register_from_panda( string $email, string $field = 'account_no' ): ?string {
 		if ( ! $email ) {
 			return null;
 		}
@@ -102,14 +107,14 @@ class Endpoint {
 
 		$base_request = $panda_db->get_results(
 			$panda_db->prepare(
-				'SELECT account_no FROM vtiger_account WHERE email = %s',
+				"SELECT $field FROM vtiger_account WHERE email = %s",
 				$email
 			),
 			ARRAY_A
 		);
 
 		return $base_request
-			? reset( $base_request )['account_no']
+			? reset( $base_request )[ $field ]
 			: null;
 	}
 
