@@ -1250,4 +1250,17 @@ class Sign_Up extends Baseform {
 		return $result;
 	}
 
+	public static function render_signup_btn( $atts = [] ): string {
+		$id      = $atts['id'] ?? '';
+		$classes = $atts['classes'] ?? '';
+		$text    = $atts['text'] ?? '';
+
+		return sprintf(
+			'<button id="%s" class="js-rgbcode-authform %s" data-target="rgbcode-signup">%s</button>',
+			esc_attr( $id ),
+			esc_attr( $classes ),
+			esc_html( $text ),
+		);
+	}
+
 }
