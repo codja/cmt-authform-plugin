@@ -2,6 +2,7 @@
 
 namespace Rgbcode_authform\classes\authform;
 
+use Rgbcode_authform\classes\authform\forms\Sign_Up;
 use Rgbcode_authform\classes\core\Error;
 use Rgbcode_authform\traits\Singleton;
 
@@ -23,6 +24,7 @@ class Authform {
 
 	public function __construct() {
 		add_action( 'wp_footer', [ $this, 'render_forms' ] );
+		add_shortcode( 'authform-signup', [ Sign_Up::class, 'render_signup_btn' ] );
 	}
 
 	public function render_forms() {
