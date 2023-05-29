@@ -1,3 +1,5 @@
+import {detectTablet} from "./utils.js";
+
 const html = document.querySelector( 'html' ),
 	modalWrap = document.querySelector( '.rgbcode-authform-back' ),
 	allModals = modalWrap.querySelectorAll( '.rgbcode-authform-modal' ),
@@ -29,16 +31,24 @@ export function initModal() {
 
 	buttons.forEach( button => {
 		button.addEventListener( 'click', ( evt ) => {
+			const onlyDesktop = button.dataset.onlyDesktop;
+
+			if ( onlyDesktop && detectTablet() ) {
+				return;
+			}
+
 			evt.preventDefault();
 			const target = button.dataset.target;
 			showModal( target );
 		} )
 	} );
+
 	buttonsInModal.forEach( button => {
 		button.addEventListener( 'click', () => {
 			hideModal();
 		} )
 	} );
+
 	closeMsgBtn.addEventListener( 'click', ( evt ) => {
 		closeMsgBtn.parentElement.classList.add( 'rgbcode-hidden' );
 	} )
