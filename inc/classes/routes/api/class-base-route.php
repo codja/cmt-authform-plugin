@@ -41,7 +41,7 @@ abstract class Base_Route {
 
 		$result = array(
 			'success' => 'ok' === $response['data']['status'],
-			'link'    => Request_Api::get_response_link( $response['data']['loginToken'] ?? '', 'action' ),
+			'link'    => Request_Api::get_response_link( $response['data']['loginToken'] ?? '' ),
 		);
 
 		wp_send_json( $result );
