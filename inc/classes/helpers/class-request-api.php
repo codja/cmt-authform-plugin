@@ -43,7 +43,7 @@ abstract class Request_Api {
 		}
 	}
 
-	public static function get_response_link( $url, $param, $change = false, $changeable_value = '' ) {
+	public static function get_response_link( $url, $param = '', $change = false, $changeable_value = '' ) {
 		if ( ! $url ) {
 			return get_home_url();
 		}
