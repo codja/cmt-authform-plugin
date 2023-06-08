@@ -2,7 +2,7 @@ import {checkPass, togglePassHelper} from "./validationPass";
 import {emailTest, nameTest, limitPhone, phoneTest} from "./checks";
 
 const submit = document.getElementById( 'rgbcode-signup-submit' );
-const context = {
+export const context = {
 	globalCheck: {
 		firstname: false,
 		lastname: false,

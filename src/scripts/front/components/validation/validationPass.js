@@ -1,14 +1,25 @@
 import {passIndicate, resetIndicate} from "./passIndicate";
 import {checkCountChar, checkIfOneDigit, checkIfOneLowercase, checkIfOneUppercase} from "./checks";
+import {context} from "./validation.js";
 
 const validClass = 'valid';
+const formSignUp = document.querySelector( '.rgbcode-authform-signup' );
+const tooltip = formSignUp.querySelector( '.rgbcode-authform-tooltip' );
+
+const showTooltip = () => {
+	tooltip.classList.remove( 'rgbcode-hidden' );
+}
+
+const hideTooltip = () => {
+	tooltip.classList.add( 'rgbcode-hidden' );
+}
 
 export const checkPass = value => {
 	const
-		length = document.getElementById('rgbc-length'),
-		lowercase = document.getElementById('rgbc-lower'),
-		uppercase = document.getElementById('rgbc-upper'),
-		number = document.getElementById('rgbc-num');
+		length = formSignUp.querySelector('#rgbc-length'),
+		lowercase = formSignUp.querySelector('#rgbc-lower'),
+		uppercase = formSignUp.querySelector('#rgbc-upper'),
+		number = formSignUp.querySelector('#rgbc-num');
 	let count = 0;
 
 	const successCheck = ( elem ) => {
@@ -39,18 +50,24 @@ export const checkPass = value => {
 
 	const minValid = count === 4;
 
-	minValid
-		? passIndicate( value )
-		: resetIndicate()
+	if ( minValid ) {
+		passIndicate( value );
+		hideTooltip();
+	} else {
+		showTooltip();
+		resetIndicate();
+	}
 
 	return minValid;
 }
 
 export const togglePassHelper = ( input ) => {
 	input.addEventListener( 'focus', () => {
-		input.parentElement.nextElementSibling.nextElementSibling.classList.remove( 'rgbcode-hidden' );
+		if ( ! context.globalCheck.password ) {
+			showTooltip();
+		}
 	} );
 	input.addEventListener( 'blur', () => {
-		input.parentElement.nextElementSibling.nextElementSibling.classList.add( 'rgbcode-hidden' );
+		hideTooltip();
 	} );
 }
