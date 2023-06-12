@@ -5,7 +5,7 @@ export const checkIfOneUppercase = i => /[A-Z]/.test( i );
 export const checkIfOneDigit = i => /[0-9]/.test( i );
 export const checkRepeatedChars = i => /([a-z])\1{2}/ig.test( i );
 export const nameTest = i => /^[a-zA-Zء-ي]{3,50}$/.test( i );
-export const emailTest = i => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test( i );
+export const emailTest = i => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.){1,2}[a-zA-Z]{2,}))$/.test( i );
 export const phoneTest = i => /^[0-9]{6,}$/.test( i );
 export const checkSeriesKeyboardChars = s => {
 	// Check for sequential numerical characters

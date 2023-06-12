@@ -43,13 +43,9 @@ abstract class Request_Api {
 		}
 	}
 
-	public static function get_response_link( $url, $param = '', $change = false, $changeable_value = '' ) {
+	public static function get_response_link( $url, $param = '', $change = false, $changeable_value = '' ): string {
 		if ( ! $url ) {
 			return get_home_url();
-		}
-
-		if ( ! $param ) {
-			return $url;
 		}
 
 		$base_url = wp_parse_url( $url );
@@ -57,7 +53,7 @@ abstract class Request_Api {
 
 		if ( $change && $changeable_value ) {
 			$parameters[ $param ] = $changeable_value;
-		} else {
+		} elseif ( $param && isset( $parameters[ $param ] ) ) {
 			unset( $parameters[ $param ] );
 		}
 
