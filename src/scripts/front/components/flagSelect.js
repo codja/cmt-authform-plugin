@@ -20,7 +20,7 @@ export function initFlagSelect() {
 		.then( response => {
 			if ( response.success ) {
 				if ( response.data.not_allowed ) {
-					notAllowedMsg.classList.add( 'rgbcode-hidden' );
+					notAllowedMsg.classList.remove( 'rgbcode-hidden' );
 				}
 				fillFlagInput( response.data.country );
 			}
