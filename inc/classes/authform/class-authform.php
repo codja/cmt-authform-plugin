@@ -12,12 +12,12 @@ class Authform {
 
 	const ACTIVE_FORMS = [
 		'Sign_Up',
-	//      'Login',
+		'Deposit',
 	];
 
 	const ALLOW_ACTIONS = [
 		'forexSignup',
-//		'forexLogin',
+//		'forexDeposit',
 	];
 
 	const HIDE_CLASS = 'rgbcode-hidden';
