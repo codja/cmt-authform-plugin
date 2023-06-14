@@ -36,6 +36,14 @@
 			font-family: rgbcicons, sans-serif;
 			font-size: 26px;
 		}
+
+		& > span {
+			margin-bottom: .3em;
+			margin-top: .7em;
+			display: inline-block;
+			color: #051225;
+			font: 14px $basefont;
+		}
 	}
 
 	&_user {
@@ -80,12 +88,17 @@
 		}
 	}
 
-	input {
+	&_currency {
+		flex-basis: 120px
+	}
+
+	input,
+	select {
 		width: 100%;
 		font: 400 14px/21px $basefont;
 		border-radius: 4px;
 		border-color: #c9cbcd;
-		padding-inline: 16px 45px;
+		padding-inline: 16px;
 		padding-top: 10px;
 		padding-bottom: 10px;
 		box-shadow: 0 3px 3px 0 rgba(#000, 0.05);
@@ -104,5 +117,8 @@
 		}
 	}
 
+	&_icon input {
+		padding-inline: 16px 45px;
+	}
 
 }

@@ -1,6 +1,6 @@
 import {getCookie, postData, serializeArray} from "./utils";
 
-const formSignUp = document.querySelector( '.rgbcode-authform-signup' );
+const formSignUp = document.querySelector( '.rgbcode-authform-form_signup' );
 const phoneCountry = formSignUp.querySelector( '.rgbcode-authform-flag-input__code' );
 const submitBtn = formSignUp.querySelector( '.rgbcode-authform-button' );
 const errorBlock = formSignUp.querySelector( '.rgbcode-authform-input__error_submit' );

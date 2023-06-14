@@ -13,23 +13,23 @@
 		</div>
 	</div>
 
-	<form class="rgbcode-authform-signup">
+	<form class="rgbcode-authform-form rgbcode-authform-form_signup">
 
 		<?php if ( ! empty( $args['title_block']['title'] ) ) : ?>
-		<div class="rgbcode-authform-signup__title">
+		<div class="rgbcode-authform-form__title">
 			<?php echo esc_html( $args['title_block']['title'] ); ?>
 		</div>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $args['title_block']['subtitle'] ) ) : ?>
-		<div class="rgbcode-authform-signup__subtitle">
+		<div class="rgbcode-authform-form__subtitle">
 			<?php echo esc_html( $args['title_block']['subtitle'] ); ?>
 		</div>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $args['first_name'] ) ) : ?>
-		<div class="rgbcode-authform-signup__inputs">
-			<div class="rgbcode-authform-input rgbcode-authform-input_user rgbcode-authform-input_firstname">
+		<div class="rgbcode-authform-form__inputs">
+			<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_user rgbcode-authform-input_firstname">
 				<label class="rgbcode-authform-input__label">
 					<input
 						type="text"
@@ -49,7 +49,7 @@
 			<?php endif; ?>
 
 			<?php if ( ! empty( $args['last_name'] ) ) : ?>
-			<div class="rgbcode-authform-input rgbcode-authform-input_user rgbcode-authform-input_lastname">
+			<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_user rgbcode-authform-input_lastname">
 				<label class="rgbcode-authform-input__label">
 					<input
 						type="text"
@@ -69,7 +69,7 @@
 			<?php endif; ?>
 
 			<?php if ( ! empty( $args['email'] ) ) : ?>
-			<div class="rgbcode-authform-input rgbcode-authform-input_email">
+			<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_email">
 				<label class="rgbcode-authform-input__label">
 					<input
 						type="email"
@@ -117,7 +117,7 @@
 			</div>
 
 			<?php if ( ! empty( $args['phone'] ) ) : ?>
-			<div class="rgbcode-authform-input rgbcode-authform-input_phone">
+			<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_phone">
 				<label class="rgbcode-authform-input__label">
 					<input
 						type="text"
@@ -138,7 +138,7 @@
 			<?php endif; ?>
 
 			<?php if ( ! empty( $args['pass'] ) ) : ?>
-			<div class="rgbcode-authform-input rgbcode-authform-input_pass">
+			<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_pass">
 				<div class="rgbcode-authform-input__label">
 					<input
 						id="pass"
@@ -219,7 +219,7 @@
 		) :
 			?>
 		<a
-			class="rgbcode-authform-signup__link"
+			class="rgbcode-authform-form__link"
 			href="<?php echo esc_url( $args['bottom_link']['url'] ); ?>"
 			target="<?php echo esc_url( $args['bottom_link']['target'] ?? '_self' ); ?>"
 		>

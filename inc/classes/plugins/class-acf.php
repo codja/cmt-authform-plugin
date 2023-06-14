@@ -2,6 +2,7 @@
 
 namespace Rgbcode_authform\classes\plugins;
 
+use Rgbcode_authform\classes\helpers\Location;
 use Rgbcode_authform\traits\Singleton;
 
 class ACF {
@@ -15,6 +16,8 @@ class ACF {
 		//      in this hook you need register your fields
 		//      https://www.advancedcustomfields.com/resources/register-fields-via-php/
 		add_action( 'init', [ $this, 'register_fields' ] );
+		add_filter( 'acf/load_field/key=field_5f5e31d44f719', [ $this, 'get_list_countries' ] );
+		add_filter( 'acf/load_field/key=field_5f5e31d44f819', [ $this, 'get_list_currencies' ] );
 	}
 
 	public function register_options_page() {
@@ -850,6 +853,98 @@ class ACF {
 							'append'            => '',
 							'maxlength'         => '',
 						),
+						array(
+							'key'               => 'field_630b1083d97re',
+							'label'             => __( 'Currencies', 'rgbcode-authform' ),
+							'name'              => '',
+							'type'              => 'tab',
+							'instructions'      => '',
+							'required'          => 0,
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_630b0fb1d97ad',
+										'operator' => '==',
+										'value'    => '1',
+									),
+								),
+							),
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'placement'         => 'left',
+							'endpoint'          => 0,
+						),
+						array(
+							'key'                 => 'field_5f5e3263d83e5',
+							'label'               => __( 'Country currencies', 'rgbcode-authform' ),
+							'name'                => 'rgbc_authform_currencies',
+							'type'                => 'repeater',
+							'instructions'        => '',
+							'required'            => 0,
+							'conditional_logic'   => 0,
+							'wrapper'             => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'wpml_cf_preferences' => 1,
+							'collapsed'           => '',
+							'min'                 => 0,
+							'max'                 => 0,
+							'layout'              => 'table',
+							'button_label'        => '',
+							'sub_fields'          => array(
+								array(
+									'key'                 => 'field_5f5e31d44f719',
+									'label'               => __( 'Country', 'rgbcode-authform' ),
+									'name'                => 'country',
+									'type'                => 'select',
+									'instructions'        => '',
+									'required'            => 0,
+									'conditional_logic'   => 0,
+									'wrapper'             => array(
+										'width' => '',
+										'class' => '',
+										'id'    => '',
+									),
+									'choices'             => array(),
+									'default_value'       => false,
+									'wpml_cf_preferences' => 1,
+									'allow_null'          => 0,
+									'multiple'            => 0,
+									'ui'                  => 0,
+									'return_format'       => 'value',
+									'ajax'                => 0,
+									'placeholder'         => '',
+								),
+								array(
+									'key'                 => 'field_5f5e31d44f819',
+									'label'               => __( 'Currencies', 'rgbcode-authform' ),
+									'name'                => 'currencies',
+									'type'                => 'select',
+									'instructions'        => '',
+									'required'            => 0,
+									'conditional_logic'   => 0,
+									'wrapper'             => array(
+										'width' => '',
+										'class' => '',
+										'id'    => '',
+									),
+									'choices'             => array(),
+									'default_value'       => Location::DEFAULT_CURRENCIES,
+									'wpml_cf_preferences' => 1,
+									'allow_null'          => 0,
+									'multiple'            => 1,
+									'ui'                  => 1,
+									'return_format'       => 'value',
+									'ajax'                => 0,
+									'placeholder'         => '',
+								),
+							),
+						),
 					),
 					'location'              => array(
 						array(
@@ -874,5 +969,27 @@ class ACF {
 
 		endif;
 		// phpcs:enable
+	}
+
+	public function get_list_countries( $field ): array {
+		$field['choices'] = [];
+
+		foreach ( Location::COUNTRIES as $country ) {
+			$field['choices'][ $country['name'] ] = $country['name'];
+		}
+
+		// return the field
+		return $field;
+	}
+
+	public function get_list_currencies( $field ): array {
+		$field['choices'] = [];
+
+		foreach ( Location::CURRENCIES as $code => $country ) {
+			$field['choices'][ $code ] = "$code ($country)";
+		}
+
+		// return the field
+		return $field;
 	}
 }
