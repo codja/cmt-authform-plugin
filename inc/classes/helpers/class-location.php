@@ -1369,7 +1369,7 @@ abstract class Location {
 	public static function get_default_country(): array {
 		$current_country = $_SERVER['HTTP_CF_IPCOUNTRY'] ?? false;
 		$result          = [
-			'country'     => self::COUNTRIES[0],
+			'country'     => self::COUNTRIES[2],
 			'not_allowed' => false,
 		];
 

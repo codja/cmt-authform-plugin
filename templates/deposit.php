@@ -19,16 +19,20 @@
 
 		<div class="rgbcode-authform-form__inputs">
 
-			<?php if ( ! empty( $args['country'] ) && ! empty( $args['countries'] ) ) : ?>
+			<?php
+			$default_currencies = $args['currencies'] ?? [];
+			if ( ! empty( $args['country'] ) && ! empty( $args['countries'] ) ) : ?>
 
 			<div class="rgbcode-authform-form__two-selects">
 				<div class="rgbcode-authform-input">
 					<label class="rgbcode-authform-input__label">
 						<span><?php echo esc_html( $args['country'] ); ?></span>
 						<select
+							id="rgbcode-authform-deposit-country"
 							name="country"
 							tabindex="1"
 							autocomplete="off"
+							data-default-currencies="<?php echo esc_attr( wp_json_encode( $default_currencies ) ); ?>"
 							required
 						>
 							<?php foreach ( $args['countries'] as $country => $currencies ) : ?>
@@ -44,12 +48,13 @@
 					<label class="rgbcode-authform-input__label">
 						<span><?php echo esc_html__( 'Currency', 'rgbcode-authform' ); ?></span>
 						<select
+							id="rgbcode-authform-deposit-currency"
 							name="currency"
 							tabindex="2"
 							autocomplete="off"
 							required
 						>
-							<?php foreach ( $args['currencies'] as $currency ) : ?>
+							<?php foreach ( $default_currencies as $currency ) : ?>
 							<option
 								value="<?php echo esc_attr( $currency ); ?>">
 								<?php echo esc_html( $currency ); ?>

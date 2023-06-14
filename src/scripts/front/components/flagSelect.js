@@ -7,11 +7,17 @@ const select = flagInput.querySelector( '.rgbcode-authform-flag-input__select' )
 const options = flagInput.querySelectorAll( '.rgbcode-authform-flag-input__option' );
 const flagImg = flagInput.querySelector( '.rgbcode-authform-flag-input__flag' );
 const telephoneCode = flagInput.querySelector( '.rgbcode-authform-flag-input__code' );
+const countrySelect = document.getElementById( 'rgbcode-authform-deposit-country' );
 
 const fillFlagInput = ( data ) => {
 	flagImg.src = data.src;
 	telephoneCode.dataset.iso = data.iso;
 	telephoneCode.textContent = data.code;
+}
+
+const chooseCountryDeposit = ( country ) => {
+	countrySelect.value = country;
+	countrySelect.dispatchEvent( new Event( 'change' ) );
 }
 
 export function initFlagSelect() {
@@ -23,6 +29,7 @@ export function initFlagSelect() {
 					notAllowedMsg.classList.remove( 'rgbcode-hidden' );
 				}
 				fillFlagInput( response.data.country );
+				chooseCountryDeposit( response.data.country.name );
 			}
 		} )
 		.catch( ( error ) => {
@@ -37,6 +44,7 @@ export function initFlagSelect() {
 	options.forEach( option => {
 		option.addEventListener( 'click', () => {
 			fillFlagInput( option.dataset );
+			chooseCountryDeposit( option.textContent.trim() );
 		} );
 	} )
 }
