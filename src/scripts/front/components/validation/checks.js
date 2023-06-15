@@ -7,7 +7,8 @@ export const checkRepeatedChars = i => /([a-z])\1{2}/ig.test( i );
 export const nameTest = i => /^[a-zA-Zء-ي]{3,50}$/.test( i );
 export const emailTest = i => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.){1,2}[a-zA-Z]{2,}))$/.test( i );
 export const phoneTest = i => /^[0-9]{6,}$/.test( i );
-export const textTest = i => /^[\u0600-\u06FFa-zA-Z0-9 ]{2,}$/.test( i );
+export const textTest = i => /^[\u0600-\u06FFa-zA-Z0-9 ]{2,100}$/.test( i );
+export const addressTest = i => /^[\u0600-\u06FFa-zA-Z0-9 .\/]{2,100}$/.test( i );
 export const checkSeriesKeyboardChars = s => {
 	// Check for sequential numerical characters
 	for ( let i in s ) {
@@ -48,6 +49,6 @@ export const checkAge = ( dateString ) => {
 	const ageInYears = ageInMs / (1000 * 60 * 60 * 24 * 365.25);
 
 	// Check if the age is greater than or equal to 18
-	return ageInYears >= 18;
+	return ageInYears >= 18 && ageInYears <= 100;
 }
 

@@ -64,7 +64,7 @@ export const checkPass = value => {
 
 export const togglePassHelper = ( input ) => {
 	input.addEventListener( 'focus', () => {
-		if ( ! context.globalCheck.password ) {
+		if ( ! context.globalCheck.signup.password ) {
 			showTooltip();
 		}
 	} );

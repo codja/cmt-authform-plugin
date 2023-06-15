@@ -29,7 +29,7 @@ export function initFlagSelect() {
 					notAllowedMsg.classList.remove( 'rgbcode-hidden' );
 				}
 				fillFlagInput( response.data.country );
-				chooseCountryDeposit( response.data.country.name );
+				chooseCountryDeposit( response.data.country.iso );
 			}
 		} )
 		.catch( ( error ) => {
@@ -44,7 +44,7 @@ export function initFlagSelect() {
 	options.forEach( option => {
 		option.addEventListener( 'click', () => {
 			fillFlagInput( option.dataset );
-			chooseCountryDeposit( option.textContent.trim() );
+			chooseCountryDeposit( option.dataset.iso );
 		} );
 	} )
 }

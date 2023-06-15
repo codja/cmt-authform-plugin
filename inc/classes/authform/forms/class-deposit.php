@@ -33,7 +33,10 @@ class Deposit extends Baseform {
 
 		$countries = [];
 		foreach ( Location::COUNTRIES as $country ) {
-			$countries[ $country['name'] ] = key_exists( $country['name'], $countries_with_custom_currency ) ? $countries_with_custom_currency[ $country['name'] ] : '';
+			$countries[ $country['name'] ] = [
+				'currencies' => key_exists( $country['name'], $countries_with_custom_currency ) ? $countries_with_custom_currency[ $country['name'] ] : '',
+				'iso'        => $country['iso'],
+			];
 		}
 		return $countries;
 	}

@@ -1,5 +1,5 @@
 import {checkPass, togglePassHelper} from "./validationPass";
-import {emailTest, nameTest, limitPhone, phoneTest, textTest, checkAge} from "./checks";
+import {emailTest, nameTest, limitPhone, phoneTest, textTest, checkAge, addressTest} from "./checks";
 
 const submitSignup = document.getElementById( 'rgbcode-signup-submit' );
 const submitDeposit = document.getElementById( 'rgbcode-deposit-submit' );
@@ -24,7 +24,8 @@ export const context = {
 	emailTest,
 	phoneTest,
 	checkPass,
-	textTest
+	textTest,
+	addressTest
 };
 
 function execFn( fnName, ctx )
@@ -43,8 +44,9 @@ const nameHandler = ( input ) => {
 		timeout = setTimeout( () => {
 			input.value = input.value.replaceAll(/\s/g,'');
 			nameTest( input.value )
-				? successValid( input, 'deposit' )
-				: unsuccessfulValid( input, 'deposit' );// input.dispatchEvent( new Event( 'input' ) );
+				? successValid( input, 'signup' )
+				: unsuccessfulValid( input, 'signup' );
+			checkPermissionSubmit();
 		}, 1000 );
 	} );
 }
@@ -130,6 +132,8 @@ export function initValidate() {
 				checkAgree( input );
 			break;
 			case 'address':
+				enableValidation( 'addressTest', input, 'deposit' );
+			break;
 			case 'postcode':
 			case 'city':
 				enableValidation( 'textTest', input, 'deposit' );

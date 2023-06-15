@@ -1,7 +1,7 @@
 <?php
 	$visibility_class = $args['visibility_class'] ?? '';
 ?>
-<div class="rgbcode-authform-modal <?php // echo esc_attr( $visibility_class ); ?>" id="rgbcode-deposit">
+<div class="rgbcode-authform-modal <?php echo esc_attr( $visibility_class ); ?>" id="rgbcode-deposit">
 	<button class="rgbcode-authform-modal__close rgbcode-authform-close" type="button"></button>
 	<form class="rgbcode-authform-form">
 
@@ -37,8 +37,13 @@
 							data-default-currencies="<?php echo esc_attr( wp_json_encode( $default_currencies ) ); ?>"
 							required
 						>
-							<?php foreach ( $args['countries'] as $country => $currencies ) : ?>
+							<?php
+							foreach ( $args['countries'] as $country => $data ) :
+								$currencies = $data['currencies'] ?? '';
+								$iso        = $data['iso'] ?? '';
+								?>
 							<option
+								value="<?php echo esc_attr( $iso ); ?>"
 								<?php echo $currencies ? esc_attr( "data-currency=$currencies" ) : ''; ?>
 							><?php echo esc_html( $country ); ?></option>
 							<?php endforeach; ?>
@@ -152,7 +157,7 @@
 
 		<div class="rgbcode-authform-input__error rgbcode-authform-input__error_submit <?php echo esc_attr( $visibility_class ); ?>"></div>
 		<div class="rgbcode-authform-buttons">
-			<button id="rgbcode-deposit-submit" class="rgbcode-authform-button" type="submit" disabled>
+			<button id="rgbcode-deposit-submit" class="rgbcode-authform-button" tabindex="7" type="submit" disabled>
 				<?php echo esc_html( $args['submit'] ?? __( 'Submit', 'rgbcode-authform' ) ); ?>
 			</button>
 		</div>

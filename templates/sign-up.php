@@ -202,7 +202,7 @@
 		<?php endif; ?>
 
 		<div class="rgbcode-authform-input__error rgbcode-authform-input__error_submit <?php echo esc_attr( $visibility_class ); ?>"></div>
-		<button id="rgbcode-signup-submit" class="rgbcode-authform-button" type="submit" disabled>
+		<button id="rgbcode-signup-submit" class="rgbcode-authform-button" tabindex="8" type="submit" disabled>
 			<?php echo esc_html( $args['submit'] ?? __( 'Submit', 'rgbcode-authform' ) ); ?>
 		</button>
 

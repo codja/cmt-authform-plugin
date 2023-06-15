@@ -1,11 +1,15 @@
 import {getCookie, postData, serializeArray} from "./utils";
+import {context} from "./validation/validation.js";
 
 const modalSignUp = document.querySelector( '#rgbcode-signup' );
 const modalDeposit = document.querySelector( '#rgbcode-deposit' );
-const formSignUp = modalSignUp.querySelector( '.rgbcode-authform-form_signup' );
+const formSignUp = modalSignUp.querySelector( '.rgbcode-authform-form' );
+const formDeposit = modalDeposit.querySelector( '.rgbcode-authform-form' );
 const phoneCountry = formSignUp.querySelector( '.rgbcode-authform-flag-input__code' );
-const submitBtn = formSignUp.querySelector( '.rgbcode-authform-button' );
-const errorBlock = formSignUp.querySelector( '.rgbcode-authform-input__error_submit' );
+const submitSignUpBtn = formSignUp.querySelector( '.rgbcode-authform-button' );
+const submitDepositBtn = formDeposit.querySelector( '.rgbcode-authform-button' );
+const errorBlockSignUp = formSignUp.querySelector( '.rgbcode-authform-input__error_submit' );
+const errorBlockDeposit = formDeposit.querySelector( '.rgbcode-authform-input__error_submit' );
 
 export function initFormSubmit() {
 	formSignUp.addEventListener( 'submit', ( evt ) => {
@@ -22,19 +26,43 @@ export function initFormSubmit() {
 				.replaceAll( '&', '|' );
 		}
 
-		submitBtn.classList.add( 'rgbcode-authform-button_loader' );
+		submitSignUpBtn.classList.add( 'rgbcode-authform-button_loader' );
 
-		postData( '/wp-json/rgbcode/v1/create_account', data )
+		postData( '/wp-json/rgbcode/v1/customer', data )
 			.then( data => {
 				if ( data.success ) {
-					// location.href = data.link;
-					errorBlock.classList.add( 'rgbcode-hidden' );
+					context.clientEmail = data.email;
+					errorBlockSignUp.classList.add( 'rgbcode-hidden' );
 					modalSignUp.remove();
 					modalDeposit.classList.remove( 'rgbcode-hidden' );
 				} else {
-					errorBlock.classList.remove( 'rgbcode-hidden' );
-					errorBlock.textContent = data.message ? data.message : data.data;
-					submitBtn.classList.remove( 'rgbcode-authform-button_loader' );
+					errorBlockSignUp.classList.remove( 'rgbcode-hidden' );
+					errorBlockSignUp.textContent = data.message ? data.message : data.data;
+					submitSignUpBtn.classList.remove( 'rgbcode-authform-button_loader' );
+				}
+			} )
+			.catch( ( error ) => {
+				console.error('Error:', error);
+			} );
+	} );
+
+	formDeposit.addEventListener( 'submit', ( evt ) => {
+		evt.preventDefault();
+
+		const data = serializeArray( formDeposit );
+		data.email = context.clientEmail;
+
+		submitDepositBtn.classList.add( 'rgbcode-authform-button_loader' );
+
+		postData( '/wp-json/rgbcode/v1/customer', data, 'PUT' )
+			.then( data => {
+				if ( data.success ) {
+					errorBlockDeposit.classList.add( 'rgbcode-hidden' );
+					location.href = data.link;
+				} else {
+					errorBlockDeposit.classList.remove( 'rgbcode-hidden' );
+					errorBlockDeposit.textContent = data.message ? data.message : data.data;
+					submitDepositBtn.classList.remove( 'rgbcode-authform-button_loader' );
 				}
 			} )
 			.catch( ( error ) => {
