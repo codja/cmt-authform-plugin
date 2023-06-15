@@ -1,6 +1,8 @@
 import {getCookie, postData, serializeArray} from "./utils";
 
-const formSignUp = document.querySelector( '.rgbcode-authform-form_signup' );
+const modalSignUp = document.querySelector( '#rgbcode-signup' );
+const modalDeposit = document.querySelector( '#rgbcode-deposit' );
+const formSignUp = modalSignUp.querySelector( '.rgbcode-authform-form_signup' );
 const phoneCountry = formSignUp.querySelector( '.rgbcode-authform-flag-input__code' );
 const submitBtn = formSignUp.querySelector( '.rgbcode-authform-button' );
 const errorBlock = formSignUp.querySelector( '.rgbcode-authform-input__error_submit' );
@@ -25,8 +27,10 @@ export function initFormSubmit() {
 		postData( '/wp-json/rgbcode/v1/create_account', data )
 			.then( data => {
 				if ( data.success ) {
-					location.href = data.link;
+					// location.href = data.link;
 					errorBlock.classList.add( 'rgbcode-hidden' );
+					modalSignUp.remove();
+					modalDeposit.classList.remove( 'rgbcode-hidden' );
 				} else {
 					errorBlock.classList.remove( 'rgbcode-hidden' );
 					errorBlock.textContent = data.message ? data.message : data.data;

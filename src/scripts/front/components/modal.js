@@ -10,6 +10,10 @@ const showModal = ( target ) => {
 	html.style.overflow = 'hidden';
 	modalWrap.classList.remove( 'rgbcode-hidden' );
 	if ( target ) {
+		let modal = modalWrap.querySelector( `#${target}` );
+		if ( ! modal && target === 'rgbcode-signup' ) {
+			target = 'rgbcode-deposit';
+		}
 		modalWrap.querySelector( `#${target}` ).classList.remove( 'rgbcode-hidden' );
 	}
 };

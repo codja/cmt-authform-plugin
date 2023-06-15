@@ -1,7 +1,8 @@
 import {checkIfTwoUppercase, checkRepeatedChars, checkSeriesKeyboardChars} from "./checks";
 
-const indicator = document.querySelector( '.rgbcode-authform-pass-strength' );
-const msgBlock = document.querySelector( '.rgbcode-authform-pass-strength__msg' );
+const modalSignUp = document.querySelector( '#rgbcode-signup' );
+const indicator = modalSignUp.querySelector( '.rgbcode-authform-pass-strength' );
+const msgBlock = modalSignUp.querySelector( '.rgbcode-authform-pass-strength__msg' );
 const msgs = JSON.parse( indicator.dataset.msgs );
 const indicateClasses = Object.keys( msgs );
 

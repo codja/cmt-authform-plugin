@@ -21,7 +21,8 @@
 
 			<?php
 			$default_currencies = $args['currencies'] ?? [];
-			if ( ! empty( $args['country'] ) && ! empty( $args['countries'] ) ) : ?>
+			if ( ! empty( $args['country'] ) && ! empty( $args['countries'] ) ) :
+				?>
 
 			<div class="rgbcode-authform-form__two-selects">
 				<div class="rgbcode-authform-input">
@@ -29,6 +30,7 @@
 						<span><?php echo esc_html( $args['country'] ); ?></span>
 						<select
 							id="rgbcode-authform-deposit-country"
+							class="valid"
 							name="country"
 							tabindex="1"
 							autocomplete="off"
@@ -49,6 +51,7 @@
 						<span><?php echo esc_html__( 'Currency', 'rgbcode-authform' ); ?></span>
 						<select
 							id="rgbcode-authform-deposit-currency"
+							class="valid"
 							name="currency"
 							tabindex="2"
 							autocomplete="off"

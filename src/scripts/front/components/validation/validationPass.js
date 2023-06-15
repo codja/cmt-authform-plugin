@@ -4,6 +4,7 @@ import {context} from "./validation.js";
 
 const validClass = 'valid';
 const formSignUp = document.querySelector( '.rgbcode-authform-form_signup' );
+
 const tooltip = formSignUp.querySelector( '.rgbcode-authform-tooltip' );
 
 const showTooltip = () => {

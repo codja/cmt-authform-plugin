@@ -1,26 +1,36 @@
 import {checkPass, togglePassHelper} from "./validationPass";
-import {emailTest, nameTest, limitPhone, phoneTest} from "./checks";
+import {emailTest, nameTest, limitPhone, phoneTest, textTest, checkAge} from "./checks";
 
-const submit = document.getElementById( 'rgbcode-signup-submit' );
+const submitSignup = document.getElementById( 'rgbcode-signup-submit' );
+const submitDeposit = document.getElementById( 'rgbcode-deposit-submit' );
 export const context = {
 	globalCheck: {
-		firstname: false,
-		lastname: false,
-		email: false,
-		phone: false,
-		password: false,
-		agree: false
+		signup: {
+			firstname: false,
+			lastname: false,
+			email: false,
+			phone: false,
+			password: false,
+			agree: false
+		},
+		deposit: {
+			city: false,
+			address: false,
+			postcode: false,
+			birthday: false
+		}
 	},
 	nameTest,
 	emailTest,
 	phoneTest,
-	checkPass
+	checkPass,
+	textTest
 };
 
-function execFn(fnName, ctx )
+function execFn( fnName, ctx )
 {
-	const args = Array.prototype.slice.call(arguments, 2);
-	return ctx[fnName].apply(ctx, args);
+	const args = Array.prototype.slice.call( arguments, 2 );
+	return ctx[fnName].apply( ctx, args );
 }
 
 const nameHandler = ( input ) => {
@@ -32,49 +42,65 @@ const nameHandler = ( input ) => {
 
 		timeout = setTimeout( () => {
 			input.value = input.value.replaceAll(/\s/g,'');
-			input.dispatchEvent( new Event( 'input' ) );
+			nameTest( input.value )
+				? successValid( input, 'deposit' )
+				: unsuccessfulValid( input, 'deposit' );// input.dispatchEvent( new Event( 'input' ) );
 		}, 1000 );
 	} );
 }
 
-const isFormValidate = () => {
-	const result = Object.values( context.globalCheck );
+const isFormValidate = ( typeForm = 'signup' ) => {
+	const result = Object.values( context.globalCheck[typeForm] );
 	return ! result.includes( false );
 }
 
-const checkPermissionSubmit = () => {
-	isFormValidate()
-		? submit.disabled = false
-		: submit.disabled = true;
+const checkPermissionSubmit = ( typeForm = 'signup' ) => {
+	const elem = typeForm === 'signup'
+		? submitSignup
+		: submitDeposit;
+
+	isFormValidate( typeForm )
+		? elem.disabled = false
+		: elem.disabled = true;
 }
 
 const checkAgree = i => {
 	i.addEventListener( 'change', ( evt ) => {
-		context.globalCheck.agree = evt.target.checked;
+		context.globalCheck.signup.agree = evt.target.checked;
 		checkPermissionSubmit();
 	} );
 }
 
-const successValid = input => {
-	context.globalCheck[input.name] = true;
+const checkDate = i => {
+	i.addEventListener( 'change', ( evt ) => {
+		const result = checkAge( evt.target.value );
+		result
+			? successValid( i, 'deposit' )
+			: unsuccessfulValid( i, 'deposit' );
+		checkPermissionSubmit( 'deposit' );
+	} );
+}
+
+const successValid = ( input, typeForm ) => {
+	context.globalCheck[typeForm][input.name] = true;
 	input.classList.add( 'valid' );
 	input.classList.remove( 'invalid' )
 	input.parentElement.nextElementSibling.classList.add( 'rgbcode-hidden' );
 }
 
-const unsuccessfulValid = input => {
-	context.globalCheck[input.name] = false;
+const unsuccessfulValid = ( input, typeForm ) => {
+	context.globalCheck[typeForm][input.name] = false;
 	input.classList.add( 'invalid' );
 	input.classList.remove( 'valid' )
 	input.parentElement.nextElementSibling.classList.remove( 'rgbcode-hidden' );
 }
 
-const enableValidation = ( handlerName, input ) => {
+const enableValidation = ( handlerName, input, typeForm = 'signup' ) => {
 	input.addEventListener( 'input', ( evt ) => {
 			execFn( handlerName, context, evt.target.value )
-				? successValid( input )
-				: unsuccessfulValid( input );
-			checkPermissionSubmit();
+				? successValid( input, typeForm )
+				: unsuccessfulValid( input, typeForm );
+			checkPermissionSubmit( typeForm );
 		}
 	);
 }
@@ -102,6 +128,14 @@ export function initValidate() {
 			break;
 			case 'agree':
 				checkAgree( input );
+			break;
+			case 'address':
+			case 'postcode':
+			case 'city':
+				enableValidation( 'textTest', input, 'deposit' );
+			break;
+			case 'birthday':
+				checkDate( input );
 			break;
 		}
 	} );

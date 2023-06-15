@@ -23,6 +23,13 @@ abstract class Base_Route {
 			wp_send_json_error();
 		}
 
+		wp_send_json(
+			[
+				'success' => true,
+				'link'    => 'https://www.google.com',
+			]
+		);
+		exit();
 		$data     = $request->get_params();
 		$response = Request_Api::send_api(
 			$this->get_url_for_request(),
@@ -39,10 +46,10 @@ abstract class Base_Route {
 			wp_send_json_error( $response['error'][0]['description'] );
 		}
 
-		$result = array(
+		$result = [
 			'success' => 'ok' === $response['data']['status'],
 			'link'    => Request_Api::get_response_link( $response['data']['loginToken'] ?? '' ),
-		);
+		];
 
 		wp_send_json( $result );
 	}
