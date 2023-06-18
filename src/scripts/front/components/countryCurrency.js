@@ -1,7 +1,11 @@
-const countrySelect = document.getElementById( 'rgbcode-authform-deposit-country' );
-const currencySelect = document.getElementById( 'rgbcode-authform-deposit-currency' );
-
 export function initCountryCurrency() {
+	const countrySelect = document.getElementById( 'rgbcode-authform-deposit-country' );
+	const currencySelect = document.getElementById( 'rgbcode-authform-deposit-currency' );
+
+	if ( ! countrySelect || ! currencySelect ) {
+		return;
+	}
+
 	countrySelect.addEventListener( 'change', () => {
 		currencySelect.options.length = 0;
 

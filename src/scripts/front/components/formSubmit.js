@@ -1,15 +1,19 @@
 import {getCookie, postData, serializeArray} from "./utils";
-import {context} from "./validation/validation.js";
 
 const modalSignUp = document.querySelector( '#rgbcode-signup' );
 const modalDeposit = document.querySelector( '#rgbcode-deposit' );
+
 const formSignUp = modalSignUp.querySelector( '.rgbcode-authform-form' );
 const formDeposit = modalDeposit.querySelector( '.rgbcode-authform-form' );
+
 const phoneCountry = formSignUp.querySelector( '.rgbcode-authform-flag-input__code' );
+
 const submitSignUpBtn = formSignUp.querySelector( '.rgbcode-authform-button' );
 const submitDepositBtn = formDeposit.querySelector( '.rgbcode-authform-button' );
+
 const errorBlockSignUp = formSignUp.querySelector( '.rgbcode-authform-input__error_submit' );
 const errorBlockDeposit = formDeposit.querySelector( '.rgbcode-authform-input__error_submit' );
+let context = {};
 
 export function initFormSubmit() {
 	formSignUp.addEventListener( 'submit', ( evt ) => {
