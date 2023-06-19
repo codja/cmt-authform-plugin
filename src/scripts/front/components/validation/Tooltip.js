@@ -1,17 +1,17 @@
-export class Tooltip {
+import {Constants} from "../../Constants.js";
 
-	hideClass = 'rgbcode-hidden';
+export class Tooltip {
 
 	constructor( element ) {
 		this.elem = element;
 	}
 
 	showTooltip() {
-		this.elem.classList.remove( this.hideClass );
+		this.elem.classList.remove( Constants.hideClass );
 	}
 
 	hideTooltip() {
-		this.elem.classList.add( this.hideClass );
+		this.elem.classList.add( Constants.hideClass );
 	}
 
 }

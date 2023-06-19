@@ -24,6 +24,10 @@ export class PassStrengthIndicator {
 	}
 
 	showPassStrengthLevel( level ) {
+		if ( ! this.indicator || ! this.indicateClasses ) {
+			return;
+		}
+
 		// get all values without current level
 		const anotherClasses = this.indicateClasses.filter( item => item !== level );
 		// add current level classes
@@ -33,6 +37,10 @@ export class PassStrengthIndicator {
 	}
 
 	enableIndicate( level ) {
+		if ( ! this.msgBlock || ! this.msgs[level] ) {
+			return;
+		}
+
 		this.showPassStrengthLevel( level );
 		this.msgBlock.textContent = this.msgs[level];
 	}
@@ -45,6 +53,10 @@ export class PassStrengthIndicator {
 	}
 
 	resetIndicate() {
+		if ( ! this.msgBlock || ! this.indicateClasses || ! this.indicator ) {
+			return;
+		}
+
 		this.indicateClasses.forEach( className => this.indicator.classList.remove( className ) );
 		this.msgBlock.textContent = this.msgBlock.dataset.default;
 	}
@@ -71,6 +83,7 @@ export class PassStrengthIndicator {
 	}
 
 }
+
 
 
 

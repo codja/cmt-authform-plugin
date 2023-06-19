@@ -1,59 +1,66 @@
 import {detectTablet} from "./utils.js";
-
-const html = document.querySelector( 'html' ),
-	modalWrap = document.querySelector( '.rgbcode-authform-back' ),
-	allModals = modalWrap.querySelectorAll( '.rgbcode-authform-modal' ),
-	buttonsInModal = modalWrap.querySelectorAll( '.rgbcode-authform-modal__close' ),
-	closeMsgBtn = modalWrap.querySelector( '.rgbcode-authform-message__close' );
-
-const showModal = ( target ) => {
-	html.style.overflow = 'hidden';
-	modalWrap.classList.remove( 'rgbcode-hidden' );
-	if ( target ) {
-		let modal = modalWrap.querySelector( `#${target}` );
-		if ( ! modal && target === 'rgbcode-signup' ) {
-			target = 'rgbcode-deposit';
-		}
-		modalWrap.querySelector( `#${target}` ).classList.remove( 'rgbcode-hidden' );
-	}
-};
-
-const hideModal = () => {
-	html.style.overflow = '';
-	allModals.forEach( modal => {
-		modal.classList.add( 'rgbcode-hidden' );
-	} )
-	modalWrap.classList.add( 'rgbcode-hidden' );
-};
+import {Constants} from "../Constants.js";
 
 export function initModal() {
-	const buttons = document.querySelectorAll( '.js-rgbcode-authform' );
+	const html = document.querySelector( 'html' ),
+		modalWrap = document.querySelector( '.rgbcode-authform-back' );
 
-	if ( ! buttons.length ) {
+	if ( ! modalWrap ) {
 		return;
 	}
 
-	buttons.forEach( button => {
-		button.addEventListener( 'click', ( evt ) => {
-			const onlyDesktop = button.dataset.onlyDesktop;
-
-			if ( onlyDesktop && detectTablet() ) {
-				return;
+	const showModal = ( target ) => {
+		html.style.overflow = 'hidden';
+		modalWrap.classList.remove( Constants.hideClass );
+		if ( target ) {
+			let modal = modalWrap.querySelector( `#${target}` );
+			if ( ! modal && target === 'rgbcode-signup' ) {
+				target = 'rgbcode-deposit';
 			}
+			modalWrap.querySelector( `#${target}` ).classList.remove( Constants.hideClass );
+		}
+	};
 
-			evt.preventDefault();
-			const target = button.dataset.target;
-			showModal( target );
+	const allModals = modalWrap.querySelectorAll( '.rgbcode-authform-modal' );
+	const hideModal = () => {
+		html.style.overflow = '';
+		allModals.forEach( modal => {
+			modal.classList.add( Constants.hideClass );
 		} )
-	} );
+		modalWrap.classList.add( Constants.hideClass );
+	};
 
-	buttonsInModal.forEach( button => {
-		button.addEventListener( 'click', () => {
-			hideModal();
+	const buttons = document.querySelectorAll( '.js-rgbcode-authform' );
+	if ( buttons.length ) {
+		buttons.forEach( button => {
+			button.addEventListener( 'click', ( evt ) => {
+				const onlyDesktop = button.dataset.onlyDesktop;
+
+				if ( onlyDesktop && detectTablet() ) {
+					return;
+				}
+
+				evt.preventDefault();
+				const target = button.dataset.target;
+				showModal( target );
+			} )
+		} );
+	}
+
+	const buttonsInModal = modalWrap.querySelectorAll( '.rgbcode-authform-modal__close' );
+	if ( buttonsInModal ) {
+		buttonsInModal.forEach( button => {
+			button.addEventListener( 'click', () => {
+				hideModal();
+			} )
+		} );
+	}
+
+	const closeMsgBtn = modalWrap.querySelector( '.rgbcode-authform-message__close' );
+	if ( closeMsgBtn ) {
+		closeMsgBtn.addEventListener( 'click', ( evt ) => {
+			closeMsgBtn.parentElement.classList.add( Constants.hideClass );
 		} )
-	} );
+	}
 
-	closeMsgBtn.addEventListener( 'click', ( evt ) => {
-		closeMsgBtn.parentElement.classList.add( 'rgbcode-hidden' );
-	} )
 }

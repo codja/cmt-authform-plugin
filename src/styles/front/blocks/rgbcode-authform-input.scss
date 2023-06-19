@@ -108,11 +108,11 @@
 			padding-bottom: 8px;
 		}
 
-		&.valid {
+		&.rgbcode-valid {
 			border-bottom-color: $green;
 		}
 
-		&.invalid {
+		&.rgbcode-invalid {
 			border-bottom-color: $red;
 		}
 	}

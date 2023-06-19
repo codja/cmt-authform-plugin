@@ -1,16 +1,14 @@
-import {Checks} from "./ValidateChecks.js";
+import {Checks} from "./Checks.js";
 import {CheckCreatedPass} from "./CheckCreatedPass.js";
 import {PassStrengthIndicator} from "./PassStrengthIndicator.js";
+import {Constants} from "../../Constants.js";
+
 
 export class ValidateForm {
 
-	hideClass = 'rgbcode-hidden';
-	validClass = 'valid';
-	invalidClass = 'invalid';
-
 	/**
 	 * Constructor
-	 * @param {object} formEl
+	 * @param formEl
 	 * @param passCreate
 	 */
 	constructor( formEl, passCreate = false ) {
@@ -28,6 +26,9 @@ export class ValidateForm {
 		this.initValidate();
 	}
 
+	/**
+	 * Activation of input validation depending on its type
+	 */
 	initValidate() {
 		if ( ! this.inputs ) {
 			return;
@@ -69,16 +70,71 @@ export class ValidateForm {
 		} );
 	}
 
+	/**
+	 * A function for validating an input based on simple checks from the Checks object
+	 * @param handlerName
+	 * @param input
+	 */
 	enableValidation( handlerName, input ) {
 		input.addEventListener( 'input', ( evt ) => {
-				this.checks[handlerName].call( null, evt.target.value )
-					? this.successValid( input )
-					: this.unsuccessfulValid( input );
-				this.checkPermissionSubmit();
+				this.checkInput( input, this.checks[handlerName].call( null, evt.target.value ) );
 			}
 		);
 	}
 
+	/**
+	 * Handler for first name and lastname, removes spaces
+	 * @param input
+	 */
+	nameHandler( input ) {
+		let timeout = null;
+		input.addEventListener( 'input', () => {
+			if ( timeout !== null ) {
+				clearTimeout( timeout );
+			}
+
+			timeout = setTimeout( () => {
+				input.value = input.value.replaceAll(/\s/g,'');
+				this.checkInput( input, this.checks.nameTest( input.value ) );
+			}, 1000 );
+		} );
+	}
+
+	/**
+	 * Adding events for entering a password, a tooltip, a password indicator
+	 * @param input
+	 */
+	passListeners( input ) {
+		const checkCreatedPass = new CheckCreatedPass( this.form )
+
+		input.addEventListener( 'input', () => {
+			const checkPass = checkCreatedPass.checkPass( input.value );
+			if ( checkPass ) {
+				this.checkStatuses.password = true;
+				this.passStrengthIndicator.passIndicate( input.value );
+				checkCreatedPass.tooltip.hideTooltip();
+			} else {
+				this.checkStatuses.password = false;
+				this.passStrengthIndicator.resetIndicate();
+				checkCreatedPass.tooltip.showTooltip();
+			}
+			this.checkInput( input, checkPass );
+		} );
+
+		input.addEventListener( 'focus', () => {
+			if ( ! this.checkStatuses.password ) {
+				checkCreatedPass.tooltip.showTooltip();
+			}
+		} );
+
+		input.addEventListener( 'blur', () => {
+			checkCreatedPass.tooltip.hideTooltip();
+		} );
+	}
+
+	/**
+	 * If all inputs in the form have been valid, unlocking the submit button
+	 */
 	checkPermissionSubmit() {
 		if ( ! this.submit ) {
 			return;
@@ -89,59 +145,60 @@ export class ValidateForm {
 			: this.submit.disabled = true;
 	}
 
+	/**
+	 * Validation check of all form inputs
+	 */
 	isFormValidate() {
 		const result = Object.values( this.checkStatuses );
 		return ! result.includes( false );
 	}
 
+	/**
+	 * Sets the input in a state of successful validity, hiding the error
+	 * @param input
+	 */
 	successValid( input ) {
 		this.checkStatuses[input.name] = true;
-		input.classList.add( this.validClass );
-		input.classList.remove( this.invalidClass )
-		input.parentElement.nextElementSibling.classList.add( this.hideClass );
+		input.classList.add( Constants.validClass );
+		input.classList.remove( Constants.invalidClass )
+		input.parentElement.nextElementSibling.classList.add( Constants.hideClass );
 	}
 
+	/**
+	 * Sets the input to the failed validation state, shows an error
+	 * @param input
+	 */
 	unsuccessfulValid( input ){
 		this.checkStatuses[input.name] = false;
-		input.classList.add( this.invalidClass );
-		input.classList.remove( this.validClass )
-		input.parentElement.nextElementSibling.classList.remove( this.hideClass );
+		input.classList.add( Constants.invalidClass );
+		input.classList.remove( Constants.validClass )
+		input.parentElement.nextElementSibling.classList.remove( Constants.hideClass );
 	}
 
-	checkAgree(i) {
-		i.addEventListener( 'change', ( evt ) => {
+	/**
+	 * Check the "agree" checkbox
+	 * @param input
+	 */
+	checkAgree( input ) {
+		input.addEventListener( 'change', ( evt ) => {
 			this.checkStatuses.agree = evt.target.checked;
 			this.checkPermissionSubmit();
 		} );
 	}
 
-	checkDate( i ){
-		i.addEventListener( 'change', ( evt ) => {
-			const result = this.checks.checkAge( evt.target.value );
-			result
-				? this.successValid( i )
-				: this.unsuccessfulValid( i );
-			this.checkPermissionSubmit();
+	/**
+	 * We check the date so that it is more or equals than 18 years before the current date
+	 * @param input
+	 */
+	checkDate( input ){
+		input.addEventListener( 'change', ( evt ) => {
+			this.checkInput( input, this.checks.checkAge( evt.target.value ) );
 		} );
 	}
 
-	nameHandler( input ) {
-		let timeout = null;
-		input.addEventListener( 'input', () => {
-			if ( timeout !== null ) {
-				clearTimeout( timeout );
-			}
-
-			timeout = setTimeout( () => {
-				input.value = input.value.replaceAll(/\s/g,'');
-				this.checks.nameTest( input.value )
-					? this.successValid( input )
-					: this.unsuccessfulValid( input );
-				this.checkPermissionSubmit();
-			}, 1000 );
-		} );
-	}
-
+	/**
+	 * Creating an object of inputs and statuses of their state, for validation
+	 */
 	createCheckStatuses() {
 		if ( ! this.inputs ) {
 			return {};
@@ -154,32 +211,15 @@ export class ValidateForm {
 		return result;
 	}
 
-	passListeners(input ) {
-		const checkCreatedPass = new CheckCreatedPass( this.form )
-
-		input.addEventListener( 'input', () => {
-			if ( checkCreatedPass.checkPass( input.value ) ) {
-				this.checkStatuses.password = true;
-				this.successValid( input );
-				this.passStrengthIndicator.passIndicate( input.value );
-				checkCreatedPass.tooltip.hideTooltip();
-			} else {
-				this.checkStatuses.password = false;
-				this.unsuccessfulValid( input );
-				this.passStrengthIndicator.resetIndicate();
-				checkCreatedPass.tooltip.showTooltip();
-			}
-			this.checkPermissionSubmit();
-		} );
-
-		input.addEventListener( 'focus', () => {
-			if ( ! this.checkStatuses.password ) {
-				checkCreatedPass.tooltip.showTooltip();
-			}
-		} );
-
-		input.addEventListener( 'blur', () => {
-			checkCreatedPass.tooltip.hideTooltip();
-		} );
+	/**
+	 * Setting the input status and general form status check
+	 * @param input
+	 * @param bool bool
+	 */
+	checkInput( input, bool = false ) {
+		bool
+			? this.successValid( input )
+			: this.unsuccessfulValid( input );
+		this.checkPermissionSubmit();
 	}
 }

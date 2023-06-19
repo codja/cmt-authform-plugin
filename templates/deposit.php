@@ -30,7 +30,7 @@
 						<span><?php echo esc_html( $args['country'] ); ?></span>
 						<select
 							id="rgbcode-authform-deposit-country"
-							class="valid"
+							class="rgbcode-valid"
 							name="country"
 							tabindex="1"
 							autocomplete="off"
@@ -56,7 +56,7 @@
 						<span><?php echo esc_html__( 'Currency', 'rgbcode-authform' ); ?></span>
 						<select
 							id="rgbcode-authform-deposit-currency"
-							class="valid"
+							class="rgbcode-valid"
 							name="currency"
 							tabindex="2"
 							autocomplete="off"

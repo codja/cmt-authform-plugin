@@ -3,7 +3,7 @@ import {initTogglePass} from "./components/togglePassword";
 import {initFlagSelect} from "./components/flagSelect";
 import {initFormSubmit} from "./components/formSubmit";
 import {initCountryCurrency} from "./components/countryCurrency";
-import {ValidateForm} from "./components/validation/ValidateForm.js";
+import {ValidateForm} from "./components/validation/ValidateForm";
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	if ( ! document.getElementById( 'rgbcode-authform' ) ) {

@@ -1,9 +1,8 @@
 import {Tooltip} from "./Tooltip.js";
+import {Constants} from "../../Constants.js";
 
 export class CheckCreatedPass {
 
-	hideClass = 'rgbcode-hidden';
-	validClass = 'valid';
 	count = 0;
 
 	/**
@@ -41,12 +40,12 @@ export class CheckCreatedPass {
 	}
 
 	successCheck( elem ) {
-		elem.classList.add( this.validClass );
+		elem.classList.add( Constants.validClass );
 		this.count++;
 	}
 
 	failCheck( elem ) {
-		elem.classList.remove( this.validClass );
+		elem.classList.remove( Constants.validClass );
 		this.count--;
 	}
 

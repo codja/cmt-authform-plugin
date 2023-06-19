@@ -1,14 +1,13 @@
 import {postData} from "./utils.js";
+import {Constants} from "../Constants.js";
 
 export function initFlagSelect() {
 	const modalSignUp = document.querySelector( '#rgbcode-signup' );
-
 	if ( ! modalSignUp ) {
 		return;
 	}
 
 	const flagInput = modalSignUp.querySelector( '.rgbcode-authform-flag-input' );
-
 	if ( ! flagInput ) {
 		return;
 	}
@@ -31,8 +30,8 @@ export function initFlagSelect() {
 	postData( '/wp-json/rgbcode/v1/detect_location', {}, 'GET' )
 		.then( response => {
 			if ( response.success ) {
-				if ( response.data.not_allowed ) {
-					notAllowedMsg.classList.remove( 'rgbcode-hidden' );
+				if ( response.data.not_allowed && notAllowedMsg ) {
+					notAllowedMsg.classList.remove( Constants.hideClass );
 				}
 				fillFlagInput( response.data.country );
 				chooseCountryDeposit( response.data.country.iso );
@@ -44,7 +43,7 @@ export function initFlagSelect() {
 
 	flagInput.addEventListener( 'click', () => {
 		const select = flagInput.querySelector( '.rgbcode-authform-flag-input__select' );
-		select.classList.toggle( 'rgbcode-hidden' );
+		select.classList.toggle( Constants.hideClass );
 		modalSignUp.classList.toggle( 'rgbcode-authform-modal_overflow' );
 	} );
 
