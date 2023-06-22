@@ -104,6 +104,11 @@
 		display: block;
 		font: 400 14px $basefont;
 		text-align: center;
+		color: $accent;
+
+		&:hover {
+			text-decoration: underline;
+		}
 
 		@include media_max( map-get( $breaks, mobile ) ) {
 			margin-top: 1em;
@@ -111,11 +116,4 @@
 		}
 	}
 
-	a {
-		color: $accent;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
 }
