@@ -64,6 +64,55 @@ class ACF {
 							'ui_on_text'        => '',
 							'ui_off_text'       => '',
 						),
+						// General
+						array(
+							'key'               => 'field_630b1083f77ae',
+							'label'             => __( 'General', 'rgbcode-authform' ),
+							'name'              => '',
+							'type'              => 'tab',
+							'instructions'      => '',
+							'required'          => 0,
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_630b0fb1d97ad',
+										'operator' => '==',
+										'value'    => '1',
+									),
+								),
+							),
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'placement'         => 'left',
+							'endpoint'          => 0,
+						),
+						array(
+							'key'               => 'field_649844f7714a9',
+							'label'             => __( 'Logo', 'rgbcode-authform' ),
+							'name'              => 'rgbc_authform_logo',
+							'type'              => 'image',
+							'instructions'      => '',
+							'required'          => 0,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'return_format'     => 'array',
+							'preview_size'      => 'medium',
+							'library'           => 'all',
+							'min_width'         => '',
+							'min_height'        => '',
+							'min_size'          => '',
+							'max_width'         => '',
+							'max_height'        => '',
+							'max_size'          => '',
+							'mime_types'        => '',
+						),
 						// Sign Up
 						array(
 							'key'               => 'field_630b1083d97ae',

@@ -15,6 +15,12 @@
 
 	<form class="rgbcode-authform-form rgbcode-authform-form_signup">
 
+		<?php
+		if ( ! empty( $args['logo'] ) ) {
+			load_template( RGBCODE_AUTHFORM_PARTIALS . '/img-from-acf.php', false, $args['logo'] );
+		}
+		?>
+
 		<?php if ( ! empty( $args['title_block']['title'] ) ) : ?>
 		<div class="rgbcode-authform-form__title">
 			<?php echo esc_html( $args['title_block']['title'] ); ?>

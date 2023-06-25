@@ -22,6 +22,7 @@ class Deposit extends Baseform {
 			'postcode'         => get_field( 'rgbc_authform_deposit_postcode', 'option' ),
 			'birthday'         => get_field( 'rgbc_authform_deposit_birthday', 'option' ),
 			'submit'           => get_field( 'rgbc_authform_deposit_submit', 'option' ),
+			'logo'             => get_field( 'rgbc_authform_logo', 'option' ),
 			'whatsapp'         => $this->get_whatsapp_data(),
 			'visibility_class' => $this->get_visibility_class(),
 			'countries'        => $this->get_countries_with_currency(),

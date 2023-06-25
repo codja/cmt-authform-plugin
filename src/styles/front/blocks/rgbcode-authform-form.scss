@@ -61,6 +61,11 @@
 		}
 	}
 
+	&__logo {
+		display: block;
+		margin: 0 auto;
+	}
+
 	&__title,
 	&__subtitle {
 		text-align: center;
