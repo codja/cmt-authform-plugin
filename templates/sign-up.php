@@ -107,7 +107,7 @@
 					<button class="rgbcode-authform-close"></button>
 
 					<label class="rgbcode-authform-flag-input__label">
-						<input type="text" name="search" placeholder="<?php echo esc_attr__( 'Search', 'rgbcode-authform' ); ?>">
+						<input type="search" name="search" placeholder="<?php echo esc_attr__( 'Search', 'rgbcode-authform' ); ?>">
 					</label>
 
 					<ul class="rgbcode-authform-flag-input__ul">

@@ -96,6 +96,15 @@
 		flex-basis: 120px
 	}
 
+	select {
+		position: relative;
+		appearance: none;
+		background-repeat: no-repeat;
+		background-position: 95% 50%;
+		background-size: 11px 10px;
+		background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 517.8 306.6' style='enable-background:new 0 0 517.8 306.6;' xml:space='preserve'%3e%3cg%3e%3cpath d='M258.9,306.6l-249-249C-3.3,44.5-3.3,23.1,9.9,9.9c13.2-13.2,34.6-13.2,47.8,0l201.2,201.2L460.1,9.9 c13.2-13.2,34.6-13.2,47.8,0c13.2,13.2,13.2,34.6,0,47.8L258.9,306.6z' fill='%23000000'/%3e%3c/g%3e%3c/svg%3e");
+	}
+
 	input,
 	select {
 		width: 100%;
