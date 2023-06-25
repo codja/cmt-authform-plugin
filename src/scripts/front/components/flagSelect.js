@@ -21,8 +21,11 @@ export function initFlagSelect() {
 	}
 
 	const chooseCountryDeposit = ( country ) => {
-		const countrySelect = document.getElementById( 'rgbcode-authform-deposit-country' );
+		const modalDeposit = document.querySelector( '#rgbcode-deposit' );
+		const countrySelect = modalDeposit.querySelector( '#rgbcode-authform-deposit-country' );
+		// const current = modalDeposit.querySelector( '.js-select-list-current' );
 		countrySelect.value = country;
+		// current.textContent = country;
 		countrySelect.dispatchEvent( new Event( 'change' ) );
 	}
 
@@ -41,19 +44,48 @@ export function initFlagSelect() {
 			console.error('Error:', error);
 		} );
 
+	const select = flagInput.querySelector( '.rgbcode-authform-flag-input__select' );
 	flagInput.addEventListener( 'click', () => {
-		const select = flagInput.querySelector( '.rgbcode-authform-flag-input__select' );
-		select.classList.toggle( Constants.hideClass );
-		modalSignUp.classList.toggle( 'rgbcode-authform-modal_overflow' );
+		if ( ! flagInput.classList.contains( 'opened' ) ) {
+			select.classList.remove( Constants.hideClass );
+			modalSignUp.classList.toggle( 'rgbcode-authform-modal_overflow' );
+			flagInput.classList.add( 'opened' );
+		}
 	} );
 
 	const options = flagInput.querySelectorAll( '.rgbcode-authform-flag-input__option' );
+	const search = select.querySelector( '[name=search]' );
+
 	if ( options ) {
 		options.forEach( option => {
-			option.addEventListener( 'click', () => {
+			option.addEventListener( 'click', ( evt ) => {
+				evt.stopPropagation();
 				fillFlagInput( option.dataset );
 				chooseCountryDeposit( option.dataset.iso );
+				select.classList.add( Constants.hideClass );
+				flagInput.classList.remove( 'opened' );
+				modalSignUp.classList.toggle( 'rgbcode-authform-modal_overflow' );
+				search.value = '';
+				search.dispatchEvent( new Event( 'input' ) );
 			} );
 		} )
+
+		search.addEventListener( 'input', ( e ) => {
+			const searchText = e.target.value.toLowerCase();
+			options.forEach( ( item, index ) => {
+				item.textContent.toLowerCase().includes( searchText )
+					? item.classList.remove( Constants.hideClass )
+					: item.classList.add( Constants.hideClass );
+			} );
+		} );
 	}
+
+	const closeBtn = select.querySelector( '.rgbcode-authform-close' );
+	closeBtn.addEventListener( 'click', ( evt ) => {
+		evt.stopPropagation();
+		select.classList.add( Constants.hideClass );
+		flagInput.classList.remove( 'opened' );
+		modalSignUp.classList.toggle( 'rgbcode-authform-modal_overflow' );
+	} );
+
 }

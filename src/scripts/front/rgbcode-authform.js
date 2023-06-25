@@ -4,6 +4,7 @@ import {initFlagSelect} from "./components/flagSelect";
 import {initFormSubmit} from "./components/formSubmit";
 import {initCountryCurrency} from "./components/countryCurrency";
 import {ValidateForm} from "./components/validation/ValidateForm";
+import customSelect from "./components/selectList.js"
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	if ( ! document.getElementById( 'rgbcode-authform' ) ) {
@@ -19,4 +20,5 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	initCountryCurrency();
 	initFlagSelect();
 	initFormSubmit();
+	customSelect();
 } );

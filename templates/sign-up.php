@@ -99,6 +99,11 @@
 				<?php if ( ! empty( $args['countries'] ) ) : ?>
 				<div class="rgbcode-authform-flag-input__select <?php echo esc_attr( $visibility_class ); ?>">
 					<button class="rgbcode-authform-close"></button>
+
+					<label class="rgbcode-authform-flag-input__label">
+						<input type="text" name="search" placeholder="<?php echo esc_attr__( 'Search', 'rgbcode-authform' ); ?>">
+					</label>
+
 					<ul class="rgbcode-authform-flag-input__ul">
 						<?php foreach ( $args['countries'] as $country ) : ?>
 							<li

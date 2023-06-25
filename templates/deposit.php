@@ -1,7 +1,7 @@
 <?php
 	$visibility_class = $args['visibility_class'] ?? '';
 ?>
-<div class="rgbcode-authform-modal <?php // echo esc_attr( $visibility_class ); ?>" id="rgbcode-deposit">
+<div class="rgbcode-authform-modal <?php echo esc_attr( $visibility_class ); ?>" id="rgbcode-deposit">
 	<button class="rgbcode-authform-modal__close rgbcode-authform-close" type="button"></button>
 	<form class="rgbcode-authform-form">
 
@@ -25,30 +25,33 @@
 				?>
 
 			<div class="rgbcode-authform-form__two-selects">
-				<div class="rgbcode-authform-input">
-					<label class="rgbcode-authform-input__label">
-						<span><?php echo esc_html( $args['country'] ); ?></span>
-						<select
-							id="rgbcode-authform-deposit-country"
-							class="rgbcode-valid"
-							name="country"
-							tabindex="1"
-							autocomplete="off"
-							data-default-currencies="<?php echo esc_attr( wp_json_encode( $default_currencies ) ); ?>"
-							required
-						>
-							<?php
-							foreach ( $args['countries'] as $country => $data ) :
-								$currencies = $data['currencies'] ?? '';
-								$iso        = $data['iso'] ?? '';
-								?>
+
+				<div class="rgbcode-authform-select js-select-list">
+					<div class="rgbcode-authform-select__country-menu">
+						<span class="rgbcode-authform-select__label"><?php echo esc_html( $args['country'] ); ?></span>
+						<div class="rgbcode-authform-select__country-menu-current js-select-list-current"></div>
+						<div class="rgbcode-authform-select__country-menu-list js-select-list-list"></div>
+					</div>
+					<select
+						id="rgbcode-authform-deposit-country"
+						class="rgbcode-authform-select__select js-select-list-select"
+						name="country"
+						tabindex="1"
+						autocomplete="off"
+						data-default-currencies="<?php echo esc_attr( wp_json_encode( $default_currencies ) ); ?>"
+						required
+					>
+						<?php
+						foreach ( $args['countries'] as $country => $data ) :
+							$currencies = $data['currencies'] ?? '';
+							$iso        = $data['iso'] ?? '';
+							?>
 							<option
 								value="<?php echo esc_attr( $iso ); ?>"
 								<?php echo $currencies ? esc_attr( "data-currency=$currencies" ) : ''; ?>
 							><?php echo esc_html( $country ); ?></option>
-							<?php endforeach; ?>
-						</select>
-					</label>
+						<?php endforeach; ?>
+					</select>
 				</div>
 
 				<div class="rgbcode-authform-input rgbcode-authform-input_currency">
