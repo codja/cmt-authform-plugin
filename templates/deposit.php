@@ -149,7 +149,8 @@
 					<label class="rgbcode-authform-input__label">
 						<span><?php echo esc_html( $args['birthday']['label'] ?? '' ); ?></span>
 						<input
-							type="date"
+							id="rgbcode-authform-birthday"
+							type="text"
 							name="birthday"
 							tabindex="6"
 							autocomplete="off"
