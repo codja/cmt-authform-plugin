@@ -154,6 +154,7 @@
 							name="birthday"
 							tabindex="6"
 							autocomplete="off"
+							placeholder="<?php echo esc_html( $args['birthday']['placeholder'] ?? '' ); ?>"
 							required
 						>
 					</label>
