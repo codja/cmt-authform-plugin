@@ -29,7 +29,7 @@ class Customer_Update extends Customer {
 			'address'    => sanitize_text_field( $data['address'] ?? '' ),
 			'postalCode' => sanitize_text_field( $data['postcode'] ?? '' ),
 			'country'    => sanitize_text_field( $data['country'] ?? '' ),
-			'birthday'   => sanitize_text_field( $data['birthday'] ?? '' ),
+			'birthday'   => $this->convert_date( $data['birthday'] ?? '' ),
 		];
 	}
 
@@ -64,5 +64,16 @@ class Customer_Update extends Customer {
 		];
 
 		wp_send_json( $result );
+	}
+
+	/*
+	 * Convert date to format YYYY-MM-DD
+	*/
+	private function convert_date( string $date ): ?string {
+		if ( ! $date ) {
+			return null;
+		}
+
+		return wp_date( 'Y-m-d', strtotime( sanitize_text_field( $date ) ) );
 	}
 }
