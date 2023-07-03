@@ -1,6 +1,6 @@
 import {Checks} from "./Checks.js";
 import {CheckCreatedPass} from "./CheckCreatedPass.js";
-import {PassStrengthIndicator} from "./PassStrengthIndicator.js";
+// import {PassStrengthIndicator} from "./PassStrengthIndicator.js";
 import {Constants} from "../../Constants.js";
 
 
@@ -19,9 +19,9 @@ export class ValidateForm {
 		this.checkStatuses = this.createCheckStatuses();
 		this.passCreate = passCreate;
 
-		if ( this.passCreate ) {
-			this.passStrengthIndicator = new PassStrengthIndicator( this.form );
-		}
+		// if ( this.passCreate ) {
+		// 	this.passStrengthIndicator = new PassStrengthIndicator( this.form );
+		// }
 
 		this.initValidate();
 	}

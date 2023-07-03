@@ -8,6 +8,7 @@
 
 	@include media_max( map-get( $breaks, mobile ) ) {
 		padding-inline: 20px;
+		padding-top: 5px;
 	}
 
 	&_signup {

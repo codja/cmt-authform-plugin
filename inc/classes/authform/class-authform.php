@@ -34,7 +34,8 @@ class Authform {
 
 		printf(
 			'<div id="rgbcode-authform" class="rgbcode-authform-back %s">',
-			esc_attr( $this->check_actions() )
+			''
+//			esc_attr( $this->check_actions() )
 		);
 
 		foreach ( self::ACTIVE_FORMS as $form ) {

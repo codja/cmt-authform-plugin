@@ -16,7 +16,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	const modalDeposit = document.querySelector( '#rgbcode-deposit' );
 
 	initModal();
-
+	// https://air-datepicker.com/docs
 	new AirDatepicker('#rgbcode-authform-birthday', {
 		isMobile: true,
 		autoClose: true,
