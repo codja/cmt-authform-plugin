@@ -20,13 +20,13 @@
 
 	&:hover,
 	&:focus {
-		background-color: darken($accent, 15%);
+		background-color: darken( $accent, 15% );
 		outline: none;
 	}
 
 	&:disabled {
 		cursor: not-allowed;
-		background-color: #c9cbcd;
+		background-color: #c9cbcd !important;
 	}
 
 	&_loader::after {

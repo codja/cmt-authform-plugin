@@ -14,9 +14,6 @@ export function initFormSubmit() {
 
 	const phoneCountry = formSignUp.querySelector( '.rgbcode-authform-flag-input__code' );
 
-	const submitSignUpBtn = formSignUp.querySelector( '.rgbcode-authform-button' );
-	const submitDepositBtn = formDeposit.querySelector( '.rgbcode-authform-button' );
-
 	const errorBlockSignUp = formSignUp.querySelector( '.rgbcode-authform-input__error_submit' );
 	const errorBlockDeposit = formDeposit.querySelector( '.rgbcode-authform-input__error_submit' );
 	let context = {};
@@ -26,6 +23,7 @@ export function initFormSubmit() {
 
 		const data = serializeArray( formSignUp );
 		const referralFromCookie = getCookie('referral_params');
+		const submitter = evt.submitter;
 		data.phonecountry = phoneCountry.textContent.trim();
 		data.iso = phoneCountry.dataset.iso;
 
@@ -35,7 +33,8 @@ export function initFormSubmit() {
 				.replaceAll( '&', '|' );
 		}
 
-		submitSignUpBtn.classList.add( 'rgbcode-authform-button_loader' );
+		submitter.classList.add( 'rgbcode-authform-button_loader' );
+		submitter.disabled = true;
 
 		postData( '/wp-json/rgbcode/v1/customer', data )
 			.then( data => {
@@ -47,7 +46,8 @@ export function initFormSubmit() {
 				} else {
 					errorBlockSignUp.classList.remove( Constants.hideClass );
 					errorBlockSignUp.textContent = data.message ? data.message : data.data;
-					submitSignUpBtn.classList.remove( 'rgbcode-authform-button_loader' );
+					submitter.classList.remove( 'rgbcode-authform-button_loader' );
+					submitter.disabled = false;
 				}
 			} )
 			.catch( ( error ) => {
@@ -59,19 +59,24 @@ export function initFormSubmit() {
 		evt.preventDefault();
 
 		const data = serializeArray( formDeposit );
+		const submitter = evt.submitter;
 		data.email = context.clientEmail;
 
-		submitDepositBtn.classList.add( 'rgbcode-authform-button_loader' );
+		submitter.classList.add( 'rgbcode-authform-button_loader' );
+		submitter.disabled = true;
 
 		postData( '/wp-json/rgbcode/v1/customer', data, 'PUT' )
 			.then( data => {
 				if ( data.success ) {
 					errorBlockDeposit.classList.add( Constants.hideClass );
-					location.href = data.link;
+					location.href = submitter.classList.contains( 'rgbcode-authform-button_whatsapp' )
+						? submitter.dataset.href
+						: data.link;
 				} else {
 					errorBlockDeposit.classList.remove( Constants.hideClass );
 					errorBlockDeposit.textContent = data.message ? data.message : data.data;
-					submitDepositBtn.classList.remove( 'rgbcode-authform-button_loader' );
+					submitter.classList.remove( 'rgbcode-authform-button_loader' );
+					submitter.disabled = false;
 				}
 			} )
 			.catch( ( error ) => {

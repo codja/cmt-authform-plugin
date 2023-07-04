@@ -14,7 +14,7 @@ export class ValidateForm {
 	constructor( formEl, passCreate = false ) {
 		this.form = formEl;
 		this.inputs = this.form.querySelectorAll( '.rgbcode-authform-input__label input' );
-		this.submit = this.form.querySelector( 'button[type=submit]' );
+		this.submits = this.form.querySelectorAll( 'button[type=submit]' );
 		this.checks = new Checks();
 		this.checkStatuses = this.createCheckStatuses();
 		this.passCreate = passCreate;
@@ -111,11 +111,11 @@ export class ValidateForm {
 			const checkPass = checkCreatedPass.checkPass( input.value );
 			if ( checkPass ) {
 				this.checkStatuses.password = true;
-				this.passStrengthIndicator.passIndicate( input.value );
+				// this.passStrengthIndicator.passIndicate( input.value );
 				checkCreatedPass.tooltip.hideTooltip();
 			} else {
 				this.checkStatuses.password = false;
-				this.passStrengthIndicator.resetIndicate();
+				// this.passStrengthIndicator.resetIndicate();
 				checkCreatedPass.tooltip.showTooltip();
 			}
 			this.checkInput( input, checkPass );
@@ -136,13 +136,31 @@ export class ValidateForm {
 	 * If all inputs in the form have been valid, unlocking the submit button
 	 */
 	checkPermissionSubmit() {
-		if ( ! this.submit ) {
+		if ( ! this.submits ) {
 			return;
 		}
 
 		this.isFormValidate()
-			? this.submit.disabled = false
-			: this.submit.disabled = true;
+			? this.enableSubmits()
+			: this.disableSubmits()
+
+		this.form.dispatchEvent( new CustomEvent( 'checkPermissionForm', {
+			detail: {
+				status: this.isFormValidate()
+			}
+		} ) );
+	}
+
+	enableSubmits() {
+		this.submits.forEach( submit => {
+			submit.disabled = false;
+		} );
+	}
+
+	disableSubmits() {
+		this.submits.forEach( submit => {
+			submit.disabled = true;
+		} );
 	}
 
 	/**
