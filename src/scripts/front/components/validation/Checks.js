@@ -18,8 +18,9 @@ export class Checks {
 		input.addEventListener( 'input', limitHandler );
 	}
 	checkAge( dateString ) {
+		const splitDate = dateString.split( '/' );
 		// Convert the date string to a Date object
-		const dob = new Date( dateString );
+		const dob = new Date( splitDate[2], splitDate[1], splitDate[0] );
 		// Calculate the age in milliseconds
 		const ageInMs = Date.now() - dob.getTime();
 		// Calculate the age in years
