@@ -25,9 +25,9 @@ class Customer_Update extends Customer {
 	protected function get_body( array $data ): array {
 		return [
 			'currency'   => sanitize_text_field( $data['currency'] ?? '' ),
-			'city'       => sanitize_text_field( $data['city'] ?? '' ),
-			'address'    => sanitize_text_field( $data['address'] ?? '' ),
-			'postalCode' => sanitize_text_field( $data['postcode'] ?? '' ),
+			'city'       => sanitize_text_field( trim( $data['city'] ?? '' ) ),
+			'address'    => sanitize_text_field( trim( $data['address'] ?? '' ) ),
+			'postalCode' => sanitize_text_field( trim( $data['postcode'] ?? '' ) ),
 			'country'    => sanitize_text_field( $data['country'] ?? '' ),
 			'birthday'   => $this->convert_date( $data['birthday'] ?? '' ),
 		];
@@ -67,6 +67,7 @@ class Customer_Update extends Customer {
 	}
 
 	/*
+	 * Expected incoming format DD/MM/YYY
 	 * Convert date to format YYYY-MM-DD
 	*/
 	private function convert_date( string $date ): ?string {
@@ -74,6 +75,15 @@ class Customer_Update extends Customer {
 			return null;
 		}
 
-		return wp_date( 'Y-m-d', strtotime( sanitize_text_field( $date ) ) );
+		$date = sanitize_text_field( $date );
+		$date = explode( '/', $date );
+
+		if ( ! $date || empty( $date[0] ) || empty( $date[1] ) || empty( $date[2] ) ) {
+			wp_send_json_error( __( 'Error with date (birthday) format', 'rgbcode-authform' ) );
+		}
+
+		$date = "{$date[2]}/{$date[1]}/{$date[0]}";
+
+		return wp_date( 'Y-m-d', strtotime( $date ) );
 	}
 }

@@ -39,7 +39,6 @@ export class ValidateForm {
 				case 'firstname':
 				case 'lastname':
 					this.enableValidation( 'nameTest', input );
-					this.nameHandler( input );
 					break;
 				case 'email':
 					this.enableValidation( 'emailTest', input );

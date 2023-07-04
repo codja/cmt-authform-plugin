@@ -183,14 +183,17 @@
 						<li id="rgbc-num" class="rgbcode-authform-tooltip__item">
 							<?php echo esc_html__( 'At least one number', 'rgbcode-authform' ); ?>
 						</li>
+						<li id="rgbc-chars" class="rgbcode-authform-tooltip__item">
+							<?php echo esc_html__( 'Only numbers and letters', 'rgbcode-authform' ); ?>
+						</li>
 					</ul>
 				</section>
 			</div>
 			<?php endif; ?>
 		</div>
 
-		<?php if ( ! empty( $args['pass'] ) ) : ?>
-		<div class="rgbcode-authform-pass-strength" data-msgs="<?php echo esc_attr( wp_json_encode( $args['msgs'] ?? '' ) ); ?>">
+		<?php if ( ! empty( $args['pass'] ) && ! empty( $args['msgs'] ) ) : ?>
+		<div class="rgbcode-authform-pass-strength" data-msgs="<?php echo esc_attr( wp_json_encode( $args['msgs'] ) ); ?>">
 			<div class="rgbcode-authform-pass-strength__indicator">
 				<div class="rgbcode-authform-pass-strength__item"></div>
 				<div class="rgbcode-authform-pass-strength__item"></div>
