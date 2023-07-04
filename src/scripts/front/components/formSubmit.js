@@ -69,9 +69,10 @@ export function initFormSubmit() {
 			.then( data => {
 				if ( data.success ) {
 					errorBlockDeposit.classList.add( Constants.hideClass );
-					location.href = submitter.classList.contains( 'rgbcode-authform-button_whatsapp' )
-						? submitter.dataset.href
-						: data.link;
+					if ( submitter.classList.contains( 'rgbcode-authform-button_whatsapp' ) ) {
+						window.open( submitter.dataset.href, '_blank' );
+					}
+					location.href = data.link;
 				} else {
 					errorBlockDeposit.classList.remove( Constants.hideClass );
 					errorBlockDeposit.textContent = data.message ? data.message : data.data;
