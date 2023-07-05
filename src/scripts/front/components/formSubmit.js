@@ -23,7 +23,7 @@ export function initFormSubmit() {
 
 		const data = serializeArray( formSignUp );
 		const referralFromCookie = getCookie('referral_params');
-		const submitter = evt.submitter;
+		const submitter = evt.submitter ?? formSignUp.querySelector( '.rgbcode-authform-button' );
 		data.phonecountry = phoneCountry.textContent.trim();
 		data.iso = phoneCountry.dataset.iso;
 
@@ -59,18 +59,20 @@ export function initFormSubmit() {
 		evt.preventDefault();
 
 		const data = serializeArray( formDeposit );
-		const submitter = evt.submitter;
+		const submitter = evt.submitter ?? formDeposit.querySelector( '.rgbcode-authform-button' );
+
 		data.email = context.clientEmail;
 
 		submitter.classList.add( 'rgbcode-authform-button_loader' );
 		submitter.disabled = true;
+		const windowRef = window.open();
 
 		postData( '/wp-json/rgbcode/v1/customer', data, 'PUT' )
 			.then( data => {
 				if ( data.success ) {
 					errorBlockDeposit.classList.add( Constants.hideClass );
 					if ( submitter.classList.contains( 'rgbcode-authform-button_whatsapp' ) ) {
-						window.open( submitter.dataset.href, '_blank' );
+						windowRef.location = submitter.dataset.href;
 					}
 					location.href = data.link;
 				} else {

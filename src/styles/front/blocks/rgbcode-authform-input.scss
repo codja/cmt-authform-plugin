@@ -23,6 +23,7 @@
 
 			@include media_max( map-get( $breaks, mobile ) ) {
 				height: initial;
+				font-size: 13px;
 			}
 		}
 	}
