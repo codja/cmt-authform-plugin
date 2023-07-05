@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rgbcode-authform\n"
-"POT-Creation-Date: 2022-10-12 10:24+0300\n"
+"POT-Creation-Date: 2023-07-05 14:59+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ruslan <ruslan@rgbcode.com>\n"
 "Language-Team: Rgbcode\n"
@@ -9,28 +9,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
 "_nx_noop:1,2,3c;esc_attr__;esc_attr_e;esc_html__;esc_html_e\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: src\n"
 "X-Poedit-SearchPathExcluded-1: assets\n"
-
-#: inc/classes/authform/forms/class-sign-up.php:1217
-msgid "Weak Password"
-msgstr "كلمة مرور ضعيفة"
-
-#: inc/classes/authform/forms/class-sign-up.php:1218
-msgid "Medium Password"
-msgstr "كلمة مرور متوسطة"
-
-#: inc/classes/authform/forms/class-sign-up.php:1219
-msgid "Strong Password"
-msgstr "كلمة مرور قوية"
 
 #: inc/classes/core/class-error.php:28
 msgid ""
@@ -39,38 +27,355 @@ msgid ""
 msgstr ""
 
 #: inc/classes/helpers/class-authorization.php:44
-#: inc/classes/routes/api/class-base-route.php:35
+#: inc/classes/routes/api/panda/class-panda.php:35
 msgid "Error on client server. Check Request_Api log"
 msgstr ""
 
-#: inc/classes/plugins/class-acf.php:25 inc/classes/plugins/class-acf.php:26
+#: inc/classes/plugins/class-acf.php:28 inc/classes/plugins/class-acf.php:29
 msgid "Authform"
 msgstr ""
 
-#: templates/sign-up.php:7
+#: inc/classes/plugins/class-acf.php:46
+msgid "Authform settings"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:50
+msgid "Enable forms"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:70
+msgid "General"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:94
+msgid "Logo"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:119
+msgid "Sign Up"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:143
+msgid "Language"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:169 inc/classes/plugins/class-acf.php:596
+msgid "Title block"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:184 inc/classes/plugins/class-acf.php:611
+#: inc/classes/plugins/elementor/widgets/class-simple-form.php:115
+msgid "Title"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:195
+msgid "Sign up and Start Trading"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:203 inc/classes/plugins/class-acf.php:630
+msgid "Subtitle"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:214
+msgid "Please fill in your details below"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:224
+msgid "First Name"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:239 inc/classes/plugins/class-acf.php:294
+#: inc/classes/plugins/class-acf.php:349 inc/classes/plugins/class-acf.php:404
+#: inc/classes/plugins/class-acf.php:459 inc/classes/plugins/class-acf.php:869
+msgid "Placeholder"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:250
+msgid "First name"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:258 inc/classes/plugins/class-acf.php:313
+#: inc/classes/plugins/class-acf.php:368 inc/classes/plugins/class-acf.php:423
+#: inc/classes/plugins/class-acf.php:478 inc/classes/plugins/class-acf.php:704
+#: inc/classes/plugins/class-acf.php:759 inc/classes/plugins/class-acf.php:814
+#: inc/classes/plugins/class-acf.php:888
+msgid "Error text"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:269
+msgid "Please insert a valid first name"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:279
+msgid "Last Name"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:305
+msgid "Last name"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:324
+msgid "Please insert a valid last name"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:334 inc/classes/plugins/class-acf.php:360
+msgid "Email"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:379
+msgid "Please insert a valid email address"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:389 inc/classes/plugins/class-acf.php:415
+msgid "Phone"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:434
+#, fuzzy
+#| msgid "At least one number"
+msgid "Please insert a valid phone number"
+msgstr "رقم واحد على الأقل"
+
+#: inc/classes/plugins/class-acf.php:444 inc/classes/plugins/class-acf.php:470
+#, fuzzy
+#| msgid "Weak Password"
+msgid "Password"
+msgstr "كلمة مرور ضعيفة"
+
+#: inc/classes/plugins/class-acf.php:489
+msgid "Must be at least 6 characters Use characters and numbers only"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:499
+msgid "Terms and Conditions"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:518 inc/classes/plugins/class-acf.php:1017
+msgid "Submit button"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:537
+msgid "Message under the button"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:548
+msgid ""
+"CFD and Forex trading involves substantial risk and may result in the loss "
+"of the invested capital."
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:556
+msgid "Link"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:559
+msgid "Link at the bottom of the form"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:572
+msgid "Deposit"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:622
+msgid "Thank you for signing-up!"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:641
+msgid ""
+"Please complete your registration in order to proceed with a deposit and "
+"start trading"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:651
+msgid "Label for country field"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:662 inc/classes/plugins/class-acf.php:1080
+msgid "Country"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:670 inc/classes/plugins/class-acf.php:696
+msgid "City"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:685 inc/classes/plugins/class-acf.php:740
+#: inc/classes/plugins/class-acf.php:795 inc/classes/plugins/class-acf.php:850
+msgid "Label"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:715
+msgid "Please insert a valid city name"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:725 inc/classes/plugins/class-acf.php:751
+msgid "Address"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:770
+msgid "Please insert a valid address"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:780
+msgid "Zip code(postcode)"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:806
+msgid "Zip code / Postcode"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:825
+msgid "Please insert a valid Zip code"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:835 inc/classes/plugins/class-acf.php:861
+msgid "Date of Birth"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:880
+msgid "Choose date"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:899
+msgid "Must be over 18+"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:909
+msgid "WhatsApp button"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:924
+msgid "Button text"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:935 templates/deposit.php:187
+msgid "Whatsapp Us"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:943
+msgid "Background color"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:960
+msgid "Text color"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:977
+#, fuzzy
+#| msgid "At least one number"
+msgid "Phone number"
+msgstr "رقم واحد على الأقل"
+
+#: inc/classes/plugins/class-acf.php:996
+msgid "Whatsapp text"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:1007
+msgid "I need help opening my account"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:1028
+msgid "Next"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:1036
+#: inc/classes/plugins/class-acf.php:1103
+msgid "Currencies"
+msgstr ""
+
+#: inc/classes/plugins/class-acf.php:1060
+msgid "Country currencies"
+msgstr ""
+
+#: inc/classes/plugins/elementor/widgets/class-simple-form.php:65
+msgid "Authform simple form"
+msgstr ""
+
+#: inc/classes/plugins/elementor/widgets/class-simple-form.php:108
+msgid "Form Settings"
+msgstr ""
+
+#: inc/classes/plugins/elementor/widgets/class-simple-form.php:117
+msgid "Start Trading Now"
+msgstr ""
+
+#: inc/classes/plugins/elementor/widgets/class-simple-form.php:118
+msgid "Enter your title"
+msgstr ""
+
+#: inc/classes/plugins/elementor/widgets/class-simple-form.php:125
+msgid "Title Font Size"
+msgstr ""
+
+#: inc/classes/plugins/elementor/widgets/class-simple-form.php:138
+msgid "First Name Placeholder"
+msgstr ""
+
+#: inc/classes/plugins/elementor/widgets/class-simple-form.php:154
+msgid "Last name Placeholder"
+msgstr ""
+
+#: inc/classes/plugins/elementor/widgets/class-simple-form.php:163
+msgid "Form Button Text"
+msgstr ""
+
+#: inc/classes/routes/api/panda/customer/class-customer-update.php:17
+msgid "Email is required"
+msgstr "البريد الإلكتروني مطلوب"
+
+#: inc/classes/routes/api/panda/customer/class-customer-update.php:82
+msgid "Error with date (birthday) format"
+msgstr "خطأ في تنسيق التاريخ (عيد الميلاد)"
+
+#: inc/classes/routes/class-routes.php:51
+msgid "Invalid nonce"
+msgstr "غير صالح"
+
+#: templates/deposit.php:65
+msgid "Currency"
+msgstr "العملة"
+
+#: templates/deposit.php:191 templates/sign-up.php:220
+msgid "Submit"
+msgstr "إرسال"
+
+#: templates/sign-up.php:12
 msgid "We currently do not accept customers from your region"
 msgstr "لا نقبل حاليًا عملاء من منطقتك"
 
-#: templates/sign-up.php:143
+#: templates/sign-up.php:110
+msgid "Search"
+msgstr "بحث"
+
+#: templates/sign-up.php:170
 msgid "Your Password Must have:"
 msgstr "يجب أن تحتوي كلمة المرور الخاصة بك على:"
 
-#: templates/sign-up.php:148
+#: templates/sign-up.php:175
 msgid "Length between 6 and 12 characters"
 msgstr "يتراوح طولها بين 6 و 20 حرفًا"
 
-#: templates/sign-up.php:151
+#: templates/sign-up.php:178
 msgid "At least one lowercase character"
 msgstr "حرف صغير واحد على الأقل"
 
-#: templates/sign-up.php:154
+#: templates/sign-up.php:181
 msgid "At least one uppercase character"
 msgstr "حرف كبير واحد على الأقل"
 
-#: templates/sign-up.php:157
+#: templates/sign-up.php:184
 msgid "At least one number"
 msgstr "رقم واحد على الأقل"
 
-#: templates/sign-up.php:172 templates/sign-up.php:173
+#: templates/sign-up.php:187
+msgid "Only numbers and letters"
+msgstr "فقط الأرقام والحروف"
+
+#: templates/sign-up.php:204 templates/sign-up.php:205
 msgid "Password Strength"
 msgstr "قوة كلمة المرور"
+
+#~ msgid "Medium Password"
+#~ msgstr "كلمة مرور متوسطة"
+
+#~ msgid "Strong Password"
+#~ msgstr "كلمة مرور قوية"

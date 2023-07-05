@@ -58,7 +58,8 @@ abstract class Request_Api {
 		}
 
 		$new_query = http_build_query( $parameters );
+		$path      = wp_is_mobile() ? '/mobile/' : $base_url['path'];
 
-		return $base_url['path'] . '?' . $new_query;
+		return $path . '?' . $new_query;
 	}
 }

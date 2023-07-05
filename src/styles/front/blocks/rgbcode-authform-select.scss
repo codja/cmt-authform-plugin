@@ -1,0 +1,105 @@
+.rgbcode-authform-select {
+	width: 100%;
+
+	&.rgbcode-active .rgbcode-authform-select__country-menu-list {
+		display: block;
+	}
+
+	&__label {
+		color: #051225;
+		font: 14px roboto,sans-serif;
+	}
+
+	&__select {
+		display: none;
+	}
+
+	&__country-menu {
+		position: relative;
+
+		@media screen and (max-width: 1023px) {
+			max-width: none;
+		}
+	}
+
+	&__country-menu-current {
+		position: relative;
+
+		width: 100%;
+
+		padding-inline: 16px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		font: 400 14px/21px roboto,sans-serif;
+		border-radius: 4px;
+		border: 1px solid #c9cbcd;
+		border-bottom-color: #0ea97b;
+		box-shadow: 0 3px 3px 0 rgba(0,0,0,.05);
+		cursor: pointer;
+		outline: none;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			padding-top: 8px;
+			padding-bottom: 8px;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			width: 23px;
+			right: 0;
+			top: 8px;
+			bottom: 8px;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 11px 10px;
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 517.8 306.6' style='enable-background:new 0 0 517.8 306.6;' xml:space='preserve'%3e%3cg%3e%3cpath d='M258.9,306.6l-249-249C-3.3,44.5-3.3,23.1,9.9,9.9c13.2-13.2,34.6-13.2,47.8,0l201.2,201.2L460.1,9.9 c13.2-13.2,34.6-13.2,47.8,0c13.2,13.2,13.2,34.6,0,47.8L258.9,306.6z' fill='%23000000'/%3e%3c/g%3e%3c/svg%3e");
+		}
+	}
+
+	&__country-menu-list {
+		position: absolute;
+		background: #FFF;
+		left: 0;
+		right: 0;
+		z-index: 2;
+		max-height: 305px;
+		overflow-y: auto;
+		box-shadow: 0 3px 3px 0 rgba(0,0,0,.05);
+		display: none;
+
+		.select-list__list {
+			list-style-type: none;
+			padding: 5px 0;
+		}
+
+		.select-list__item {
+			padding: 6px 12px;
+			cursor: pointer;
+			font-weight: 400;
+			transition: background 0.25s, color 0.25s;
+			&:hover {
+				background: rgba(37, 141, 246, 0.2);
+			}
+			&.select-list__item_active {
+				background: #0072ff;
+				color: #FFF;
+			}
+		}
+	}
+
+	&__search[type=search] {
+		width: 95%;
+		margin: .5em 0 .5em .5em;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			width: 90%;
+		}
+	}
+}

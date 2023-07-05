@@ -1,0 +1,126 @@
+.rgbcode-authform-form {
+	max-width: 470px;
+	padding-inline: 32px;
+	padding-top: 32px;
+	padding-bottom: 20px;
+	border-radius: 4px;
+	background-color: #fff;
+
+	@include media_max( map-get( $breaks, mobile ) ) {
+		padding-inline: 20px;
+		padding-top: 5px;
+	}
+
+	&_signup {
+
+		.rgbcode-authform-form__inputs {
+			display: grid;
+			grid-row-gap: 18px;
+			grid-template-columns: 80px 1fr 1fr 1fr 1fr 80px;
+			grid-template-rows: repeat(4, minmax(43px, auto));
+			grid-column-gap: 10px;
+			grid-template-areas:
+			"firstname firstname firstname lastname lastname lastname"
+			"email email email email email email"
+			"country phone phone phone phone phone"
+			"pass pass pass . . .";
+
+			@include media_max( map-get( $breaks, mobile ) ) {
+				grid-row-gap: 12px;
+				grid-template-rows: repeat(5, minmax(43px, auto));
+				grid-template-areas:
+				"firstname firstname firstname firstname firstname firstname"
+				"lastname lastname lastname lastname lastname lastname"
+				"email email email email email email"
+				"country phone phone phone phone phone"
+				"pass pass pass pass pass pass";
+			}
+
+			.rgbcode-authform-input_firstname {
+				grid-area: firstname;
+			}
+
+			.rgbcode-authform-input_lastname {
+				grid-area: lastname;
+			}
+
+			.rgbcode-authform-flag-input {
+				grid-area: country;
+			}
+
+			.rgbcode-authform-input_email {
+				grid-area: email;
+			}
+
+			.rgbcode-authform-input_phone {
+				grid-area: phone;
+			}
+
+			.rgbcode-authform-input_pass {
+				grid-area: pass;
+			}
+		}
+	}
+
+	&__logo {
+		display: block;
+		margin: 0 auto;
+	}
+
+	&__title,
+	&__subtitle {
+		text-align: center;
+		color: #051225;
+	}
+
+	&__title {
+		font: 300 30px/34px $basefont;
+		padding-inline: 25px;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			font: 300 20px/1.8 $basefont;
+		}
+	}
+
+	&__subtitle {
+		margin-top: .5em;
+		font: 300 19px/1.5 $basefont;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			font: 300 14px/1.1 $basefont;
+		}
+	}
+
+	&__inputs {
+		margin-top: 30px;
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			margin-top: 20px;
+		}
+	}
+
+	&__two-selects {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: flex-end;
+		gap: 10px;
+	}
+
+	&__link {
+		margin-top: 1.5em;
+		display: block;
+		font: 400 14px $basefont;
+		text-align: center;
+		color: $accent;
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		@include media_max( map-get( $breaks, mobile ) ) {
+			margin-top: 1em;
+			font-size: 12px;
+		}
+	}
+
+}

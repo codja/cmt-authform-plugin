@@ -25,13 +25,14 @@ class Sign_Up extends Baseform {
 			'submit'           => get_field( 'rgbc_authform_submit', 'option' ),
 			'message'          => get_field( 'rgbc_authform_message', 'option' ),
 			'bottom_link'      => get_field( 'rgbc_authform_link', 'option' ),
+			'logo'             => get_field( 'rgbc_authform_logo', 'option' ),
 			'visibility_class' => $this->get_visibility_class(),
-			'msgs'             => [
-				'weak'   => __( 'Weak Password', 'rgbcode-authform' ),
-				'medium' => __( 'Medium Password', 'rgbcode-authform' ),
-				'strong' => __( 'Strong Password', 'rgbcode-authform' ),
-			],
-			'countries'        => Location::COUNTRIES,
+			//          'msgs'             => [
+			//              'weak'   => __( 'Weak Password', 'rgbcode-authform' ),
+			//              'medium' => __( 'Medium Password', 'rgbcode-authform' ),
+			//              'strong' => __( 'Strong Password', 'rgbcode-authform' ),
+			//          ],
+				'countries'    => Location::COUNTRIES,
 			'default_country'  => Location::get_default_country(),
 		];
 	}

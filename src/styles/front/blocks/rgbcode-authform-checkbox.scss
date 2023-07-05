@@ -53,5 +53,14 @@
 
 	p {
 		margin-bottom: 0;
+
+		a {
+			color: $accent;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
+
 }

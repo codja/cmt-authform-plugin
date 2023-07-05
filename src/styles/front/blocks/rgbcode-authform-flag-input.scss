@@ -24,6 +24,11 @@
 		height: 18px;
 	}
 
+	&__label {
+		margin-inline-start: 40px;
+		margin-bottom: 1em;
+	}
+
 	&__select {
 		position: absolute;
 		top: 0;
@@ -43,6 +48,7 @@
 	&__ul {
 		max-height: 100%;
 		overflow-y: auto;
+		padding-bottom: 3em;
 	}
 
 	&__option {

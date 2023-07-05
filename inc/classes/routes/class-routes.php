@@ -2,8 +2,10 @@
 
 namespace Rgbcode_authform\classes\routes;
 
-use Rgbcode_authform\classes\routes\api\Create_Account;
 use Rgbcode_authform\classes\routes\api\Detect_Location;
+use Rgbcode_authform\classes\routes\api\panda\customer\Customer_Create;
+use Rgbcode_authform\classes\routes\api\panda\customer\Customer_Update;
+use WP_REST_Server;
 
 class Routes {
 	public function __construct() {
@@ -12,10 +14,16 @@ class Routes {
 			function () {
 				register_rest_route(
 					'rgbcode/v1',
-					'/create_account',
+					'/customer',
 					[
-						'methods'  => 'POST',
-						'callback' => [ new Create_Account(), 'post' ],
+						[
+							'methods'  => WP_REST_SERVER::CREATABLE,
+							'callback' => [ new Customer_Create(), 'post' ],
+						],
+						[
+							'methods'  => 'PUT',
+							'callback' => [ new Customer_Update(), 'put' ],
+						],
 					]
 				);
 			}
@@ -28,7 +36,7 @@ class Routes {
 					'rgbcode/v1',
 					'/detect_location',
 					[
-						'methods'  => 'GET',
+						'methods'  => WP_REST_SERVER::READABLE,
 						'callback' => [ new Detect_Location(), 'get' ],
 					]
 				);
@@ -36,5 +44,14 @@ class Routes {
 		);
 	}
 
+	public static function check_nonce( \WP_REST_Request $request ): bool {
+		$nonce = $request->get_header( 'X-WP-Nonce' );
+
+		if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+			wp_send_json_error( __( 'Invalid nonce', 'rgbcode-authform' ), 400 );
+		}
+
+		return true;
+	}
+
 }
-new Routes();

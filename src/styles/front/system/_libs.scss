@@ -1,1 +1,9 @@
-//"src/libs/icons/icons.css";
+@import '../../node_modules/air-datepicker/air-datepicker.css';
+
+.air-datepicker-overlay {
+	z-index: 99999;
+}
+
+.air-datepicker.-is-mobile- {
+	z-index: 999998;
+}

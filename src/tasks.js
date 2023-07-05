@@ -21,7 +21,9 @@ const styles = ( srcPath, destPath, remotePath ) => {
 	return gulp
 		.src( srcPath )
 		.pipe( sassglob() )
-		.pipe( sass() )
+		.pipe( sass( {
+			includePaths: [ 'node_modules' ]
+		} ) )
 		.pipe( rename( { suffix: '.min', prefix: '' } ) )
 		.pipe(
 			autoprefixer( {
