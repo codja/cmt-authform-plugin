@@ -55,6 +55,7 @@ class Setup {
 			'rgbcode_authform',
 			[
 				'url'   => admin_url( 'admin-ajax.php' ),
+				'lang'  => get_field( 'rgbc_authform_lang', 'option' ),
 				'nonce' => wp_create_nonce( 'wp_rest' ),
 			]
 		);
