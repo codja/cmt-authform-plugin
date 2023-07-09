@@ -38,6 +38,7 @@ export function initFlagSelect() {
 				}
 				fillFlagInput( response.data.country );
 				chooseCountryDeposit( response.data.country.iso );
+				Constants.storage.modal.autoOpen();
 			}
 		} )
 		.catch( ( error ) => {
