@@ -45,41 +45,50 @@ export class Modal {
 
 	openButtons() {
 		const buttons = document.querySelectorAll( '.js-rgbcode-authform' );
-		if ( buttons.length ) {
-			buttons.forEach( button => {
-				button.addEventListener( 'click', ( evt ) => {
-					const onlyDesktop = button.dataset.onlyDesktop;
 
-					if ( onlyDesktop && detectTablet() ) {
-						return;
-					}
-
-					evt.preventDefault();
-					const target = button.dataset.target;
-					this.showModal( target );
-				} )
-			} );
+		if ( ! buttons.length ) {
+			return;
 		}
+
+		buttons.forEach( button => {
+			button.addEventListener( 'click', ( evt ) => {
+				const onlyDesktop = button.dataset.onlyDesktop;
+
+				if ( onlyDesktop && detectTablet() ) {
+					return;
+				}
+
+				evt.preventDefault();
+				const target = button.dataset.target;
+				this.showModal( target );
+			} )
+		} );
 	}
 
 	closeButtons() {
 		const closeButtonsInModal = this.modalWrap.querySelectorAll( '.rgbcode-authform-modal__close' );
-		if ( closeButtonsInModal ) {
-			closeButtonsInModal.forEach( button => {
-				button.addEventListener( 'click', () => {
-					this.hideModal();
-				} )
-			} );
+
+		if ( ! closeButtonsInModal ) {
+			return;
 		}
+
+		closeButtonsInModal.forEach( button => {
+			button.addEventListener( 'click', () => {
+				this.hideModal();
+			} )
+		} );
 	}
 
 	closeMsgButton() {
 		const closeMsgBtn = this.modalWrap.querySelector( '.rgbcode-authform-message__close' );
-		if ( closeMsgBtn ) {
-			closeMsgBtn.addEventListener( 'click', ( evt ) => {
-				closeMsgBtn.parentElement.classList.add( Constants.hideClass );
-			} )
+
+		if ( ! closeMsgBtn ) {
+			return
 		}
+
+		closeMsgBtn.addEventListener( 'click', ( evt ) => {
+			closeMsgBtn.parentElement.classList.add( Constants.hideClass );
+		} )
 	}
 
 	autoOpen() {
