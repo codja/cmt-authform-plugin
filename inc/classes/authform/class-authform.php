@@ -15,11 +15,6 @@ class Authform {
 		'Deposit',
 	];
 
-	const ALLOW_ACTIONS = [
-		'forexSignup',
-//		'forexDeposit',
-	];
-
 	const HIDE_CLASS = 'rgbcode-hidden';
 
 	public function __construct() {
@@ -34,7 +29,7 @@ class Authform {
 
 		printf(
 			'<div id="rgbcode-authform" class="rgbcode-authform-back %s">',
-			esc_attr( $this->check_actions() )
+			esc_attr( self::HIDE_CLASS )
 		);
 
 		foreach ( self::ACTIVE_FORMS as $form ) {
@@ -48,15 +43,5 @@ class Authform {
 		$class = __NAMESPACE__ . '\\forms\\' . $form;
 		$args  = $class::instance()->get_template_data();
 		include_once RGBCODE_AUTHFORM_TEMPLATES . '/' . $class::TEMPLATE_NAME . '.php';
-	}
-
-	private function check_actions(): string {
-		if ( ! isset( $_GET['action'] ) ) { // phpcs:ignore
-			return self::HIDE_CLASS;
-		}
-
-		return in_array( $_GET['action'], self::ALLOW_ACTIONS, true ) // phpcs:ignore
-			? ''
-			: self::HIDE_CLASS;
 	}
 }

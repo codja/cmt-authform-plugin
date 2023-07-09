@@ -2,6 +2,7 @@
 
 namespace Rgbcode_authform\classes\authform\forms;
 
+use Rgbcode_authform\classes\authform\Authform;
 use Rgbcode_authform\classes\helpers\Location;
 use Rgbcode_authform\traits\Singleton;
 
@@ -24,7 +25,7 @@ class Deposit extends Baseform {
 			'submit'           => get_field( 'rgbc_authform_deposit_submit', 'option' ),
 			'logo'             => get_field( 'rgbc_authform_logo', 'option' ),
 			'whatsapp'         => $this->get_whatsapp_data(),
-			'visibility_class' => $this->get_visibility_class(),
+			'visibility_class' => Authform::HIDE_CLASS,
 			'countries'        => $this->get_countries_with_currency(),
 			'currencies'       => Location::DEFAULT_CURRENCIES,
 		];

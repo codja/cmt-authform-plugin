@@ -1,4 +1,4 @@
-import {initModal} from "./components/modal";
+import {Modal} from "./components/Modal";
 import {initTogglePass} from "./components/togglePassword";
 import {initFlagSelect} from "./components/flagSelect";
 import {initFormSubmit} from "./components/formSubmit";
@@ -6,6 +6,7 @@ import {initCountryCurrency} from "./components/countryCurrency";
 import {ValidateForm} from "./components/validation/ValidateForm";
 import customSelect from "./components/selectList.js";
 import {initDatepicker} from "./components/datepicker.js";
+import {Constants} from "./Constants.js";
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	if ( ! document.getElementById( 'rgbcode-authform' ) ) {
@@ -14,7 +15,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	const modalSignUp = document.querySelector( '#rgbcode-signup' );
 	const modalDeposit = document.querySelector( '#rgbcode-deposit' );
 
-	initModal();
+	Constants.storage.modal = new Modal();
 	new ValidateForm( modalSignUp, true );
 	new ValidateForm( modalDeposit );
 	initDatepicker();
