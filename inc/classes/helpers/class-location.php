@@ -1110,6 +1110,21 @@ abstract class Location {
 			'iso'  => 'RE',
 			'code' => '+262',
 		],
+			[
+			'name' => 'The Netherlands',
+			'iso'  => 'NL',
+			'code' => '+31',
+		],
+		[
+			'name' => 'Spain',
+			'iso'  => 'ES',
+			'code' => '+34',
+		],
+			[
+			'name' => 'England',
+			'iso'  => 'GB',
+			'code' => '+44',
+		],
 		[
 			'name' => 'Aland',
 			'iso'  => 'AX',
