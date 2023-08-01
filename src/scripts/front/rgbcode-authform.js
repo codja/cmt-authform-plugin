@@ -16,8 +16,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	const modalDeposit = document.querySelector( '#rgbcode-deposit' );
 
 	Constants.storage.modal = new Modal();
-	new ValidateForm( modalSignUp, true );
-	new ValidateForm( modalDeposit );
+	if ( modalSignUp ) {
+		new ValidateForm( modalSignUp, true );
+	}
+	if ( modalDeposit ) {
+		new ValidateForm( modalDeposit );
+	}
 	initDatepicker();
 	initTogglePass();
 	initCountryCurrency();

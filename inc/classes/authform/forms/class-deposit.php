@@ -28,6 +28,7 @@ class Deposit extends Baseform {
 			'visibility_class' => Authform::HIDE_CLASS,
 			'countries'        => $this->get_countries_with_currency(),
 			'currencies'       => Location::DEFAULT_CURRENCIES,
+			'registered_user'  => Authform::instance()->get_registered_user(),
 		];
 	}
 
