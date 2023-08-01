@@ -4,6 +4,7 @@ namespace Rgbcode_authform\classes\authform;
 
 use Rgbcode_authform\classes\authform\forms\Sign_Up;
 use Rgbcode_authform\classes\core\Error;
+use Rgbcode_authform\classes\helpers\Location;
 use Rgbcode_authform\classes\Panda_DB;
 use Rgbcode_authform\traits\Singleton;
 
@@ -72,10 +73,14 @@ class Authform {
 			return null;
 		}
 
-		return Panda_DB::instance()->get_user_register_data(
+		$result = Panda_DB::instance()->get_user_register_data(
 			'customer_id',
 			$client_id,
 			'email, country, base_currency, birth_date, city, address, post_code'
 		);
+
+		$result['iso'] = Location::get_iso_by_country_name( $result['country'] );
+
+		return $result;
 	}
 }
