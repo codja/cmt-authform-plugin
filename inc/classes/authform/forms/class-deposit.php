@@ -28,6 +28,7 @@ class Deposit extends Baseform {
 			'visibility_class' => Authform::HIDE_CLASS,
 			'countries'        => $this->get_countries_with_currency(),
 			'currencies'       => Location::DEFAULT_CURRENCIES,
+			'registered_user'  => Authform::instance()->get_registered_user(),
 		];
 	}
 
@@ -35,10 +36,10 @@ class Deposit extends Baseform {
 		$countries_with_custom_currency = $this->countries_with_custom_currency();
 
 		$countries = [];
-		foreach ( Location::COUNTRIES as $country ) {
+		foreach ( Location::COUNTRIES as $iso => $country ) {
 			$countries[ $country['name'] ] = [
 				'currencies' => key_exists( $country['name'], $countries_with_custom_currency ) ? $countries_with_custom_currency[ $country['name'] ] : '',
-				'iso'        => $country['iso'],
+				'iso'        => $iso,
 			];
 		}
 		return $countries;

@@ -23,9 +23,7 @@ export function initFlagSelect() {
 	const chooseCountryDeposit = ( country ) => {
 		const modalDeposit = document.querySelector( '#rgbcode-deposit' );
 		const countrySelect = modalDeposit.querySelector( '#rgbcode-authform-deposit-country' );
-		// const current = modalDeposit.querySelector( '.js-select-list-current' );
 		countrySelect.value = country;
-		// current.textContent = country;
 		countrySelect.dispatchEvent( new Event( 'change' ) );
 	}
 

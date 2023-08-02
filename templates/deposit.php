@@ -1,9 +1,10 @@
 <?php
 	$visibility_class = $args['visibility_class'] ?? '';
+	$registered_user  = ! empty( $args['registered_user'] ) ? wp_json_encode( $args['registered_user'] ) : '';
 ?>
 <div class="rgbcode-authform-modal <?php echo esc_attr( $visibility_class ); ?>" id="rgbcode-deposit">
 	<button class="rgbcode-authform-modal__close rgbcode-authform-close" type="button"></button>
-	<form class="rgbcode-authform-form">
+	<form class="rgbcode-authform-form" data-user="<?php echo esc_attr( $registered_user ); ?>">
 
 		<?php
 		if ( ! empty( $args['logo'] ) ) {

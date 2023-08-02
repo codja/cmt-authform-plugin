@@ -1,5 +1,10 @@
 export function initCountryCurrency() {
 	const modalDeposit = document.querySelector( '#rgbcode-deposit' );
+
+	if ( ! modalDeposit ) {
+		return;
+	}
+
 	const countrySelect = modalDeposit.querySelector( '#rgbcode-authform-deposit-country' );
 	const currencySelect = modalDeposit.querySelector( '#rgbcode-authform-deposit-currency' );
 	const current = modalDeposit.querySelector( '.js-select-list-current' );

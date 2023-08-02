@@ -33,7 +33,7 @@ class Sign_Up extends Baseform {
 			//              'medium' => __( 'Medium Password', 'rgbcode-authform' ),
 			//              'strong' => __( 'Strong Password', 'rgbcode-authform' ),
 			//          ],
-				'countries'    => Location::COUNTRIES,
+			'countries'        => Location::COUNTRIES,
 			'default_country'  => Location::get_default_country(),
 		];
 	}

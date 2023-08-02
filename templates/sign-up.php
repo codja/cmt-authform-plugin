@@ -111,12 +111,12 @@
 					</label>
 
 					<ul class="rgbcode-authform-flag-input__ul">
-						<?php foreach ( $args['countries'] as $country ) : ?>
+						<?php foreach ( $args['countries'] as $iso => $country ) : ?>
 							<li
 								class="rgbcode-authform-flag-input__option"
 								data-code="<?php echo esc_attr( $country['code'] ); ?>"
-								data-iso="<?php echo esc_attr( $country['iso'] ); ?>"
-								data-src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $country['iso'] ) . '.svg' ); ?>"
+								data-iso="<?php echo esc_attr( $iso ); ?>"
+								data-src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $iso ) . '.svg' ); ?>"
 							>
 								<?php echo esc_html( $country['name'] ); ?>
 							</li>
