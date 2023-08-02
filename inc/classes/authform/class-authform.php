@@ -66,8 +66,8 @@ class Authform {
 
 	private function check_register_user(): ?array {
 		$action_name = 'personDetailsForm';
-		$client_id   = $_GET['clientid'] ?? null;
-		$action      = $_GET['action'] ?? null;
+		$client_id   = ! empty( $_GET['clientid'] ) ? sanitize_text_field( $_GET['clientid'] ) : null;
+		$action      = ! empty( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : null;
 
 		if ( ! $client_id || ! $action || $action !== $action_name ) {
 			return null;

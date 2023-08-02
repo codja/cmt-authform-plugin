@@ -91,13 +91,12 @@ export class Modal {
 		} )
 	}
 
-	autoOpen( isDeposit = false ) {
+	autoOpen( actionName = null, isDeposit = false ) {
 		const params = new URLSearchParams( document.location.search );
-		const action = params.get( 'action' );
+		let action = params.get( 'action' );
+		action = actionName && action ? actionName : action;
 
-		if ( isDeposit ) {
-			this.allowedActions.personDetailsForm = 'rgbcode-deposit';
-		}
+		this.allowedActions.personDetailsForm = isDeposit ? 'rgbcode-deposit' : '';
 
 		if ( action && this.allowedActions.hasOwnProperty( action ) ) {
 			this.showModal( this.allowedActions[ action ] );
