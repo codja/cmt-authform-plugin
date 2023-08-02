@@ -79,6 +79,10 @@ class Authform {
 			'email, country, base_currency, birth_date, city, address, post_code'
 		);
 
+		if ( ! $result ) {
+			return null;
+		}
+
 		$result['iso'] = Location::get_iso_by_country_name( $result['country'] );
 
 		return $result;

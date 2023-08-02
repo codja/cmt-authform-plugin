@@ -6,8 +6,7 @@ export class Modal {
 	defaultAction = 'forexSignup';
 
 	allowedActions = {
-		forexSignup: 'rgbcode-signup',
-		personDetailsForm: 'rgbcode-deposit'
+		forexSignup: 'rgbcode-signup'
 	}
 
 	constructor() {
@@ -92,9 +91,13 @@ export class Modal {
 		} )
 	}
 
-	autoOpen() {
+	autoOpen( isDeposit = false ) {
 		const params = new URLSearchParams( document.location.search );
 		const action = params.get( 'action' );
+
+		if ( isDeposit ) {
+			this.allowedActions.personDetailsForm = 'rgbcode-deposit';
+		}
 
 		if ( action && this.allowedActions.hasOwnProperty( action ) ) {
 			this.showModal( this.allowedActions[ action ] );

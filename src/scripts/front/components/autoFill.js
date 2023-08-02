@@ -59,5 +59,5 @@ export function autoFill() {
 		}
 	}
 	fillInputs();
-	Constants.storage.modal.autoOpen();
+	Constants.storage.modal.autoOpen( true );
 }
