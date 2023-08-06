@@ -1,5 +1,3 @@
-import {Constants} from "../front/Constants.js";
-
 class SimpleForm extends elementorModules.frontend.handlers.Base {
 
 	onInit() {
@@ -85,13 +83,17 @@ class SimpleForm extends elementorModules.frontend.handlers.Base {
 		const signUpFirstname = this.signUp.find( 'input[name=firstname]' );
 		const signUpLastname = this.signUp.find( 'input[name=lastname]' );
 
-		this.authformContainer.removeClass( Constants.hideClass );
-		this.signUp.removeClass( Constants.hideClass );
+		this.authformContainer.removeClass( 'rgbcode-hidden' );
+		this.signUp.removeClass( 'rgbcode-hidden' );
 
 		this.changeValueInExternalForm( signUpFirstname, signUpLastname );
 	}
 
 	changeValueInExternalForm( firstName, lastName ) {
+		if ( ! firstName || ! lastName ) {
+			return;
+		}
+
 		firstName.val( this.elements.$firstname.val() );
 		lastName.val( this.elements.$lastname.val() );
 
