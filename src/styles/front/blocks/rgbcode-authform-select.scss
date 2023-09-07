@@ -97,6 +97,9 @@
 	&__search[type=search] {
 		width: 95%;
 		margin: .5em 0 .5em .5em;
+		border-radius: 3px;
+		padding: 0.5rem 1rem;
+		color: #000;
 
 		@include media_max( map-get( $breaks, mobile ) ) {
 			width: 90%;
