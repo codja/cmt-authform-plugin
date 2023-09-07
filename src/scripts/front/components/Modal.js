@@ -45,6 +45,7 @@ export class Modal {
 
 	openButtons() {
 		const buttons = document.querySelectorAll( '.js-rgbcode-authform' );
+		const signUp = document.querySelector( '.js-signup-btn' );
 
 		if ( ! buttons.length ) {
 			return;
@@ -53,8 +54,9 @@ export class Modal {
 		buttons.forEach( button => {
 			button.addEventListener( 'click', ( evt ) => {
 				const onlyDesktop = button.dataset.onlyDesktop;
+				const isLogged = signUp && signUp.classList.contains( Constants.hideClass );
 
-				if ( onlyDesktop && detectTablet() ) {
+				if ( ( onlyDesktop && detectTablet() ) || isLogged ) {
 					return;
 				}
 
