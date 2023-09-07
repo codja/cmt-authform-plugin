@@ -220,11 +220,11 @@ abstract class Location {
 			'code' => '+56',
 			'iso'  => 'CL',
 		],
-		'CN' => [
-			'name' => 'China',
-			'code' => '+86',
-			'iso'  => 'CN',
-		],
+//		'CN' => [
+//			'name' => 'China',
+//			'code' => '+86',
+//			'iso'  => 'CN',
+//		],
 		'CX' => [
 			'name' => 'Christmas Island',
 			'code' => '+61',
@@ -490,11 +490,11 @@ abstract class Location {
 			'code' => '+354',
 			'iso'  => 'IS',
 		],
-		'IN' => [
-			'name' => 'India',
-			'code' => '+91',
-			'iso'  => 'IN',
-		],
+//		'IN' => [
+//			'name' => 'India',
+//			'code' => '+91',
+//			'iso'  => 'IN',
+//		],
 		'ID' => [
 			'name' => 'Indonesia',
 			'code' => '+62',
