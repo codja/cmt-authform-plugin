@@ -44,7 +44,7 @@ class Sign_Up extends Baseform {
 		$text    = $atts['text'] ?? '';
 
 		return sprintf(
-			'<button id="%s" class="js-rgbcode-authform %s" data-target="rgbcode-signup">%s</button>',
+			'<button id="%s" class="js-rgbcode-authform js-signup-btn %s" data-target="rgbcode-signup">%s</button>',
 			esc_attr( $id ),
 			esc_attr( $classes ),
 			esc_html( $text ),
