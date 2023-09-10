@@ -40,12 +40,3 @@ spl_autoload_register(
 if ( function_exists( '__autoload' ) ) {
 	spl_autoload_register( '__autoload' );
 }
-
-// ... and call
-Error::instance();
-ACF::instance();
-new Elementor();
-new Setup();
-new Authform();
-new Routes();
-new Endpoint();

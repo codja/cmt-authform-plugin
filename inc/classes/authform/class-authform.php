@@ -19,6 +19,14 @@ class Authform {
 
 	const HIDE_CLASS = 'rgbcode-hidden';
 
+	const AVAILABLE_LGS = [
+		'en' => 'www',
+		'ar' => 'ar',
+		'es' => 'es',
+	];
+
+	const SECOND_STEP_ACTION_NAME = 'personDetailsForm';
+
 	private $registered_user;
 
 	public function __construct() {
@@ -65,11 +73,10 @@ class Authform {
 	}
 
 	private function check_register_user(): ?array {
-		$action_name = 'personDetailsForm';
-		$client_id   = ! empty( $_GET['clientid'] ) ? sanitize_text_field( $_GET['clientid'] ) : null;
-		$action      = ! empty( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : null;
+		$client_id = ! empty( $_GET['clientid'] ) ? sanitize_text_field( $_GET['clientid'] ) : null; //phpcs:ignore
+		$action    = ! empty( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : null; //phpcs:ignore
 
-		if ( ! $client_id || ! $action || $action !== $action_name ) {
+		if ( ! $client_id || ! $action || $action !== self::SECOND_STEP_ACTION_NAME ) {
 			return null;
 		}
 
@@ -81,6 +88,14 @@ class Authform {
 
 		if ( ! $result ) {
 			return null;
+		}
+
+		$authform_lg  = get_field( 'rgbc_authform_lang', 'option' );
+		$requested_lg = ! empty( $_GET['lg'] ) ? sanitize_text_field( $_GET['lg'] ) : null; //phpcs:ignore
+		if ( $requested_lg && key_exists( $requested_lg, self::AVAILABLE_LGS ) && $authform_lg !== $requested_lg ) {
+			$url_for_redirect = 'https://' . self::AVAILABLE_LGS[ $requested_lg ] . '.cmtrading.com' . add_query_arg();
+			wp_redirect( $url_for_redirect ); //phpcs:ignore
+			exit();
 		}
 
 		$result['iso'] = Location::get_iso_by_country_name( $result['country'] );
