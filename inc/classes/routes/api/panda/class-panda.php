@@ -2,6 +2,7 @@
 
 namespace Rgbcode_authform\classes\routes\api\panda;
 
+use Rgbcode_authform\classes\core\Error;
 use Rgbcode_authform\classes\helpers\Authorization;
 
 abstract class Panda {
@@ -36,7 +37,10 @@ abstract class Panda {
 		}
 
 		if ( isset( $response['error'] ) ) {
-			wp_send_json_error( $response['error'][0]['description'] );
+			$description   = $response['error'][0]['description'] ?? '';
+			$error_log_msg = ' request_id[' . ( $response['requestId'] ?? '' ) . ']: ' . $description;
+			Error::instance()->log_error( 'Panda_Api', $error_log_msg );
+			wp_send_json_error( $description );
 		}
 	}
 
