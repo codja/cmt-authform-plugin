@@ -5,7 +5,7 @@
 * Description: Forms for registering and login in panda.
 * Author: rgbcode
 * Author URI: https://rgbcode.com/
-* Version: 1.0.0
+* Version: 1.0.1
 * Text Domain: rgbcode-authform
 * Domain Path: /languages
 */
