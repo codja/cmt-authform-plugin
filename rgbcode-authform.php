@@ -5,7 +5,7 @@
 * Description: Forms for registering and login in panda.
 * Author: rgbcode
 * Author URI: https://rgbcode.com/
-* Version: 1.0.0
+* Version: 1.0.1
 * Text Domain: rgbcode-authform
 * Domain Path: /languages
 */
@@ -34,7 +34,7 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 
 define( 'RGBCODE_AUTHFORM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'RGBCODE_AUTHFORM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'RGBCODE_AUTHFORM_VERSION', '1.0.0' );
+define( 'RGBCODE_AUTHFORM_VERSION', '1.0.1' );
 define( 'RGBCODE_AUTHFORM_IMAGES', RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/img' );
 define( 'RGBCODE_AUTHFORM_TEMPLATES', RGBCODE_AUTHFORM_PLUGIN_DIR . 'templates' );
 define( 'RGBCODE_AUTHFORM_PARTIALS', RGBCODE_AUTHFORM_PLUGIN_DIR . 'partials' );
