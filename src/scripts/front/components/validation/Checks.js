@@ -1,5 +1,5 @@
 export class Checks {
-	nameTest( i ) { return /^[a-zA-Zء-ي]{3,40}(\s[a-zA-Zء-ي]{1,40})?$/.test( i ) };
+	nameTest( i ) { return /^[\u0600-\u06FFa-zA-Z]{3,40}(\s[\u0600-\u06FFa-zA-Z]{1,40})?(\s[\u0600-\u06FFa-zA-Z]{1,40})?$/.test( i ) };
 	emailTest( i ) { return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.){1,2}[a-zA-Z]{2,}))$/.test( i ) };
 	phoneTest( i ) { return /^[0-9]{6,}$/.test( i ) };
 	textTest( i ) { return /^[^\s](?=.*[\u0600-\u06FFa-zA-Z0-9])[\u0600-\u06FFa-zA-Z0-9 ]{2,100}$/.test( i ) };
