@@ -1,4 +1,4 @@
-import {getCookie, postData, serializeArray} from "./utils";
+import {getCookie, postData, serializeArray, setCookie} from "./utils";
 import {Constants} from "../Constants.js";
 
 export function initFormSubmit() {
@@ -34,6 +34,8 @@ export function initFormSubmit() {
 						errorBlockSignUp.classList.add( Constants.hideClass);
 						modalSignUp.remove();
 						modalDeposit.classList.remove( Constants.hideClass);
+						setCookie( Constants.cookieFirstStepName, true, { 'max-age': 86400 * 7 } )
+						setCookie( Constants.cookieUserEmail,  data.email, { 'max-age': 86400 * 7 } )
 					} else {
 						errorBlockSignUp.classList.remove( Constants.hideClass );
 						errorBlockSignUp.textContent = data.message ? data.message : data.data;
@@ -58,8 +60,9 @@ export function initFormSubmit() {
 			const data = serializeArray( formDeposit );
 			const submitter = evt.submitter ?? formDeposit.querySelector( '.rgbcode-authform-button' );
 			const isWhatsAppBtn = submitter.classList.contains( 'rgbcode-authform-button_whatsapp' );
+			const savedEmail = getCookie( Constants.cookieUserEmail );
 
-			data.email = Constants.storage.clientEmail;
+			data.email = Constants.storage.clientEmail ?? savedEmail;
 			submitter.classList.add( 'rgbcode-authform-button_loader' );
 			submitter.disabled = true;
 
