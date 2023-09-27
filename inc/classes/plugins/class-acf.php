@@ -18,6 +18,7 @@ class ACF {
 		add_action( 'init', [ $this, 'register_fields' ] );
 		add_filter( 'acf/load_field/key=field_5f5e31d44f719', [ $this, 'get_list_countries' ] );
 		add_filter( 'acf/load_field/key=field_5f5e31d44f819', [ $this, 'get_list_currencies' ] );
+		add_filter( 'acf/load_value/key=field_5f5e3263d8k8o', [ $this, 'get_default_suggestions' ], 10, 3 );
 	}
 
 	public function register_options_page() {
@@ -381,6 +382,47 @@ class ACF {
 									'prepend'           => '',
 									'append'            => '',
 									'maxlength'         => '',
+								),
+								array(
+									'key'                 => 'field_5f5e3263d8k8o',
+									'label'               => __( 'Suggestions', 'rgbcode-authform' ),
+									'name'                => 'suggestions',
+									'type'                => 'repeater',
+									'instructions'        => '',
+									'required'            => 0,
+									'conditional_logic'   => 0,
+									'wrapper'             => array(
+										'width' => '',
+										'class' => '',
+										'id'    => '',
+									),
+									'wpml_cf_preferences' => 1,
+									'collapsed'           => '',
+									'min'                 => 0,
+									'max'                 => 0,
+									'layout'              => 'table',
+									'button_label'        => __( 'Add suggestion', 'rgbcode-authform' ),
+									'sub_fields'          => array(
+										array(
+											'key'          => 'field_62f20fbaddg5v',
+											'label'        => __( 'Suggestion', 'rgbcode-authform' ),
+											'name'         => 'suggestion',
+											'type'         => 'text',
+											'instructions' => '',
+											'required'     => 0,
+											'conditional_logic' => 0,
+											'wrapper'      => array(
+												'width' => '',
+												'class' => '',
+												'id'    => '',
+											),
+											'default_value' => '',
+											'placeholder'  => '',
+											'prepend'      => '',
+											'append'       => '',
+											'maxlength'    => '',
+										),
+									),
 								),
 							),
 						),
@@ -1169,5 +1211,31 @@ class ACF {
 
 		// return the field
 		return $field;
+	}
+
+	public function get_default_suggestions( $value, $post_id, $field ) {
+
+		if ( $value === false ) {
+
+			return [
+				[
+					'field_62f20fbaddg5v' => 'gmail.com',
+				],
+				[
+					'field_62f20fbaddg5v' => 'hotmail.com',
+				],
+				[
+					'field_62f20fbaddg5v' => 'outlook.com',
+				],
+				[
+					'field_62f20fbaddg5v' => 'yahoo.com',
+				],
+				[
+					'field_62f20fbaddg5v' => 'skype.com',
+				],
+			];
+		}
+
+		return $value;
 	}
 }
