@@ -111,23 +111,23 @@ export class ValidateForm {
 			if ( checkPass ) {
 				this.checkStatuses.password = true;
 				// this.passStrengthIndicator.passIndicate( input.value );
-				checkCreatedPass.tooltip.hideTooltip();
+				checkCreatedPass.tooltip.hide();
 			} else {
 				this.checkStatuses.password = false;
 				// this.passStrengthIndicator.resetIndicate();
-				checkCreatedPass.tooltip.showTooltip();
+				checkCreatedPass.tooltip.show();
 			}
 			this.checkInput( input, checkPass );
 		} );
 
 		input.addEventListener( 'focus', () => {
 			if ( ! this.checkStatuses.password ) {
-				checkCreatedPass.tooltip.showTooltip();
+				checkCreatedPass.tooltip.show();
 			}
 		} );
 
 		input.addEventListener( 'blur', () => {
-			checkCreatedPass.tooltip.hideTooltip();
+			checkCreatedPass.tooltip.hide();
 		} );
 	}
 
