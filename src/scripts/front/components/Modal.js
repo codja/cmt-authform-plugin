@@ -1,4 +1,4 @@
-import {detectTablet} from "./utils.js";
+import {detectTablet, getCookie} from "./utils.js";
 import {Constants} from "../Constants.js";
 
 export class Modal {
@@ -19,9 +19,10 @@ export class Modal {
 	showModal( target ) {
 		this.html.style.overflow = 'hidden';
 		this.modalWrap.classList.remove( Constants.hideClass );
+		const isFirstStepDone = getCookie( Constants.cookieFirstStepName );
 		if ( target ) {
 			let modal = this.modalWrap.querySelector( `#${target}` );
-			if ( ! modal && target === this.allowedActions.forexSignup ) {
+			if ( ( ! modal && target === this.allowedActions.forexSignup ) || isFirstStepDone ) {
 				target = 'rgbcode-deposit';
 			}
 			this.modalWrap.querySelector( `#${target}` ).classList.remove( Constants.hideClass );
