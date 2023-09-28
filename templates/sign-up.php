@@ -88,7 +88,7 @@
 				</label>
 
 				<?php if ( ! empty( $args['email']['suggestions'] ) ) : ?>
-					<ul class="rgbcode-authform-suggestions rgbcode-hidden">
+					<ul class="rgbcode-authform-suggestions <?php echo esc_attr( $visibility_class ); ?>">
 						<?php
 						foreach ( $args['email']['suggestions'] as $suggestion ) :
 							if ( ! empty( $suggestion['suggestion'] ) ) :
