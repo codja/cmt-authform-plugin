@@ -86,9 +86,25 @@
 						required
 					>
 				</label>
+
+				<?php if ( ! empty( $args['email']['suggestions'] ) ) : ?>
+					<ul class="rgbcode-authform-suggestions rgbcode-hidden">
+						<?php
+						foreach ( $args['email']['suggestions'] as $suggestion ) :
+							if ( ! empty( $suggestion['suggestion'] ) ) :
+								?>
+								<li class="rgbcode-authform-suggestions__suggestion"><span class="rgbcode-authform-suggestions__placeholder"></span><?php echo esc_html( '@' . $suggestion['suggestion'] ); ?></li>
+								<?php
+							endif;
+						endforeach;
+						?>
+					</ul>
+				<?php endif; ?>
+
 				<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
 					<?php echo esc_html( $args['email']['error_text'] ?? '' ); ?>
 				</span>
+
 			</div>
 			<?php endif; ?>
 

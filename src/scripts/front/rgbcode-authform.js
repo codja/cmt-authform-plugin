@@ -8,6 +8,7 @@ import customSelect from "./components/selectList.js";
 import {initDatepicker} from "./components/datepicker.js";
 import {Constants} from "./Constants.js";
 import {autoFill} from "./components/autoFill.js";
+import {EmailSuggestions} from "./components/EmailSuggestions";
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	if ( ! document.getElementById( 'rgbcode-authform' ) ) {
@@ -31,6 +32,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	initCountryCurrency();
 	initFlagSelect();
 	initFormSubmit();
+	new EmailSuggestions();
 	customSelect();
 	autoFill();
 } );

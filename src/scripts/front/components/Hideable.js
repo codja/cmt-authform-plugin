@@ -1,16 +1,16 @@
-import {Constants} from "../../Constants.js";
+import {Constants} from "../Constants.js";
 
-export class Tooltip {
+export class Hideable {
 
 	constructor( element ) {
 		this.elem = element;
 	}
 
-	showTooltip() {
+	show() {
 		this.elem.classList.remove( Constants.hideClass );
 	}
 
-	hideTooltip() {
+	hide() {
 		this.elem.classList.add( Constants.hideClass );
 	}
 

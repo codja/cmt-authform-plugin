@@ -1,4 +1,4 @@
-import {Tooltip} from "./Tooltip.js";
+import {Hideable} from "../Hideable.js";
 import {Constants} from "../../Constants.js";
 
 export class CheckCreatedPass {
@@ -15,7 +15,7 @@ export class CheckCreatedPass {
 		this.uppercase = formEl.querySelector('#rgbc-upper');
 		this.number = formEl.querySelector('#rgbc-num');
 		this.chars = formEl.querySelector('#rgbc-chars');
-		this.tooltip = new Tooltip( formEl.querySelector( '.rgbcode-authform-tooltip' ) );
+		this.tooltip = new Hideable( formEl.querySelector( '.rgbcode-authform-tooltip' ) );
 	}
 
 	checkPass( value ) {
