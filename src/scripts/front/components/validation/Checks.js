@@ -17,6 +17,7 @@ export class Checks {
 
 		input.addEventListener( 'input', limitHandler );
 	}
+	checkCurrency( string ) { return string.length === 3 }
 	checkAge( dateString ) {
 		const splitDate = dateString.split( '/' );
 		// Convert the date string to a Date object

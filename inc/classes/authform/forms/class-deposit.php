@@ -18,6 +18,7 @@ class Deposit extends Baseform {
 		return [
 			'title_block'      => get_field( 'rgbc_authform_deposit_title_block', 'option' ),
 			'country'          => get_field( 'rgbc_authform_deposit_country', 'option' ),
+			'currency'         => get_field( 'rgbc_authform_deposit_currency', 'option' ),
 			'city'             => get_field( 'rgbc_authform_deposit_city', 'option' ),
 			'address'          => get_field( 'rgbc_authform_deposit_address', 'option' ),
 			'postcode'         => get_field( 'rgbc_authform_deposit_postcode', 'option' ),
@@ -54,7 +55,21 @@ class Deposit extends Baseform {
 
 		$result = [];
 		foreach ( $raw_countries as $country ) {
-			$result[ $country['country'] ] = wp_json_encode( $country['currencies'] );
+			$country_name       = $country['country'] ?? '';
+			$country_currencies = $country['currencies'] ?? '';
+
+			if ( ! $country_name || ! $country_currencies ) {
+				continue;
+			}
+
+			$is_empty_value_needed = $country['empty_option']['is_empty_value'] ?? false;
+			$empty_option_text     = $country['empty_option']['empty_option_txt'] ?? '';
+
+			if ( $is_empty_value_needed && $empty_option_text ) {
+				array_unshift( $country_currencies, $empty_option_text );
+			}
+
+			$result[ $country_name ] = wp_json_encode( $country_currencies );
 		}
 
 		return $result;

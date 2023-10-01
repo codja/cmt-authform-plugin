@@ -23,5 +23,6 @@ export function initCountryCurrency() {
 
 		const newOptions = currency.map( ( item ) => new Option( item, item ) );
 		newOptions.forEach( ( option ) => currencySelect.appendChild( option ) );
+		currencySelect.dispatchEvent( new Event( 'change' ) );
 	} );
 }

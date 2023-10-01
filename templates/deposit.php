@@ -55,7 +55,9 @@
 							?>
 							<option
 								value="<?php echo esc_attr( $iso ); ?>"
-								<?php echo $currencies ? esc_attr( "data-currency=$currencies" ) : ''; ?>
+								<?php if ( $currencies ) : ?>
+								data-currency="<?php echo esc_attr( $currencies ); ?>"
+								<?php endif; ?>
 							><?php echo esc_html( $country ); ?></option>
 						<?php endforeach; ?>
 					</select>
@@ -63,10 +65,9 @@
 
 				<div class="rgbcode-authform-input rgbcode-authform-input_currency">
 					<label class="rgbcode-authform-input__label">
-						<span><?php echo esc_html__( 'Currency', 'rgbcode-authform' ); ?></span>
+						<span><?php echo esc_html( $args['currency']['label'] ?? '' ); ?></span>
 						<select
 							id="rgbcode-authform-deposit-currency"
-							class="rgbcode-valid"
 							name="currency"
 							tabindex="2"
 							autocomplete="off"
@@ -80,6 +81,9 @@
 							<?php endforeach; ?>
 						</select>
 					</label>
+					<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
+						<?php echo esc_html( $args['currency']['error_text'] ?? '' ); ?>
+					</span>
 				</div>
 			</div>
 

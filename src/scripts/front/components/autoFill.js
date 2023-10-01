@@ -42,6 +42,7 @@ export function autoFill() {
 						const currencySelect = formDeposit.querySelector( '#rgbcode-authform-deposit-currency' );
 						setTimeout( () => {
 							currencySelect.value = newValue;
+							currencySelect.dispatchEvent( new Event( 'change' ) );
 						}, 1000 );
 						break;
 					case 'birth_date':
