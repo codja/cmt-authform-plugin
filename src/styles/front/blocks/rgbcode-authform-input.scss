@@ -95,7 +95,11 @@
 	}
 
 	&_currency {
-		flex-basis: 120px
+		width: 60%;
+
+		.rgbcode-authform-input__label > span {
+			margin-top: .2em;
+		}
 	}
 
 	select {

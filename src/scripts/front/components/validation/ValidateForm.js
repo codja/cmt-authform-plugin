@@ -7,13 +7,20 @@ import {Constants} from "../../Constants.js";
 export class ValidateForm {
 
 	/**
+	 * Specify the name of the input or select that should not be validated
+	 */
+	excludeValidate = [
+		// 'country',
+	];
+
+	/**
 	 * Constructor
 	 * @param formEl
 	 * @param passCreate
 	 */
 	constructor( formEl, passCreate = false ) {
 		this.form = formEl;
-		this.inputs = this.form.querySelectorAll( '.rgbcode-authform-input__label input' );
+		this.inputs = this.form.querySelectorAll( '.rgbcode-authform-input__label input, .rgbcode-authform-input__label select' );
 		this.submits = this.form.querySelectorAll( 'button[type=submit]' );
 		this.checks = new Checks();
 		this.checkStatuses = this.createCheckStatuses();
@@ -35,6 +42,10 @@ export class ValidateForm {
 		}
 
 		this.inputs.forEach( input => {
+			if ( this.excludeValidate.includes( input.name ) ) {
+				return;
+			}
+
 			switch( input.name ) {
 				case 'firstname':
 				case 'lastname':
@@ -64,6 +75,9 @@ export class ValidateForm {
 					break;
 				case 'birthday':
 					this.checkDate( input );
+					break;
+				case 'currency':
+					this.checkCurrency( input );
 					break;
 			}
 		} );
@@ -213,6 +227,12 @@ export class ValidateForm {
 		} );
 	}
 
+	checkCurrency( input ) {
+		input.addEventListener( 'change', ( evt ) => {
+			this.checkInput( input, this.checks.checkCurrency( evt.target.value ) );
+		} );
+	}
+
 	/**
 	 * Creating an object of inputs and statuses of their state, for validation
 	 */
@@ -225,6 +245,7 @@ export class ValidateForm {
 		this.inputs.forEach( ( input ) => {
 			result[input.name] = false;
 		} );
+
 		return result;
 	}
 
