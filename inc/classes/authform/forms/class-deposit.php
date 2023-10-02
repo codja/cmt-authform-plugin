@@ -62,8 +62,8 @@ class Deposit extends Baseform {
 				continue;
 			}
 
-			$is_empty_value_needed = $country['empty_option']['is_empty_value'] ?? false;
-			$empty_option_text     = $country['empty_option']['empty_option_txt'] ?? '';
+			$is_empty_value_needed = $country['is_empty_value'] ?? false;
+			$empty_option_text     = get_field( 'empty_option_txt', 'option' );
 
 			if ( $is_empty_value_needed && $empty_option_text ) {
 				array_unshift( $country_currencies, $empty_option_text );
