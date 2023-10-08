@@ -49,7 +49,7 @@ class Authform {
 			esc_attr( self::HIDE_CLASS )
 		);
 
-		foreach ( $this->get_actual_forms() as $key => $form ) {
+		foreach ( $this->get_actual_forms() as $form ) {
 			$this->include_form( $form );
 		}
 
@@ -57,8 +57,13 @@ class Authform {
 	}
 
 	private function include_form( string $form ): void {
-		$class = __NAMESPACE__ . '\\forms\\' . $form;
-		$args  = $class::instance()->get_template_data();
+		$class = $this->get_form_class_name( $form );
+
+		if ( ! class_exists( $class ) ) {
+			return;
+		}
+
+		$args = $class::instance()->get_template_data();
 		include_once RGBCODE_AUTHFORM_TEMPLATES . '/' . $class::TEMPLATE_NAME . '.php';
 	}
 
@@ -105,8 +110,21 @@ class Authform {
 
 	private function register_shortcodes() {
 		foreach ( self::ACTIVE_FORMS as $form_class ) {
-			$class = __NAMESPACE__ . '\\forms\\' . $form_class;
+			$class = $this->get_form_class_name( $form_class );
+
+			if ( ! class_exists( $class ) ) {
+				continue;
+			}
+
 			add_shortcode( $class::SHORTCODE_TAG, [ $class, 'render_btn' ] );
 		}
+	}
+
+	private function get_form_class_name( string $name ): ?string {
+		if ( ! $name ) {
+			return null;
+		}
+
+		return __NAMESPACE__ . '\\forms\\' . $name;
 	}
 }
