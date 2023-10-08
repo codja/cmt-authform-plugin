@@ -33,8 +33,8 @@
 		</div>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $args['first_name'] ) ) : ?>
 		<div class="rgbcode-authform-form__inputs">
+		<?php if ( ! empty( $args['first_name'] ) ) : ?>
 			<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_user rgbcode-authform-input_firstname">
 				<label class="rgbcode-authform-input__label">
 					<input
@@ -54,117 +54,117 @@
 			</div>
 			<?php endif; ?>
 
-			<?php if ( ! empty( $args['last_name'] ) ) : ?>
-			<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_user rgbcode-authform-input_lastname">
-				<label class="rgbcode-authform-input__label">
-					<input
-						type="text"
-						name="lastname"
-						maxlength="50"
-						minlength="3"
-						placeholder="<?php echo esc_attr( $args['last_name']['placeholder'] ?? '' ); ?>"
-						tabindex="2"
-						autocomplete="off"
-						required
-					>
-				</label>
-				<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
-					<?php echo esc_html( $args['last_name']['error_text'] ?? '' ); ?>
-				</span>
-			</div>
-			<?php endif; ?>
-
-			<?php if ( ! empty( $args['email'] ) ) : ?>
-			<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_email">
-				<label class="rgbcode-authform-input__label">
-					<input
-						type="email"
-						name="email"
-						placeholder="<?php echo esc_attr( $args['email']['placeholder'] ?? '' ); ?>"
-						tabindex="3"
-						autocomplete="off"
-						required
-					>
-				</label>
-
-				<?php if ( ! empty( $args['email']['suggestions'] ) ) : ?>
-					<ul class="rgbcode-authform-suggestions <?php echo esc_attr( $visibility_class ); ?>">
-						<?php
-						foreach ( $args['email']['suggestions'] as $suggestion ) :
-							if ( ! empty( $suggestion['suggestion'] ) ) :
-								?>
-								<li class="rgbcode-authform-suggestions__suggestion"><span class="rgbcode-authform-suggestions__placeholder"></span><?php echo esc_html( '@' . $suggestion['suggestion'] ); ?></li>
-								<?php
-							endif;
-						endforeach;
-						?>
-					</ul>
-				<?php endif; ?>
-
-				<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
-					<?php echo esc_html( $args['email']['error_text'] ?? '' ); ?>
-				</span>
-
-			</div>
-			<?php endif; ?>
-
-			<div class="rgbcode-authform-flag-input" tabindex="4">
-				<img
-					class="rgbcode-authform-flag-input__flag"
-					src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $args['default_country']['country']['iso'] ?? 'af' ) . '.svg' ); ?>" alt=""
+		<?php if ( ! empty( $args['last_name'] ) ) : ?>
+		<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_user rgbcode-authform-input_lastname">
+			<label class="rgbcode-authform-input__label">
+				<input
+					type="text"
+					name="lastname"
+					maxlength="50"
+					minlength="3"
+					placeholder="<?php echo esc_attr( $args['last_name']['placeholder'] ?? '' ); ?>"
+					tabindex="2"
+					autocomplete="off"
+					required
 				>
+			</label>
+			<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
+				<?php echo esc_html( $args['last_name']['error_text'] ?? '' ); ?>
+			</span>
+		</div>
+		<?php endif; ?>
 
-				<span class="rgbcode-authform-flag-input__code" data-iso="<?php echo esc_attr( $args['default_country']['country']['iso'] ?? 'af' ); ?>">
-					<?php echo esc_html( $args['default_country']['country']['code'] ?? '+93' ); ?>
-				</span>
+		<?php if ( ! empty( $args['email'] ) ) : ?>
+		<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_email">
+			<label class="rgbcode-authform-input__label">
+				<input
+					type="email"
+					name="email"
+					placeholder="<?php echo esc_attr( $args['email']['placeholder'] ?? '' ); ?>"
+					tabindex="3"
+					autocomplete="off"
+					required
+				>
+			</label>
 
-				<?php if ( ! empty( $args['countries'] ) ) : ?>
-				<div class="rgbcode-authform-flag-input__select <?php echo esc_attr( $visibility_class ); ?>">
-					<button class="rgbcode-authform-close"></button>
+			<?php if ( ! empty( $args['email']['suggestions'] ) ) : ?>
+				<ul class="rgbcode-authform-suggestions <?php echo esc_attr( $visibility_class ); ?>">
+					<?php
+					foreach ( $args['email']['suggestions'] as $suggestion ) :
+						if ( ! empty( $suggestion['suggestion'] ) ) :
+							?>
+							<li class="rgbcode-authform-suggestions__suggestion"><span class="rgbcode-authform-suggestions__placeholder"></span><?php echo esc_html( '@' . $suggestion['suggestion'] ); ?></li>
+							<?php
+						endif;
+					endforeach;
+					?>
+				</ul>
+			<?php endif; ?>
 
-					<label class="rgbcode-authform-flag-input__label">
-						<input type="search" name="search" placeholder="<?php echo esc_attr__( 'Search', 'rgbcode-authform' ); ?>">
-					</label>
+			<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
+				<?php echo esc_html( $args['email']['error_text'] ?? '' ); ?>
+			</span>
 
-					<ul class="rgbcode-authform-flag-input__ul">
-						<?php foreach ( $args['countries'] as $iso => $country ) : ?>
-							<li
-								class="rgbcode-authform-flag-input__option"
-								data-code="<?php echo esc_attr( $country['code'] ); ?>"
-								data-iso="<?php echo esc_attr( $iso ); ?>"
-								data-src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $iso ) . '.svg' ); ?>"
-							>
-								<?php echo esc_html( $country['name'] ); ?>
-							</li>
-						<?php endforeach; ?>
-					</ul>
-				</div>
-				<?php endif; ?>
+		</div>
+		<?php endif; ?>
 
-			</div>
+		<div class="rgbcode-authform-flag-input" tabindex="4">
+			<img
+				class="rgbcode-authform-flag-input__flag"
+				src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $args['default_country']['country']['iso'] ?? 'af' ) . '.svg' ); ?>" alt=""
+			>
 
-			<?php if ( ! empty( $args['phone'] ) ) : ?>
-			<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_phone">
-				<label class="rgbcode-authform-input__label">
-					<input
-						type="text"
-						inputmode="tel"
-						maxlength="10"
-						minlength="6"
-						name="phone"
-						placeholder="<?php echo esc_attr( $args['phone']['placeholder'] ?? '' ); ?>"
-						tabindex="5"
-						autocomplete="off"
-						required
-					>
+			<span class="rgbcode-authform-flag-input__code" data-iso="<?php echo esc_attr( $args['default_country']['country']['iso'] ?? 'af' ); ?>">
+				<?php echo esc_html( $args['default_country']['country']['code'] ?? '+93' ); ?>
+			</span>
+
+			<?php if ( ! empty( $args['countries'] ) ) : ?>
+			<div class="rgbcode-authform-flag-input__select <?php echo esc_attr( $visibility_class ); ?>">
+				<button class="rgbcode-authform-close"></button>
+
+				<label class="rgbcode-authform-flag-input__label">
+					<input type="search" name="search" placeholder="<?php echo esc_attr__( 'Search', 'rgbcode-authform' ); ?>">
 				</label>
-				<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
-					<?php echo esc_html( $args['phone']['error_text'] ?? '' ); ?>
-				</span>
+
+				<ul class="rgbcode-authform-flag-input__ul">
+					<?php foreach ( $args['countries'] as $iso => $country ) : ?>
+						<li
+							class="rgbcode-authform-flag-input__option"
+							data-code="<?php echo esc_attr( $country['code'] ); ?>"
+							data-iso="<?php echo esc_attr( $iso ); ?>"
+							data-src="<?php echo esc_url( RGBCODE_AUTHFORM_IMAGES . '/flags/' . strtolower( $iso ) . '.svg' ); ?>"
+						>
+							<?php echo esc_html( $country['name'] ); ?>
+						</li>
+					<?php endforeach; ?>
+				</ul>
 			</div>
 			<?php endif; ?>
 
-			<?php if ( ! empty( $args['pass'] ) ) : ?>
+		</div>
+
+		<?php if ( ! empty( $args['phone'] ) ) : ?>
+		<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_phone">
+			<label class="rgbcode-authform-input__label">
+				<input
+					type="text"
+					inputmode="tel"
+					maxlength="10"
+					minlength="6"
+					name="phone"
+					placeholder="<?php echo esc_attr( $args['phone']['placeholder'] ?? '' ); ?>"
+					tabindex="5"
+					autocomplete="off"
+					required
+				>
+			</label>
+			<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
+				<?php echo esc_html( $args['phone']['error_text'] ?? '' ); ?>
+			</span>
+		</div>
+		<?php endif; ?>
+
+		<?php if ( ! empty( $args['pass'] ) ) : ?>
 			<div class="rgbcode-authform-input rgbcode-authform-input_icon rgbcode-authform-input_pass">
 				<div class="rgbcode-authform-input__label">
 					<input

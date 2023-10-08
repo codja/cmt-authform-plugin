@@ -12,7 +12,13 @@ class Sign_Up extends Baseform {
 
 	const TEMPLATE_NAME = 'sign-up';
 
+	const SLUG = 'signup';
+
 	const ACTION = 'forexSignup';
+
+	const TARGET = 'rgbcode-signup';
+
+	const SHORTCODE_TAG = 'authform-signup';
 
 	public function get_template_data(): array {
 		return [
@@ -36,19 +42,6 @@ class Sign_Up extends Baseform {
 			'countries'        => Location::COUNTRIES,
 			'default_country'  => Location::get_default_country(),
 		];
-	}
-
-	public static function render_signup_btn( $atts = [] ): string {
-		$id      = $atts['id'] ?? '';
-		$classes = $atts['classes'] ?? '';
-		$text    = $atts['text'] ?? '';
-
-		return sprintf(
-			'<button id="%s" class="js-rgbcode-authform js-signup-btn %s" data-target="rgbcode-signup">%s</button>',
-			esc_attr( $id ),
-			esc_attr( $classes ),
-			esc_html( $text ),
-		);
 	}
 
 }

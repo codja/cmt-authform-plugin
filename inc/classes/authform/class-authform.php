@@ -2,7 +2,6 @@
 
 namespace Rgbcode_authform\classes\authform;
 
-use Rgbcode_authform\classes\authform\forms\Sign_Up;
 use Rgbcode_authform\classes\core\Error;
 use Rgbcode_authform\classes\helpers\Location;
 use Rgbcode_authform\classes\Panda_DB;
@@ -15,6 +14,7 @@ class Authform {
 	const ACTIVE_FORMS = [
 		'signup'  => 'Sign_Up',
 		'deposit' => 'Deposit',
+		'login'   => 'Login',
 	];
 
 	const HIDE_CLASS = 'rgbcode-hidden';
@@ -31,7 +31,7 @@ class Authform {
 
 	public function __construct() {
 		add_action( 'wp_footer', [ $this, 'render_forms' ] );
-		add_shortcode( 'authform-signup', [ Sign_Up::class, 'render_signup_btn' ] );
+		$this->register_shortcodes();
 		$this->registered_user = $this->check_register_user();
 	}
 
@@ -101,5 +101,12 @@ class Authform {
 		$result['iso'] = Location::get_iso_by_country_name( $result['country'] );
 
 		return $result;
+	}
+
+	private function register_shortcodes() {
+		foreach ( self::ACTIVE_FORMS as $form_class ) {
+			$class = __NAMESPACE__ . '\\forms\\' . $form_class;
+			add_shortcode( $class::SHORTCODE_TAG, [ $class, 'render_btn' ] );
+		}
 	}
 }
