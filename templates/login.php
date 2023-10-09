@@ -56,10 +56,20 @@ $visibility_class = $args['visibility_class'] ?? '';
 		<?php endif; ?>
 		</div>
 
+		<?php if ( ! empty( $args['forgot'] ) ) : ?>
+			<button type="button" class="js-authform-forgot"><?php echo esc_html( $args['forgot'] ); ?></button>
+		<?php endif; ?>
+
 		<div class="rgbcode-authform-input__error rgbcode-authform-input__error_submit <?php echo esc_attr( $visibility_class ); ?>"></div>
 		<button id="rgbcode-signup-submit" class="rgbcode-authform-button" tabindex="8" type="submit" disabled>
 			<?php echo esc_html( $args['submit'] ?? __( 'Submit', 'rgbcode-authform' ) ); ?>
 		</button>
+
+		<?php if ( ! empty( $args['bottom_login_link'] ) ) : ?>
+			<p><?php echo esc_html( $args['bottom_login_link']['first_text'] ?? '' ); ?>
+				<a href="#" class="js-authform-start"><?php echo esc_html( $args['bottom_login_link']['link_text'] ?? '' ); ?></a>
+			</p>
+		<?php endif; ?>
 	</form>
 
 </div>
