@@ -19,7 +19,7 @@ $visibility_class = $args['visibility_class'] ?? '';
 					<label class="rgbcode-authform-input__label">
 						<input
 							type="email"
-							name="login"
+							name="email"
 							placeholder="<?php echo esc_attr( $args['email']['placeholder'] ?? '' ); ?>"
 							tabindex="3"
 							autocomplete="off"
@@ -40,7 +40,7 @@ $visibility_class = $args['visibility_class'] ?? '';
 					<input
 						id="pass"
 						type="password"
-						name="password"
+						name="login_password"
 						placeholder="<?php echo esc_attr( $args['pass']['placeholder'] ?? '' ); ?>"
 						tabindex="6"
 						autocomplete="off"

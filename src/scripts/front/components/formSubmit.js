@@ -91,4 +91,40 @@ export function initFormSubmit() {
 		} );
 	}
 
+	const modalLogin = document.querySelector( '#rgbcode-login' );
+	if ( modalLogin ) {
+		const formLogin = modalLogin.querySelector( '.rgbcode-authform-form' );
+		const errorBlockLogin = formLogin.querySelector( '.rgbcode-authform-input__error_submit' );
+
+		formLogin.addEventListener( 'submit', ( evt ) => {
+			evt.preventDefault();
+
+			const data = serializeArray( formLogin );
+			const submitter = evt.submitter ?? formLogin.querySelector( '.rgbcode-authform-button' );
+
+			submitter.classList.add( 'rgbcode-authform-button_loader' );
+			submitter.disabled = true;
+
+			postData( '/wp-json/rgbcode/v1/login', data )
+				.then( data => {
+					submitter.classList.remove( 'rgbcode-authform-button_loader' );
+					submitter.disabled = false;
+					if ( data.success ) {
+						errorBlockLogin.classList.add( Constants.hideClass);
+						// if ( data.loginUrl ) {
+						// 	location.href = data.loginUrl;
+						// }
+					} else {
+						errorBlockLogin.classList.remove( Constants.hideClass );
+						errorBlockLogin.textContent = data.message ? data.message : data.data;
+						submitter.classList.remove( 'rgbcode-authform-button_loader' );
+						submitter.disabled = false;
+					}
+				} )
+				.catch( ( error ) => {
+					console.error('Error:', error);
+				} );
+		} );
+	}
+
 }

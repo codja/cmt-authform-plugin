@@ -6,7 +6,7 @@ export class Modal {
 	defaultAction = 'forexSignup';
 
 	allowedActions = {
-		forexSignup: 'rgbcode-signup'
+		forexSignup: Constants.targets.signUp,
 	}
 
 	constructor() {
@@ -17,13 +17,14 @@ export class Modal {
 	}
 
 	showModal( target ) {
+		this.hideModal();
 		this.html.style.overflow = 'hidden';
 		this.modalWrap.classList.remove( Constants.hideClass );
 		const isFirstStepDone = getCookie( Constants.cookieFirstStepName );
 		if ( target ) {
 			let modal = this.modalWrap.querySelector( `#${target}` );
 			if ( ( ! modal && target === this.allowedActions.forexSignup ) || isFirstStepDone ) {
-				target = 'rgbcode-deposit';
+				target = Constants.storage.targets.deposit;
 			}
 			this.modalWrap.querySelector( `#${target}` ).classList.remove( Constants.hideClass );
 		}
@@ -99,7 +100,7 @@ export class Modal {
 		let action = params.get( 'action' );
 		action = actionName && action ? actionName : action;
 
-		this.allowedActions.personDetailsForm = isDeposit ? 'rgbcode-deposit' : '';
+		this.allowedActions.personDetailsForm = isDeposit ? Constants.targets.deposit : '';
 
 		if ( action && this.allowedActions.hasOwnProperty( action ) ) {
 			this.showModal( this.allowedActions[ action ] );

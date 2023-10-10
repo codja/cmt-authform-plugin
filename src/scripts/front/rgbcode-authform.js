@@ -9,17 +9,22 @@ import {initDatepicker} from "./components/datepicker.js";
 import {Constants} from "./Constants.js";
 import {autoFill} from "./components/autoFill.js";
 import {EmailSuggestions} from "./components/EmailSuggestions";
+import {initStart} from "./components/start.js";
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	if ( ! document.getElementById( 'rgbcode-authform' ) ) {
 		return;
 	}
 
+	const modalLogin = document.querySelector( '#rgbcode-login' );
 	const modalSignUp = document.querySelector( '#rgbcode-signup' );
 	const modalDeposit = document.querySelector( '#rgbcode-deposit' );
 
 	Constants.storage.modal = new Modal();
 
+	if ( modalLogin ) {
+		new ValidateForm( modalLogin );
+	}
 	if ( modalSignUp ) {
 		new ValidateForm( modalSignUp, true );
 	}
@@ -32,6 +37,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	initCountryCurrency();
 	initFlagSelect();
 	initFormSubmit();
+	initStart();
 	new EmailSuggestions();
 	customSelect();
 	autoFill();

@@ -63,6 +63,9 @@ export class ValidateForm {
 						? this.passListeners( input )
 						: this.enableValidation( 'checkPass', input );
 					break;
+				case 'login_password':
+					this.enableValidation( 'checkSixChars', input );
+					break;
 				case 'agree':
 					this.checkAgree( input );
 					break;

@@ -17,6 +17,7 @@ export class Checks {
 
 		input.addEventListener( 'input', limitHandler );
 	}
+	checkSixChars( string ) { return string.length >= 6 }
 	checkCurrency( string ) { return string.length === 3 }
 	checkAge( dateString ) {
 		const splitDate = dateString.split( '/' );
