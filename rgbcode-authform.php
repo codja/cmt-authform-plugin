@@ -12,6 +12,7 @@
 
 namespace Rgbcode_authform;
 
+use Rgbcode_authform\classes\ajax\Ajax;
 use Rgbcode_authform\classes\authform\Authform;
 use Rgbcode_authform\classes\core\Error;
 use Rgbcode_authform\classes\core\Setup;
@@ -59,6 +60,7 @@ final class Rgbcode_Authform {
 		new Elementor();
 		new Setup();
 		new Authform();
+		new Ajax();
 		new Routes();
 		new Endpoint();
 
