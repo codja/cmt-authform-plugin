@@ -9,6 +9,7 @@ import {initDatepicker} from "./components/datepicker.js";
 import {Constants} from "./Constants.js";
 import {autoFill} from "./components/autoFill.js";
 import {EmailSuggestions} from "./components/EmailSuggestions";
+import {updateNonce} from "./components/system/updateNonce.js";
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	if ( ! document.getElementById( 'rgbcode-authform' ) ) {
@@ -27,12 +28,15 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		new ValidateForm( modalDeposit );
 	}
 
+	updateNonce().then( r => {
+		initFlagSelect();
+		initFormSubmit();
+	} );
+
+	autoFill();
 	initDatepicker();
 	initTogglePass();
 	initCountryCurrency();
-	initFlagSelect();
-	initFormSubmit();
 	new EmailSuggestions();
 	customSelect();
-	autoFill();
 } );

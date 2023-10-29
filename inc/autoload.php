@@ -2,14 +2,6 @@
 
 namespace Rgbcode_authform;
 
-use Rgbcode_authform\classes\core\Error;
-use Rgbcode_authform\classes\authform\Authform;
-use Rgbcode_authform\classes\core\Setup;
-use Rgbcode_authform\classes\Endpoint;
-use Rgbcode_authform\classes\plugins\ACF;
-use Rgbcode_authform\classes\plugins\elementor\Elementor;
-use Rgbcode_authform\classes\routes\Routes;
-
 // find any classes from your code
 spl_autoload_register(
 	function ( $class ) {

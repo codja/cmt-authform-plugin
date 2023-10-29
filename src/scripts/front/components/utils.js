@@ -71,3 +71,24 @@ export function setCookie(name, value, options = {}) {
 export function detectTablet() {
 	return window.innerWidth <= 1024;
 }
+
+export async function getRefreshedNonce() {
+	try {
+		let response = await fetch( rgbcode_authform.url, {
+			method: 'POST',
+			headers: new Headers( {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			} ),
+			body: new URLSearchParams({
+				action: 'authform_get_refreshed_nonce',
+			} ).toString(),
+			credentials: 'same-origin',
+		} );
+
+		response = await response.json();
+
+		return response?.data?.nonce ?? '';
+	} catch( e ) {
+		return '';
+	}
+}
