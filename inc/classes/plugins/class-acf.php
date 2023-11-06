@@ -26,8 +26,8 @@ class ACF {
 		if ( function_exists( 'acf_add_options_page' ) ) {
 			acf_add_options_page(
 				[
-					'page_title' => __( 'Authform', 'rgbcode-authform' ),
-					'menu_title' => __( 'Authform', 'rgbcode-authform' ),
+					'page_title' => esc_attr__( 'Authform', 'rgbcode-authform' ),
+					'menu_title' => esc_attr__( 'Authform', 'rgbcode-authform' ),
 					'menu_slug'  => 'rgbcode-authform-options',
 					'capability' => 'edit_posts',
 					'icon_url'   => 'dashicons-forms', // Add this line and replace the second inverted commas with class of the icon you like
@@ -44,11 +44,11 @@ class ACF {
 			acf_add_local_field_group(
 				array(
 					'key'                   => 'group_62f20424bf6b0',
-					'title'                 => __( 'Authform settings', 'rgbcode-authform' ),
+					'title'                 => esc_attr__( 'Authform settings', 'rgbcode-authform' ),
 					'fields'                => array(
 						array(
 							'key'               => 'field_630b0fb1d97ad',
-							'label'             => __( 'Enable forms', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Enable forms', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_enable',
 							'type'              => 'true_false',
 							'instructions'      => '',
@@ -68,7 +68,7 @@ class ACF {
 						// General
 						array(
 							'key'               => 'field_630b1083f77ae',
-							'label'             => __( 'General', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'General', 'rgbcode-authform' ),
 							'name'              => '',
 							'type'              => 'tab',
 							'instructions'      => '',
@@ -92,7 +92,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62fb555a5a210',
-							'label'             => __( 'Language', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Language', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_lang',
 							'type'              => 'select',
 							'instructions'      => '',
@@ -118,7 +118,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_649844f7714a9',
-							'label'             => __( 'Logo', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Logo', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_logo',
 							'type'              => 'image',
 							'instructions'      => '',
@@ -143,7 +143,7 @@ class ACF {
 						// Sign Up
 						array(
 							'key'               => 'field_630b1083d97ae',
-							'label'             => __( 'Sign Up', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Sign Up', 'rgbcode-authform' ),
 							'name'              => '',
 							'type'              => 'tab',
 							'instructions'      => '',
@@ -167,7 +167,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2122c05b9b',
-							'label'             => __( 'Title block', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Title block', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_title_block',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -182,7 +182,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62f2125d05b9c',
-									'label'             => __( 'Title', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Title', 'rgbcode-authform' ),
 									'name'              => 'title',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -193,7 +193,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Sign up and Start Trading', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Sign up and Start Trading', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -201,7 +201,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_62f2128205b9d',
-									'label'             => __( 'Subtitle', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Subtitle', 'rgbcode-authform' ),
 									'name'              => 'subtitle',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -212,7 +212,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Please fill in your details below', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Please fill in your details below', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -222,7 +222,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2043d6bdce',
-							'label'             => __( 'First Name', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'First Name', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_first_name',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -237,7 +237,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62f20dce6bdcf',
-									'label'             => __( 'Placeholder', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Placeholder', 'rgbcode-authform' ),
 									'name'              => 'placeholder',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -248,7 +248,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'First name', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'First name', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -256,7 +256,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_62f20df76bdd0',
-									'label'             => __( 'Error text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Error text', 'rgbcode-authform' ),
 									'name'              => 'error_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -267,7 +267,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Please insert a valid first name', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Please insert a valid first name', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -277,7 +277,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2043d6bdcz',
-							'label'             => __( 'Last Name', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Last Name', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_last_name',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -292,7 +292,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62f20dce6bdcx',
-									'label'             => __( 'Placeholder', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Placeholder', 'rgbcode-authform' ),
 									'name'              => 'placeholder',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -303,7 +303,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Last name', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Last name', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -311,7 +311,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_62f20df76bdd6',
-									'label'             => __( 'Error text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Error text', 'rgbcode-authform' ),
 									'name'              => 'error_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -322,7 +322,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Please insert a valid last name', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Please insert a valid last name', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -332,7 +332,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f20e356bdd1',
-							'label'             => __( 'Email', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Email', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_email',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -347,7 +347,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62f20e9f6bdd2',
-									'label'             => __( 'Placeholder', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Placeholder', 'rgbcode-authform' ),
 									'name'              => 'placeholder',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -358,7 +358,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Email', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Email', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -366,7 +366,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_62f20ed86bdd3',
-									'label'             => __( 'Error text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Error text', 'rgbcode-authform' ),
 									'name'              => 'error_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -377,7 +377,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Please insert a valid email address', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Please insert a valid email address', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -385,7 +385,7 @@ class ACF {
 								),
 								array(
 									'key'                 => 'field_5f5e3263d8k8o',
-									'label'               => __( 'Suggestions', 'rgbcode-authform' ),
+									'label'               => esc_attr__( 'Suggestions', 'rgbcode-authform' ),
 									'name'                => 'suggestions',
 									'type'                => 'repeater',
 									'instructions'        => '',
@@ -401,11 +401,11 @@ class ACF {
 									'min'                 => 0,
 									'max'                 => 0,
 									'layout'              => 'table',
-									'button_label'        => __( 'Add suggestion', 'rgbcode-authform' ),
+									'button_label'        => esc_attr__( 'Add suggestion', 'rgbcode-authform' ),
 									'sub_fields'          => array(
 										array(
 											'key'          => 'field_62f20fbaddg5v',
-											'label'        => __( 'Suggestion', 'rgbcode-authform' ),
+											'label'        => esc_attr__( 'Suggestion', 'rgbcode-authform' ),
 											'name'         => 'suggestion',
 											'type'         => 'text',
 											'instructions' => '',
@@ -428,7 +428,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f20fbadda6e',
-							'label'             => __( 'Phone', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Phone', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_phone',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -443,7 +443,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62f20fbadda6f',
-									'label'             => __( 'Placeholder', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Placeholder', 'rgbcode-authform' ),
 									'name'              => 'placeholder',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -454,7 +454,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Phone', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Phone', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -462,7 +462,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_62f20fbadda70',
-									'label'             => __( 'Error text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Error text', 'rgbcode-authform' ),
 									'name'              => 'error_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -473,7 +473,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Please insert a valid phone number', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Please insert a valid phone number', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -483,7 +483,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f20fdfdda72',
-							'label'             => __( 'Password', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Password', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_pass',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -498,7 +498,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62f20fdfdda73',
-									'label'             => __( 'Placeholder', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Placeholder', 'rgbcode-authform' ),
 									'name'              => 'placeholder',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -509,7 +509,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Password', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Password', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -517,7 +517,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_62f20fdfdda74',
-									'label'             => __( 'Error text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Error text', 'rgbcode-authform' ),
 									'name'              => 'error_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -528,7 +528,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Must be at least 6 characters Use characters and numbers only', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Must be at least 6 characters Use characters and numbers only', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -538,7 +538,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2108469f72',
-							'label'             => __( 'Terms and Conditions', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Terms and Conditions', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_terms',
 							'type'              => 'wysiwyg',
 							'instructions'      => '',
@@ -557,7 +557,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f210ec26e88',
-							'label'             => __( 'Submit button', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Submit button', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_submit',
 							'type'              => 'text',
 							'instructions'      => '',
@@ -568,7 +568,7 @@ class ACF {
 								'class' => '',
 								'id'    => '',
 							),
-							'default_value'     => __( 'Submit', 'rgbcode-authform' ),
+							'default_value'     => esc_attr__( 'Submit', 'rgbcode-authform' ),
 							'placeholder'       => '',
 							'prepend'           => '',
 							'append'            => '',
@@ -576,7 +576,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2114826e89',
-							'label'             => __( 'Message under the button', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Message under the button', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_message',
 							'type'              => 'text',
 							'instructions'      => '',
@@ -587,7 +587,7 @@ class ACF {
 								'class' => '',
 								'id'    => '',
 							),
-							'default_value'     => __( 'CFD and Forex trading involves substantial risk and may result in the loss of the invested capital.', 'rgbcode-authform' ),
+							'default_value'     => esc_attr__( 'CFD and Forex trading involves substantial risk and may result in the loss of the invested capital.', 'rgbcode-authform' ),
 							'placeholder'       => '',
 							'prepend'           => '',
 							'append'            => '',
@@ -595,10 +595,10 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f211b426e8a',
-							'label'             => __( 'Link', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Link', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_link',
 							'type'              => 'link',
-							'instructions'      => __( 'Link at the bottom of the form', 'rgbcode-authform' ),
+							'instructions'      => esc_attr__( 'Link at the bottom of the form', 'rgbcode-authform' ),
 							'required'          => 0,
 							'conditional_logic' => 0,
 							'wrapper'           => array(
@@ -611,7 +611,7 @@ class ACF {
 						// Deposit
 						array(
 							'key'               => 'field_630b1083d97as',
-							'label'             => __( 'Deposit', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Deposit', 'rgbcode-authform' ),
 							'name'              => '',
 							'type'              => 'tab',
 							'instructions'      => '',
@@ -635,7 +635,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2122c05b9q',
-							'label'             => __( 'Title block', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Title block', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_deposit_title_block',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -650,7 +650,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62f2125d05b9w',
-									'label'             => __( 'Title', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Title', 'rgbcode-authform' ),
 									'name'              => 'title',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -661,7 +661,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Thank you for signing-up!', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Thank you for signing-up!', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -669,7 +669,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_62f2128805b9d',
-									'label'             => __( 'Subtitle', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Subtitle', 'rgbcode-authform' ),
 									'name'              => 'subtitle',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -680,7 +680,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Please complete your registration in order to proceed with a deposit and start trading', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Please complete your registration in order to proceed with a deposit and start trading', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -690,7 +690,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2125d05b9e',
-							'label'             => __( 'Label for country field', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Label for country field', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_deposit_country',
 							'type'              => 'text',
 							'instructions'      => '',
@@ -701,7 +701,7 @@ class ACF {
 								'class' => '',
 								'id'    => '',
 							),
-							'default_value'     => __( 'Country', 'rgbcode-authform' ),
+							'default_value'     => esc_attr__( 'Country', 'rgbcode-authform' ),
 							'placeholder'       => '',
 							'prepend'           => '',
 							'append'            => '',
@@ -709,7 +709,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2043d6bxoO',
-							'label'             => __( 'Currency', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Currency', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_deposit_currency',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -724,7 +724,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62f20dcu6baeG',
-									'label'             => __( 'Label', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Label', 'rgbcode-authform' ),
 									'name'              => 'label',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -735,7 +735,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Currency', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Currency', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -743,7 +743,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_62f28df76bXe4',
-									'label'             => __( 'Error text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Error text', 'rgbcode-authform' ),
 									'name'              => 'error_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -754,7 +754,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Choose currency', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Choose currency', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -764,7 +764,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2043d6buce',
-							'label'             => __( 'City', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'City', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_deposit_city',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -779,7 +779,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62f20dcu6bdcf',
-									'label'             => __( 'Label', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Label', 'rgbcode-authform' ),
 									'name'              => 'label',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -790,7 +790,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'City', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'City', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -798,7 +798,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_62f28df76bdd0',
-									'label'             => __( 'Error text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Error text', 'rgbcode-authform' ),
 									'name'              => 'error_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -809,7 +809,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Please insert a valid city name', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Please insert a valid city name', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -819,7 +819,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2043d6muce',
-							'label'             => __( 'Address', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Address', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_deposit_address',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -834,7 +834,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62f20dcu9bdcf',
-									'label'             => __( 'Label', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Label', 'rgbcode-authform' ),
 									'name'              => 'label',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -845,7 +845,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Address', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Address', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -853,7 +853,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_62f20df96bdd0',
-									'label'             => __( 'Error text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Error text', 'rgbcode-authform' ),
 									'name'              => 'error_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -864,7 +864,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Please insert a valid address', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Please insert a valid address', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -874,7 +874,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2043d6iuce',
-							'label'             => __( 'Zip code(postcode)', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Zip code(postcode)', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_deposit_postcode',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -889,7 +889,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62f20dcn6bdcf',
-									'label'             => __( 'Label', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Label', 'rgbcode-authform' ),
 									'name'              => 'label',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -900,7 +900,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Zip code / Postcode', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Zip code / Postcode', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -908,7 +908,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_52f20df76bdd0',
-									'label'             => __( 'Error text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Error text', 'rgbcode-authform' ),
 									'name'              => 'error_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -919,7 +919,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Please insert a valid Zip code', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Please insert a valid Zip code', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -929,7 +929,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2043d6iucs',
-							'label'             => __( 'Date of Birth', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Date of Birth', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_deposit_birthday',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -944,7 +944,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62i20dcn6bdcf',
-									'label'             => __( 'Label', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Label', 'rgbcode-authform' ),
 									'name'              => 'label',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -955,7 +955,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Date of Birth', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Date of Birth', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -963,7 +963,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_62i20dcn6bzio',
-									'label'             => __( 'Placeholder', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Placeholder', 'rgbcode-authform' ),
 									'name'              => 'placeholder',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -974,7 +974,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Choose date', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Choose date', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -982,7 +982,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_52f20df76odd0',
-									'label'             => __( 'Error text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Error text', 'rgbcode-authform' ),
 									'name'              => 'error_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -993,7 +993,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Must be over 18+', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Must be over 18+', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -1003,7 +1003,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f2043d6iuds',
-							'label'             => __( 'WhatsApp button', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'WhatsApp button', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_whatsapp',
 							'type'              => 'group',
 							'instructions'      => '',
@@ -1018,7 +1018,7 @@ class ACF {
 							'sub_fields'        => array(
 								array(
 									'key'               => 'field_62ithdcn6bdcf',
-									'label'             => __( 'Button text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Button text', 'rgbcode-authform' ),
 									'name'              => 'button_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -1029,7 +1029,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'Whatsapp Us', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'Whatsapp Us', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -1037,7 +1037,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_649356e8bf2a6',
-									'label'             => __( 'Background color', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Background color', 'rgbcode-authform' ),
 									'name'              => 'whatsapp_btn_back_color',
 									'type'              => 'color_picker',
 									'instructions'      => '',
@@ -1054,7 +1054,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_649356e8bf2r5',
-									'label'             => __( 'Text color', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Text color', 'rgbcode-authform' ),
 									'name'              => 'whatsapp_btn_txt_color',
 									'type'              => 'color_picker',
 									'instructions'      => '',
@@ -1071,7 +1071,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_52f20df76hdr0',
-									'label'             => __( 'Phone number', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Phone number', 'rgbcode-authform' ),
 									'name'              => 'phone_number',
 									'type'              => 'number',
 									'instructions'      => '',
@@ -1090,7 +1090,7 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_52f20df76hdd6',
-									'label'             => __( 'Whatsapp text', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Whatsapp text', 'rgbcode-authform' ),
 									'name'              => 'whatsapp_text',
 									'type'              => 'text',
 									'instructions'      => '',
@@ -1101,7 +1101,7 @@ class ACF {
 										'class' => '',
 										'id'    => '',
 									),
-									'default_value'     => __( 'I need help opening my account', 'rgbcode-authform' ),
+									'default_value'     => esc_attr__( 'I need help opening my account', 'rgbcode-authform' ),
 									'placeholder'       => '',
 									'prepend'           => '',
 									'append'            => '',
@@ -1111,7 +1111,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f210ec26e38',
-							'label'             => __( 'Submit button', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Submit button', 'rgbcode-authform' ),
 							'name'              => 'rgbc_authform_deposit_submit',
 							'type'              => 'text',
 							'instructions'      => '',
@@ -1122,15 +1122,16 @@ class ACF {
 								'class' => '',
 								'id'    => '',
 							),
-							'default_value'     => __( 'Next', 'rgbcode-authform' ),
+							'default_value'     => esc_attr__( 'Next', 'rgbcode-authform' ),
 							'placeholder'       => '',
 							'prepend'           => '',
 							'append'            => '',
 							'maxlength'         => '',
 						),
+						// Currencies
 						array(
 							'key'               => 'field_630b1083d97re',
-							'label'             => __( 'Currencies', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Currencies', 'rgbcode-authform' ),
 							'name'              => '',
 							'type'              => 'tab',
 							'instructions'      => '',
@@ -1154,7 +1155,7 @@ class ACF {
 						),
 						array(
 							'key'                 => 'field_5f5e3263d83e5',
-							'label'               => __( 'Country currencies', 'rgbcode-authform' ),
+							'label'               => esc_attr__( 'Country currencies', 'rgbcode-authform' ),
 							'name'                => 'rgbc_authform_currencies',
 							'type'                => 'repeater',
 							'instructions'        => '',
@@ -1174,7 +1175,7 @@ class ACF {
 							'sub_fields'          => array(
 								array(
 									'key'                 => 'field_5f5e31d44f719',
-									'label'               => __( 'Country', 'rgbcode-authform' ),
+									'label'               => esc_attr__( 'Country', 'rgbcode-authform' ),
 									'name'                => 'country',
 									'type'                => 'select',
 									'instructions'        => '',
@@ -1197,7 +1198,7 @@ class ACF {
 								),
 								array(
 									'key'                 => 'field_5f5e31d44f819',
-									'label'               => __( 'Currencies', 'rgbcode-authform' ),
+									'label'               => esc_attr__( 'Currencies', 'rgbcode-authform' ),
 									'name'                => 'currencies',
 									'type'                => 'select',
 									'instructions'        => '',
@@ -1220,10 +1221,10 @@ class ACF {
 								),
 								array(
 									'key'               => 'field_630b0fb1d97zb',
-									'label'             => __( 'Add empty option', 'rgbcode-authform' ),
+									'label'             => esc_attr__( 'Add empty option', 'rgbcode-authform' ),
 									'name'              => 'is_empty_value',
 									'type'              => 'true_false',
-									'instructions'      => __( 'Add an empty default value to oblige the client to choose a currency', 'rgbcode-authform' ),
+									'instructions'      => esc_attr__( 'Add an empty default value to oblige the client to choose a currency', 'rgbcode-authform' ),
 									'required'          => 0,
 									'conditional_logic' => 0,
 									'wrapper'           => array(
@@ -1241,7 +1242,7 @@ class ACF {
 						),
 						array(
 							'key'               => 'field_62f210ec26e56',
-							'label'             => __( 'Empty option text', 'rgbcode-authform' ),
+							'label'             => esc_attr__( 'Empty option text', 'rgbcode-authform' ),
 							'name'              => 'empty_option_txt',
 							'type'              => 'text',
 							'instructions'      => '',
@@ -1252,11 +1253,69 @@ class ACF {
 								'class' => '',
 								'id'    => '',
 							),
-							'default_value'     => __( 'Please select', 'rgbcode-authform' ),
+							'default_value'     => esc_attr__( 'Please select', 'rgbcode-authform' ),
 							'placeholder'       => '',
 							'prepend'           => '',
 							'append'            => '',
 							'maxlength'         => '',
+						),
+						// Autologin
+						array(
+							'key'               => 'field_630b1083dg6tr',
+							'label'             => esc_attr__( 'Autologin', 'rgbcode-authform' ),
+							'name'              => '',
+							'type'              => 'tab',
+							'instructions'      => '',
+							'required'          => 0,
+							'conditional_logic' => 0,
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'placement'         => 'left',
+							'endpoint'          => 0,
+						),
+						array(
+							'key'                 => 'field_5f5e3263db56t',
+							'label'               => esc_attr__( 'IP Black List', 'rgbcode-authform' ),
+							'name'                => 'rgbc_authform_ip_black_list',
+							'type'                => 'repeater',
+							'instructions'        => '',
+							'required'            => 0,
+							'conditional_logic'   => 0,
+							'wrapper'             => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'wpml_cf_preferences' => 1,
+							'collapsed'           => '',
+							'min'                 => 0,
+							'max'                 => 0,
+							'layout'              => 'table',
+							'button_label'        => esc_attr__( 'Add Address', 'rgbcode-authform' ),
+							'sub_fields'          => array(
+								array(
+									'key'               => 'field_62f210ec26vrt',
+									'label'             => esc_attr__( 'IP addresses', 'rgbcode-authform' ),
+									'name'              => 'rgbc_authform_ip',
+									'type'              => 'text',
+									'instructions'      => '',
+									'required'          => 0,
+									'conditional_logic' => 0,
+									'wrapper'           => array(
+										'width' => '',
+										'class' => '',
+										'id'    => '',
+									),
+									'default_value'     => '',
+									'placeholder'       => '',
+									'prepend'           => '',
+									'append'            => '',
+									'maxlength'         => '',
+								),
+							),
 						),
 					),
 					'location'              => array(
