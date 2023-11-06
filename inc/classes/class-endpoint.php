@@ -4,6 +4,8 @@ namespace Rgbcode_authform\classes;
 
 use Rgbcode_authform\classes\core\Error;
 use Rgbcode_authform\classes\helpers\Authorization;
+use Rgbcode_authform\classes\helpers\Helpers;
+use Rgbcode_authform\classes\helpers\Location;
 use Rgbcode_authform\classes\helpers\Request_Api;
 
 class Endpoint {
@@ -35,6 +37,11 @@ class Endpoint {
 		}
 
 		$error_redirect = '/webtrader/?action=forexLogin';
+
+		if ( ! $this->check_blacklist_ip() ) {
+			wp_safe_redirect( $error_redirect );
+			exit;
+		}
 
 		$email           = sanitize_email( $_GET['emailaddress'] ?? '' );
 		$account_no      = sanitize_text_field( $_GET['account_no'] ?? '' );
@@ -95,5 +102,24 @@ class Endpoint {
 		}
 
 		return $user_registered === $account_no;
+	}
+
+	private function check_blacklist_ip(): bool {
+		$ip_visitor    = Location::get_ip();
+		$black_list_ip = Helpers::get_array( get_field( 'rgbc_authform_ip_black_list', 'option' ) );
+
+		$result = true;
+		foreach ( $black_list_ip as $not_allowed_ip ) {
+			$not_allowed_ip = is_array( $not_allowed_ip )
+				? reset( $not_allowed_ip )
+				: $not_allowed_ip;
+
+			if ( rest_is_ip_address( (string) $not_allowed_ip ) && $ip_visitor === $not_allowed_ip ) {
+				$result = false;
+				break;
+			}
+		}
+
+		return $result;
 	}
 }
