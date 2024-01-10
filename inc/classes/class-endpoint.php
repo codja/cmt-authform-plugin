@@ -36,6 +36,12 @@ class Endpoint {
 			return;
 		}
 
+		if ( is_user_logged_in() ) {
+			$redirect = sanitize_text_field( $_GET['redirect'] ?? '' );
+			wp_safe_redirect( "/$redirect" );
+			exit;
+		}
+
 		$error_redirect = '/webtrader/?action=forexLogin';
 
 		if ( ! $this->check_blacklist_ip() ) {
