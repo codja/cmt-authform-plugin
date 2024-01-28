@@ -24,6 +24,15 @@ class Customer_Create extends Customer {
 			'email'   => sanitize_email( $request->get_param( 'email' ) ),
 		];
 
+		/**
+		 * Fires after registration user in the Panda.
+		 *
+		 * @date    28/01/24
+		 *
+		 * @param  array $result.
+		 */
+		do_action( 'authform_after_register', $result );
+
 		wp_send_json( $result );
 	}
 
@@ -49,7 +58,14 @@ class Customer_Create extends Customer {
 			$result['clientSource'] = sanitize_text_field( $referral_data['clientSource'] );
 		}
 
-		return $result;
+		/**
+		 * Filter for registration parameters.
+		 *
+		 * @date    28/01/24
+		 *
+		 * @param   array $result The result.
+		 */
+		return apply_filters( 'authform_params_for_register', $result );
 	}
 
 	private function get_site_language(): ?string {
