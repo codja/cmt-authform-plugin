@@ -100,6 +100,7 @@
 		border-radius: 3px;
 		padding: 0.5rem 1rem;
 		color: #000;
+		background-color: #fff !important;
 
 		@include media_max( map-get( $breaks, mobile ) ) {
 			width: 90%;

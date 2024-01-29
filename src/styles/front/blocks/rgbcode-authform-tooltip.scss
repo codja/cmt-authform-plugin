@@ -26,9 +26,10 @@
 		border-color: #d6d6d6 #d6d6d6 #fff #fff;
 	}
 
-	&__title {
+	h5.&__title {
 		font: 700 11px/17px $basefont;
 		margin: 0;
+		color: $text;
 	}
 
 	&__list {
@@ -53,7 +54,7 @@
 		&.rgbcode-valid {
 
 			&::before {
-				color: $green;
+				color: $green !important;
 			}
 		}
 	}
