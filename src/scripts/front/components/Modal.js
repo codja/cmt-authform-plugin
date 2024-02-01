@@ -53,8 +53,9 @@ export class Modal {
 		buttons.forEach( button => {
 			button.addEventListener( 'click', ( evt ) => {
 				const onlyDesktop = button.dataset.onlyDesktop ?? false;
+				const isLogged = document.querySelector( 'panda-forex-menu .mainpandats' );
 
-				if ( ( onlyDesktop && detectTablet() ) ) {
+				if ( ( onlyDesktop && detectTablet() ) || isLogged ) {
 					return;
 				}
 
