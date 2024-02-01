@@ -46,18 +46,15 @@ export class Modal {
 
 	openButtons() {
 		const buttons = document.querySelectorAll( '.js-rgbcode-authform' );
-		const signUp = document.querySelector( '.js-signup-btn' );
-
 		if ( ! buttons.length ) {
 			return;
 		}
 
 		buttons.forEach( button => {
 			button.addEventListener( 'click', ( evt ) => {
-				const onlyDesktop = button.dataset.onlyDesktop;
-				const isLogged = signUp && signUp.classList.contains( Constants.hideClass );
+				const onlyDesktop = button.dataset.onlyDesktop ?? false;
 
-				if ( ( onlyDesktop && detectTablet() ) || isLogged ) {
+				if ( ( onlyDesktop && detectTablet() ) ) {
 					return;
 				}
 
