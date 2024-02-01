@@ -58,10 +58,20 @@ class Customer_Update extends Customer {
 		);
 		$this->check_response( $response );
 
-		$result = [
-			'success' => true,
-			'link'    => Request_Api::get_response_link( $response['data']['url'] ?? '' ),
-		];
+		/**
+		 * It is triggered after receiving data from panda with a generated redirect link.
+		 *
+		 * @date    28/01/24
+		 *
+		 * @param  array $result.
+		 */
+		$result = apply_filters(
+			'authform_link_for_redirect_after_deposit',
+			[
+				'success' => true,
+				'link'    => Request_Api::get_response_link( $response['data']['url'] ?? '' ),
+			]
+		);
 
 		wp_send_json( $result );
 	}

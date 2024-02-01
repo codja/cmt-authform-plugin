@@ -1,6 +1,7 @@
 .rgbcode-authform-text {
 	font: 400 14px/17px $basefont;
 	margin: 1em 0;
+	color: $text;
 
 	@include media_max( map-get( $breaks, mobile ) ) {
 		font-size: 11px;
