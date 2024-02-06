@@ -8,7 +8,7 @@ final class Elementor {
 
 	public function __construct() {
 		// Init Plugin
-		add_action( 'plugins_loaded', [ $this, 'init' ] );
+		$this->init();
 	}
 
 	public function init() {
