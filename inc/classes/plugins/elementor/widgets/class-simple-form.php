@@ -166,6 +166,18 @@ class Simple_Form extends Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'is_fixed',
+			array(
+				'label'        => __( 'Fixed', 'elementor-cm-addons' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'Yes', 'elementor-cm-addons' ),
+				'label_off'    => __( 'No', 'elementor-cm-addons' ),
+				'return_value' => 'yes',
+				'default'      => 'no',
+			)
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -179,8 +191,9 @@ class Simple_Form extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$is_fixed = $settings['is_fixed'] ?? false;
 		?>
-		<form action="" class="rgbcode-simple-form">
+		<form action="" class="rgbcode-simple-form <?php echo esc_attr( $is_fixed === 'yes' ? 'rgbcode-simple-form_fixed' : '' ); ?>">
 			<h3
 				class="rgbcode-simple-form__title"
 				style="font-size: <?php echo esc_attr( $settings['title_size'] ); ?>px"
