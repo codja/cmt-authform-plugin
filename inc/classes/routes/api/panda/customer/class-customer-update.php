@@ -13,7 +13,7 @@ class Customer_Update extends Customer {
 		$data  = $request->get_params();
 		$email = sanitize_email( $data['email'] ?? '' );
 
-		if ( empty( $email ) ) {
+		if ( ! $email ) {
 			wp_send_json_error( __( 'Email is required', 'rgbcode-authform' ) );
 		}
 
@@ -35,7 +35,7 @@ class Customer_Update extends Customer {
 
 	private function update_customer( array $data, string $email ): bool {
 		$response = Request_Api::send_api(
-			$this->get_url_for_request() . '/' . $email,
+			$this->get_url_for_request() . '/' . rawurlencode( $email ),
 			wp_json_encode( $this->get_body( $data ) ),
 			'PUT',
 			$this->get_headers()

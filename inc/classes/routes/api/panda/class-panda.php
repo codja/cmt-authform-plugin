@@ -40,7 +40,7 @@ abstract class Panda {
 			$description   = $response['error'][0]['description'] ?? '';
 			$error_log_msg = ' request_id[' . ( $response['requestId'] ?? '' ) . ']: ' . $description;
 			Error::instance()->log_error( 'Panda_Api', $error_log_msg );
-			wp_send_json_error( $description );
+			wp_send_json_error( $description . ' (error code: {' . ( $response['requestId'] ?? '' ) . '})' );
 		}
 	}
 
