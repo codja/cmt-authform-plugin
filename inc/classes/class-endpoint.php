@@ -18,7 +18,6 @@ class Endpoint {
 	protected $auth;
 
 	public function __construct() {
-		$this->auth = new Authorization();
 		add_action( 'template_redirect', [ $this, 'autologin' ] );
 	}
 
@@ -26,8 +25,8 @@ class Endpoint {
 		if ( ! Error::instance()->is_defined_constants() ) {
 			return;
 		}
-
-		$url = trim(
+		$start = microtime( true );
+		$url   = trim(
 			wp_parse_url( $_SERVER['REQUEST_URI'] )['path'],
 			'/'
 		);
@@ -59,8 +58,9 @@ class Endpoint {
 			exit;
 		}
 
+		$auth     = new Authorization();
 		$response = Request_Api::send_api(
-			$this->auth::BASE_URL_API . 'system/loginToken',
+			$auth::BASE_URL_API . 'system/loginToken',
 			wp_json_encode(
 				[
 					'email' => $email,
@@ -68,7 +68,7 @@ class Endpoint {
 			),
 			'POST',
 			[
-				'Authorization' => $this->auth->get_auth_data(),
+				'Authorization' => $auth->get_auth_data(),
 				'Content-Type'  => 'application/json',
 			]
 		);
@@ -88,6 +88,9 @@ class Endpoint {
 			true,
 			$action
 		);
+
+		$diff = wp_sprintf( '%.6f sec.', microtime( true ) - $start );
+		Error::instance()->log_error( 'Time', $diff );
 
 		wp_safe_redirect( $link_for_redirect );
 		exit;
