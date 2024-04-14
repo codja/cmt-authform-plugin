@@ -48,10 +48,14 @@ class Endpoint {
 			exit;
 		}
 
-		$email           = sanitize_email( $_GET['emailaddress'] ?? '' );
-		$account_no      = sanitize_text_field( $_GET['account_no'] ?? '' );
-		$action          = sanitize_text_field( $_GET['action'] ?? '' );
+		$email      = sanitize_email( $_GET['emailaddress'] ?? '' );
+		$account_no = sanitize_text_field( $_GET['account_no'] ?? '' );
+		$action     = sanitize_text_field( $_GET['action'] ?? '' );
+
+		$start_panda     = microtime( true );
 		$user_registered = Panda_DB::instance()->get_user_register_data( 'email', $email, self::ENDPOINTS[ $url ] );
+		$panda_diff      = wp_sprintf( '%.6f sec.', microtime( true ) - $start_panda );
+		Error::instance()->log_error( 'Panda DB Time', $panda_diff );
 
 		if ( is_null( $user_registered ) || ! $this->is_account_no_match( $user_registered[ self::ENDPOINTS[ $url ] ], $account_no ) ) {
 			wp_safe_redirect( $error_redirect );
@@ -89,8 +93,8 @@ class Endpoint {
 			$action
 		);
 
-		$diff = wp_sprintf( '%.6f sec.', microtime( true ) - $start );
-		Error::instance()->log_error( 'Time', $diff );
+		$total_diff = wp_sprintf( '%.6f sec.', microtime( true ) - $start );
+		Error::instance()->log_error( 'Total Time', $total_diff );
 
 		wp_safe_redirect( $link_for_redirect );
 		exit;
