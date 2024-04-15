@@ -83,7 +83,9 @@ class Endpoint {
 		}
 
 		if ( isset( $response['error'] ) ) {
-			Error::instance()->log_error( 'class-endpoint-error', $response['error'][0]['description'] );
+			$description = $response['error'][0]['description'] ?? '';
+			$request_id  = $response['requestId'] ?? '';
+			Error::instance()->log_error( 'class-endpoint-error', "[$request_id] $description" );
 		}
 
 		$link_for_redirect = Request_Api::get_response_link(
