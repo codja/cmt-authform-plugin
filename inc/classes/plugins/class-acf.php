@@ -107,6 +107,7 @@ class ACF {
 								'en' => 'English',
 								'ar' => 'Arabish',
 								'es' => 'Spanish',
+								'vn' => 'Vietnamese',
 							),
 							'default_value'     => 'en',
 							'allow_null'        => 0,
