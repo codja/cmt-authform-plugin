@@ -13,8 +13,8 @@ class Authform {
 	use Singleton;
 
 	const ACTIVE_FORMS = [
-		'signup'  => 'Sign_Up',
-		'deposit' => 'Deposit',
+		'signup' => 'Sign_Up',
+	//      'deposit' => 'Deposit',
 	];
 
 	const HIDE_CLASS = 'rgbcode-hidden';
