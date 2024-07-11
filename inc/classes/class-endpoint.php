@@ -3,10 +3,10 @@
 namespace Rgbcode_authform\classes;
 
 use Rgbcode_authform\classes\core\Error;
-use Rgbcode_authform\classes\helpers\Authorization;
 use Rgbcode_authform\classes\helpers\Helpers;
 use Rgbcode_authform\classes\helpers\Location;
 use Rgbcode_authform\classes\helpers\Request_Api;
+use Rgbcode_authform\classes\providers\panda\Panda;
 
 class Endpoint {
 
@@ -62,7 +62,7 @@ class Endpoint {
 			exit;
 		}
 
-		$auth     = new Authorization();
+		$auth     = new Panda();
 		$response = Request_Api::send_api(
 			$auth::BASE_URL_API . 'system/loginToken',
 			wp_json_encode(

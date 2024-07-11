@@ -3,26 +3,24 @@
 namespace Rgbcode_authform\classes\routes\api\panda\customer;
 
 use Rgbcode_authform\classes\helpers\Request_Api;
+use Rgbcode_authform\classes\routes\api\panda\CRM;
 use Rgbcode_authform\classes\routes\Routes;
 
-class Customer_Create extends Customer {
+class Customer_Create extends CRM {
 
 	public function post( \WP_REST_Request $request ) {
 		Routes::check_nonce( $request );
 
 		$data     = $request->get_params();
 		$response = Request_Api::send_api(
-			$this->get_url_for_request(),
+			$this->provider->register->get_endpoint(),
 			wp_json_encode( $this->get_body( $data ) ),
 			'POST',
-			$this->get_headers()
+			$this->provider->get_headers()
 		);
-		$this->check_response( $response );
+		$this->provider->check_response( $response );
 
-		$result = [
-			'success' => 'ok' === $response['data']['status'],
-			'email'   => sanitize_email( $request->get_param( 'email' ) ),
-		];
+		$result = $this->provider->register->get_result( $response, $request );
 
 		/**
 		 * Fires after registration user in the Panda.
@@ -37,26 +35,11 @@ class Customer_Create extends Customer {
 	}
 
 	protected function get_body( array $data ): array {
-		$referral_data = $this->extract_referral_data( $data );
+		$data['agree']    = $this->get_tcc_checked( sanitize_text_field( $data['agree'] ?? '' ) );
+		$data['lang']     = $this->get_site_language();
+		$data['referral'] = $this->extract_referral_data( $data );
 
-		$result = [
-			'email'                    => sanitize_email( $data['email'] ?? '' ),
-			'country'                  => sanitize_text_field( $data['iso'] ?? '' ),
-			'firstName'                => sanitize_text_field( $data['firstname'] ?? '' ),
-			'lastName'                 => sanitize_text_field( $data['lastname'] ?? '' ),
-			'phone'                    => sanitize_text_field( ( $data['phonecountry'] ?? '' ) . ( $data['phone'] ?? '' ) ),
-			'password'                 => sanitize_text_field( $data['password'] ?? '' ),
-			'acceptTermsAndConditions' => $this->get_tcc_checked( sanitize_text_field( $data['agree'] ?? '' ) ),
-			'language'                 => $this->get_site_language(),
-		];
-
-		if ( $referral_data['referral'] ) {
-			$result['referral'] = sanitize_text_field( $referral_data['referral'] );
-		}
-
-		if ( $referral_data['clientSource'] ) {
-			$result['clientSource'] = sanitize_text_field( $referral_data['clientSource'] );
-		}
+		$result = $this->provider->register->get_body( $data );
 
 		/**
 		 * Filter for registration parameters.

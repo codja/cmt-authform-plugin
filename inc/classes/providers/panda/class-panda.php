@@ -1,10 +1,30 @@
 <?php
 
-namespace Rgbcode_authform\classes\helpers;
+namespace Rgbcode_authform\classes\providers\panda;
 
-class Authorization {
+use Rgbcode_authform\classes\core\Error;
+use Rgbcode_authform\classes\helpers\Request_Api;
+use Rgbcode_authform\classes\providers\panda\requests\Panda_Register;
+
+class Panda {
 
 	public const BASE_URL_API = 'https://cmtrading.pandats-api.io/api/v3/';
+
+	/**
+	 * @var Panda_Register
+	 */
+	public $register;
+
+	public function __construct() {
+		$this->register = new Panda_Register();
+	}
+
+	public function get_headers(): array {
+		return [
+			'Authorization' => $this->get_auth_data(),
+			'Content-Type'  => 'application/json',
+		];
+	}
 
 	public function get_auth_data(): string {
 		return 'Bearer ' . $this->get_jwt_token();
@@ -56,6 +76,24 @@ class Authorization {
 		update_option( 'panda_token', wp_json_encode( $token_data ), false );
 
 		return $token_data['token'];
+	}
+
+	public function check_response( $response ) {
+		if ( ! $response ) {
+			wp_send_json_error( __( 'Error on client server. Check Request_Api log', 'rgbcode-authform' ) );
+		}
+
+		if ( isset( $response['error'] ) ) {
+			$description   = $response['error'][0]['description'] ?? '';
+			$error_log_msg = ' request_id[' . ( $response['requestId'] ?? '' ) . ']: ' . $description;
+			Error::instance()->log_error( 'Panda_Api', $error_log_msg );
+			wp_send_json_error( $description . ' (error code: {' . ( $response['requestId'] ?? '' ) . '})' );
+		}
+	}
+
+	protected function send_error( $response ) {
+		$error = (array) $response['ErrorDetails']->Message;
+		wp_send_json_error( $error[0] );
 	}
 
 }
