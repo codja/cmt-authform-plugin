@@ -1,9 +1,8 @@
 <?php
 
-namespace Rgbcode_authform\classes\routes\api\panda\customer;
+namespace Rgbcode_authform\classes\routes\api\crm\customer;
 
-use Rgbcode_authform\classes\helpers\Request_Api;
-use Rgbcode_authform\classes\routes\api\panda\CRM;
+use Rgbcode_authform\classes\routes\api\crm\CRM;
 use Rgbcode_authform\classes\routes\Routes;
 
 class Customer_Create extends CRM {
@@ -12,12 +11,8 @@ class Customer_Create extends CRM {
 		Routes::check_nonce( $request );
 
 		$data     = $request->get_params();
-		$response = Request_Api::send_api(
-			$this->provider->register->get_endpoint(),
-			wp_json_encode( $this->get_body( $data ) ),
-			'POST',
-			$this->provider->get_headers()
-		);
+		$response = $this->provider->send_request( $this->provider->register, $data );
+
 		$this->provider->check_response( $response );
 
 		$result = $this->provider->register->get_result( $response, $request );

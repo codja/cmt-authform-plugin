@@ -1,7 +1,8 @@
 <?php
 
-namespace Rgbcode_authform\classes\routes\api\panda;
+namespace Rgbcode_authform\classes\routes\api\crm;
 
+use Rgbcode_authform\classes\providers\antelope\Antelope;
 use Rgbcode_authform\classes\providers\panda\Panda;
 
 abstract class CRM {
@@ -9,7 +10,7 @@ abstract class CRM {
 	protected $provider;
 
 	public function __construct() {
-		$this->provider = new Panda();
+		$this->provider = new Antelope();
 	}
 
 }

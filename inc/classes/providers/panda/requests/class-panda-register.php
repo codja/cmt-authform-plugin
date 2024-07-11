@@ -3,8 +3,9 @@
 namespace Rgbcode_authform\classes\providers\panda\requests;
 
 use Rgbcode_authform\classes\providers\panda\Panda;
+use Rgbcode_authform\interfaces\CRM_Endpoint;
 
-class Panda_Register {
+class Panda_Register implements CRM_Endpoint {
 
 	public function get_endpoint(): string {
 		return Panda::BASE_URL_API . 'customers';
@@ -23,7 +24,7 @@ class Panda_Register {
 		];
 
 		if ( ! empty( $data['referral']['referral'] ) ) {
-			$body['referral'] = sanitize_text_field( $data['refreral']['referral'] );
+			$body['referral'] = sanitize_text_field( $data['referral']['referral'] );
 		}
 
 		if ( ! empty( $data['referral']['clientSource'] ) ) {

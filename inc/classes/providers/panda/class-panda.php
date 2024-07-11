@@ -5,6 +5,7 @@ namespace Rgbcode_authform\classes\providers\panda;
 use Rgbcode_authform\classes\core\Error;
 use Rgbcode_authform\classes\helpers\Request_Api;
 use Rgbcode_authform\classes\providers\panda\requests\Panda_Register;
+use Rgbcode_authform\interfaces\CRM_Endpoint;
 
 class Panda {
 
@@ -20,10 +21,21 @@ class Panda {
 	}
 
 	public function get_headers(): array {
+
 		return [
 			'Authorization' => $this->get_auth_data(),
 			'Content-Type'  => 'application/json',
 		];
+	}
+
+	public function send_request( CRM_Endpoint $endpoint, array $data, $method = 'POST' ) {
+
+		return Request_Api::send_api(
+			$endpoint->get_endpoint(),
+			wp_json_encode( $endpoint->get_body( $data ) ),
+			$method,
+			$this->get_headers()
+		);
 	}
 
 	public function get_auth_data(): string {

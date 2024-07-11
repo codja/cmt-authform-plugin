@@ -1,9 +1,9 @@
 <?php
 
-namespace Rgbcode_authform\classes\routes\api\panda\customer;
+namespace Rgbcode_authform\classes\routes\api\crm\customer;
 
 use Rgbcode_authform\classes\helpers\Request_Api;
-use Rgbcode_authform\classes\routes\api\panda\CRM;
+use Rgbcode_authform\classes\routes\api\crm\CRM;
 use Rgbcode_authform\classes\routes\Routes;
 
 class Customer_Update extends CRM {
