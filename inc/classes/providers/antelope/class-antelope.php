@@ -20,17 +20,10 @@ class Antelope {
 		$this->register = new Antelope_Register();
 	}
 
-	public function get_headers(): array {
-		return [
-			'Content-Type' => 'application/json',
-			'Accept'       => 'application/json',
-		];
-	}
-
-	public function send_request( CRM_Endpoint $endpoint, array $data, $method = 'POST' ) {
+	public function send_request( CRM_Endpoint $endpoint, array $body, $method = 'POST' ) {
 
 		return Request_Api::send_api(
-			$endpoint->get_endpoint() . '?' . http_build_query( $endpoint->get_body( $data ) ),
+			$endpoint->get_endpoint() . '?' . http_build_query( $body ),
 			[],
 			'POST',
 			$this->get_headers()
@@ -48,6 +41,14 @@ class Antelope {
 			Error::instance()->log_error( 'Antelope_Api', $error_log_msg );
 			wp_send_json_error( $description . ' (error code: {' . ( $response['requestId'] ?? '' ) . '})' );
 		}
+	}
+
+	private function get_headers(): array {
+
+		return [
+			'Content-Type' => 'application/json',
+			'Accept'       => 'application/json',
+		];
 	}
 
 }

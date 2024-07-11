@@ -11,10 +11,9 @@ class Customer_Create extends CRM {
 		Routes::check_nonce( $request );
 
 		$data     = $request->get_params();
-		$response = $this->provider->send_request( $this->provider->register, $data );
+		$response = $this->provider->send_request( $this->provider->register, $this->get_body( $data ) );
 
 		$this->provider->check_response( $response );
-
 		$result = $this->provider->register->get_result( $response, $request );
 
 		/**

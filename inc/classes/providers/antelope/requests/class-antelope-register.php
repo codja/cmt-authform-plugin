@@ -30,9 +30,10 @@ class Antelope_Register implements CRM_Endpoint {
 	}
 
 	public function get_result( $response, $request ): array {
+
 		return [
-			'success' => 'ok' === $response['data']['status'],
-			'email'   => sanitize_email( $request->get_param( 'email' ) ),
+			'success' => $response['success'] ?? false,
+			'link'    => $response['result']['brokerLoginUrl'] ?? '',
 		];
 	}
 

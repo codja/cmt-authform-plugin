@@ -20,19 +20,11 @@ class Panda {
 		$this->register = new Panda_Register();
 	}
 
-	public function get_headers(): array {
-
-		return [
-			'Authorization' => $this->get_auth_data(),
-			'Content-Type'  => 'application/json',
-		];
-	}
-
-	public function send_request( CRM_Endpoint $endpoint, array $data, $method = 'POST' ) {
+	public function send_request( CRM_Endpoint $endpoint, array $body, $method = 'POST' ) {
 
 		return Request_Api::send_api(
 			$endpoint->get_endpoint(),
-			wp_json_encode( $endpoint->get_body( $data ) ),
+			wp_json_encode( $body ),
 			$method,
 			$this->get_headers()
 		);
@@ -40,6 +32,14 @@ class Panda {
 
 	public function get_auth_data(): string {
 		return 'Bearer ' . $this->get_jwt_token();
+	}
+
+	private function get_headers(): array {
+
+		return [
+			'Authorization' => $this->get_auth_data(),
+			'Content-Type'  => 'application/json',
+		];
 	}
 
 	private function get_access_key(): string {

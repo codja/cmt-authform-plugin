@@ -30,10 +30,11 @@ export function initFormSubmit() {
 			postData( '/wp-json/rgbcode/v1/customer', data )
 				.then( data => {
 					if ( data.success ) {
-						Constants.storage.clientEmail = data.email;
+						//Constants.storage.clientEmail = data.email;
 						errorBlockSignUp.classList.add( Constants.hideClass);
-						modalSignUp.remove();
-						modalDeposit.classList.remove( Constants.hideClass);
+						location.href = data.link;
+						//modalSignUp.remove();
+						//modalDeposit.classList.remove( Constants.hideClass);
 						// setCookie( Constants.cookieFirstStepName, true, { 'max-age': 86400 * 7 } )
 						// setCookie( Constants.cookieUserEmail,  data.email, { 'max-age': 86400 * 7 } )
 					} else {
