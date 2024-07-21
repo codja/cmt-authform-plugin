@@ -2,6 +2,7 @@
 
 namespace Rgbcode_authform\classes\authform;
 
+use Rgbcode_authform\classes\authform\forms\Login;
 use Rgbcode_authform\classes\authform\forms\Sign_Up;
 use Rgbcode_authform\classes\core\Error;
 use Rgbcode_authform\classes\helpers\Location;
@@ -14,7 +15,8 @@ class Authform {
 
 	const ACTIVE_FORMS = [
 		'signup' => 'Sign_Up',
-	//      'deposit' => 'Deposit',
+		'login'  => 'Login',
+		'deposit' => 'Deposit',
 	];
 
 	const HIDE_CLASS = 'rgbcode-hidden';
@@ -32,6 +34,7 @@ class Authform {
 	public function __construct() {
 		add_action( 'wp_footer', [ $this, 'render_forms' ] );
 		add_shortcode( 'authform-signup', [ Sign_Up::class, 'render_signup_btn' ] );
+		add_shortcode( 'authform-login', [ Login::class, 'render_login_btn' ] );
 		$this->registered_user = $this->check_register_user();
 	}
 

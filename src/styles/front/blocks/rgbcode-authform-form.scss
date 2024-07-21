@@ -62,6 +62,13 @@
 		}
 	}
 
+	&_login {
+
+		.rgbcode-authform-input {
+			margin: 1em 0;
+		}
+	}
+
 	&__logo {
 		display: block;
 		margin: 0 auto;

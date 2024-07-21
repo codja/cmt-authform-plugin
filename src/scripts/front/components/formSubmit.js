@@ -3,6 +3,43 @@ import {Constants} from "../Constants.js";
 
 export function initFormSubmit() {
 
+	const modalLogin = document.querySelector( '#rgbcode-login' );
+	if ( modalLogin ) {
+		const formLogin = modalLogin.querySelector( '.rgbcode-authform-form' );
+		const errorBlockLogin = formLogin.querySelector( '.rgbcode-authform-input__error_submit' );
+
+		formLogin.addEventListener( 'submit', ( evt ) => {
+			evt.preventDefault();
+
+			const data = serializeArray( formLogin );
+			const submitter = evt.submitter ?? formLogin.querySelector( '.rgbcode-authform-button' );
+
+			submitter.classList.add( 'rgbcode-authform-button_loader' );
+			submitter.disabled = true;
+
+			postData( '/wp-json/rgbcode/v1/login', data )
+				.then( data => {
+					if ( data.success ) {
+						//Constants.storage.clientEmail = data.email;
+						errorBlockLogin.classList.add( Constants.hideClass);
+						location.href = data.link;
+						//modalSignUp.remove();
+						//modalDeposit.classList.remove( Constants.hideClass);
+						// setCookie( Constants.cookieFirstStepName, true, { 'max-age': 86400 * 7 } )
+						// setCookie( Constants.cookieUserEmail,  data.email, { 'max-age': 86400 * 7 } )
+					} else {
+						errorBlockLogin.classList.remove( Constants.hideClass );
+						errorBlockLogin.textContent = data.message ? data.message : data.data;
+						submitter.classList.remove( 'rgbcode-authform-button_loader' );
+						submitter.disabled = false;
+					}
+				} )
+				.catch( ( error ) => {
+					console.error('Error:', error);
+				} );
+		} );
+	}
+
 	const modalSignUp = document.querySelector( '#rgbcode-signup' );
 	if ( modalSignUp ) {
 		const formSignUp = modalSignUp.querySelector( '.rgbcode-authform-form' );
