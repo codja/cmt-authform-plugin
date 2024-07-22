@@ -3,32 +3,10 @@
 namespace Rgbcode_authform\classes\providers\antelope;
 
 use Rgbcode_authform\classes\core\Error;
-use Rgbcode_authform\classes\helpers\Request_Api;
-use Rgbcode_authform\classes\providers\antelope\requests\Antelope_Register;
-use Rgbcode_authform\interfaces\CRM_Endpoint;
 
-class Antelope {
+abstract class Antelope {
 
-	public const BASE_URL_API = 'https://api.cmtrading.com/SignalsServer/api/';
-
-	/**
-	 * @var Antelope_Register
-	 */
-	public $register;
-
-	public function __construct() {
-		$this->register = new Antelope_Register();
-	}
-
-	public function send_request( CRM_Endpoint $endpoint, array $body, $method = 'POST' ) {
-
-		return Request_Api::send_api(
-			$endpoint->get_endpoint() . '?' . http_build_query( $body ),
-			[],
-			'POST',
-			$this->get_headers()
-		);
-	}
+	public const BASE_URL_API = '';
 
 	public function check_response( $response ) {
 		if ( ! $response ) {
@@ -43,7 +21,7 @@ class Antelope {
 		}
 	}
 
-	private function get_headers(): array {
+	protected function get_headers(): array {
 
 		return [
 			'Content-Type' => 'application/json',
