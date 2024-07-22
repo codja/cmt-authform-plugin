@@ -13,6 +13,18 @@
 		}
 		?>
 
+		<?php if ( ! empty( $args['title_block']['title'] ) ) : ?>
+			<div class="rgbcode-authform-form__title">
+				<?php echo esc_html( $args['title_block']['title'] ); ?>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( ! empty( $args['title_block']['subtitle'] ) ) : ?>
+			<div class="rgbcode-authform-form__subtitle">
+				<?php echo esc_html( $args['title_block']['subtitle'] ); ?>
+			</div>
+		<?php endif; ?>
+
 		<div class="rgbcode-authform-form__inputs">
 
 			<?php if ( ! empty( $args['email'] ) ) : ?>

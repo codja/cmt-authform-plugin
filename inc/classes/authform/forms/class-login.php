@@ -16,9 +16,10 @@ class Login extends Baseform {
 	public function get_template_data(): array {
 		return [
 			'logo'             => get_field( 'rgbc_authform_logo', 'option' ),
-			'email'            => get_field( 'rgbc_authform_email', 'option' ),
-			'pass'             => get_field( 'rgbc_authform_pass', 'option' ),
-			'submit'           => get_field( 'rgbc_authform_submit', 'option' ),
+			'title_block'      => get_field( 'rgbc_authform_login_title_block', 'option' ),
+			'email'            => get_field( 'rgbc_authform_login_email', 'option' ),
+			'pass'             => get_field( 'rgbc_authform_login_pass', 'option' ),
+			'submit'           => get_field( 'rgbc_authform_login_submit', 'option' ),
 			'visibility_class' => Authform::HIDE_CLASS,
 		];
 	}

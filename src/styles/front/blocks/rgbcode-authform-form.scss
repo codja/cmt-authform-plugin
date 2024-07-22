@@ -64,6 +64,16 @@
 
 	&_login {
 
+		.rgbcode-authform-form__inputs,
+		.rgbcode-authform-button {
+			width: 290px;
+			margin: 0 auto;
+		}
+
+		.rgbcode-authform-button {
+			display:block;
+		}
+
 		.rgbcode-authform-input {
 			margin: 1em 0;
 		}
@@ -71,7 +81,8 @@
 
 	&__logo {
 		display: block;
-		margin: 0 auto;
+		margin: 0 auto 1em;
+		max-width: 250px;
 	}
 
 	&__title,
