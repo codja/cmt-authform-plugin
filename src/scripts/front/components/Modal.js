@@ -6,7 +6,8 @@ export class Modal {
 	defaultAction = 'forexSignup';
 
 	allowedActions = {
-		forexSignup: 'rgbcode-signup'
+		forexSignup: 'rgbcode-signup',
+		forexLogin: 'rgbcode-login'
 	}
 
 	constructor() {
