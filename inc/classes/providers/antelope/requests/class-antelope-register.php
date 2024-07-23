@@ -26,6 +26,10 @@ class Antelope_Register implements CRM_Endpoint {
 			$body['referral'] = sanitize_text_field( $data['referral']['referral'] );
 		}
 
+		if ( ! empty( $data['referral']['clientSource'] ) ) {
+			$body['sc'] = sanitize_text_field( $data['referral']['clientSource'] );
+		}
+
 		return $body;
 	}
 
