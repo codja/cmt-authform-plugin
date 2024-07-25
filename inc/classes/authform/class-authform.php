@@ -16,7 +16,7 @@ class Authform {
 	const ACTIVE_FORMS = [
 		'signup' => 'Sign_Up',
 		'login'  => 'Login',
-		'deposit' => 'Deposit',
+//		'deposit' => 'Deposit',
 	];
 
 	const HIDE_CLASS = 'rgbcode-hidden';
