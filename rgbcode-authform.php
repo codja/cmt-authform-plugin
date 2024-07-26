@@ -62,7 +62,7 @@ final class Rgbcode_Authform {
 		new Authform();
 		new Ajax();
 		new Routes();
-		new Endpoint();
+//		new Endpoint();
 
 		load_plugin_textdomain(
 			'rgbcode-authform',

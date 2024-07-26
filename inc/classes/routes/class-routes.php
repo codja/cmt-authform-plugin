@@ -2,9 +2,10 @@
 
 namespace Rgbcode_authform\classes\routes;
 
+use Rgbcode_authform\classes\routes\api\crm\Login;
 use Rgbcode_authform\classes\routes\api\Detect_Location;
-use Rgbcode_authform\classes\routes\api\panda\customer\Customer_Create;
-use Rgbcode_authform\classes\routes\api\panda\customer\Customer_Update;
+use Rgbcode_authform\classes\routes\api\crm\customer\Customer_Create;
+use Rgbcode_authform\classes\routes\api\crm\customer\Customer_Update;
 use WP_REST_Server;
 
 class Routes {
@@ -20,9 +21,35 @@ class Routes {
 							'methods'  => WP_REST_SERVER::CREATABLE,
 							'callback' => [ new Customer_Create(), 'post' ],
 						],
-						[
-							'methods'  => 'PUT',
-							'callback' => [ new Customer_Update(), 'put' ],
+						//                      [
+						//                          'methods'  => 'PUT',
+						//                          'callback' => [ new Customer_Update(), 'put' ],
+						//                      ],
+					]
+				);
+			}
+		);
+
+		add_action(
+			'rest_api_init',
+			function () {
+				register_rest_route(
+					'rgbcode/v1',
+					'/login',
+					[
+						'methods'  => WP_REST_SERVER::CREATABLE,
+						'callback' => [ new Login(), 'post' ],
+						'args'     => [
+							'email'    => [
+								'type'     => 'string',
+								'format'   => 'email',
+								'required' => true,
+							],
+							'password' => [
+								'type'     => 'string',
+								'format'   => 'password',
+								'required' => true,
+							],
 						],
 					]
 				);

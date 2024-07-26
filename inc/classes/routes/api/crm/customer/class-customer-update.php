@@ -1,11 +1,12 @@
 <?php
 
-namespace Rgbcode_authform\classes\routes\api\panda\customer;
+namespace Rgbcode_authform\classes\routes\api\crm\customer;
 
 use Rgbcode_authform\classes\helpers\Request_Api;
+use Rgbcode_authform\classes\routes\api\crm\CRM;
 use Rgbcode_authform\classes\routes\Routes;
 
-class Customer_Update extends Customer {
+class Customer_Update extends CRM {
 
 	public function put( \WP_REST_Request $request ) {
 		Routes::check_nonce( $request );
@@ -35,28 +36,28 @@ class Customer_Update extends Customer {
 
 	private function update_customer( array $data, string $email ): bool {
 		$response = Request_Api::send_api(
-			$this->get_url_for_request() . '/' . rawurlencode( $email ),
+			$this->provider::BASE_URL_API . 'customers/' . rawurlencode( $email ),
 			wp_json_encode( $this->get_body( $data ) ),
 			'PUT',
-			$this->get_headers()
+			$this->provider->get_headers()
 		);
-		$this->check_response( $response );
+		$this->provider->check_response( $response );
 
 		return isset( $response['data']['status'] ) && $response['data']['status'] === 'ok';
 	}
 
 	private function send_join_link( string $email ) {
 		$response = Request_Api::send_api(
-			$this->auth::BASE_URL_API . 'system/loginToken',
+			$this->provider::BASE_URL_API . 'system/loginToken',
 			wp_json_encode(
 				[
 					'email' => $email,
 				]
 			),
 			'POST',
-			$this->get_headers()
+			$this->provider->get_headers()
 		);
-		$this->check_response( $response );
+		$this->provider->check_response( $response );
 
 		/**
 		 * It is triggered after receiving data from panda with a generated redirect link.

@@ -4,7 +4,7 @@ export class Checks {
 	phoneTest( i ) { return /^[0-9]{6,}$/.test( i ) };
 	textTest( i ) { return /^[^\s](?=.*[\u0600-\u06FFa-zA-Z0-9])[\u0600-\u06FFa-zA-Z0-9 ]{2,100}$/.test( i ) };
 	addressTest( i ) { return /^[a-zA-Z0-9\s:#;,./"]{2,100}$/.test(i) };
-	checkPass( i ) { return /^[a-zA-Z]{6,}$/.test( i ) };
+	checkPass( i ) { return /^[a-zA-Z0-9]{6,}$/.test( i ) };
 	limitPhone( input ) {
 		const maxChars = 10;
 		const limitHandler = ( evt ) => {

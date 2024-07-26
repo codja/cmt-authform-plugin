@@ -2,6 +2,10 @@ import {Constants} from "../Constants.js";
 
 export function autoFill() {
 	const formDeposit = document.querySelector( '#rgbcode-deposit .rgbcode-authform-form' );
+	if ( ! formDeposit ) {
+		return;
+	}
+
 	const registeredUserData = formDeposit.dataset.user ?? '';
 	const params = new URLSearchParams( document.location.search );
 	let action = params.get( 'action' );

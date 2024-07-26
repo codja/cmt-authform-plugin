@@ -6,7 +6,8 @@ export class Modal {
 	defaultAction = 'forexSignup';
 
 	allowedActions = {
-		forexSignup: 'rgbcode-signup'
+		forexSignup: 'rgbcode-signup',
+		forexLogin: 'rgbcode-login'
 	}
 
 	constructor() {
@@ -19,13 +20,11 @@ export class Modal {
 	showModal( target ) {
 		this.html.style.overflow = 'hidden';
 		this.modalWrap.classList.remove( Constants.hideClass );
-		const isFirstStepDone = getCookie( Constants.cookieFirstStepName );
 		if ( target ) {
 			let modal = this.modalWrap.querySelector( `#${target}` );
-			if ( ( ! modal && target === this.allowedActions.forexSignup ) || isFirstStepDone ) {
-				target = 'rgbcode-deposit';
+			if ( modal ) {
+				modal.classList.remove( Constants.hideClass );
 			}
-			this.modalWrap.querySelector( `#${target}` ).classList.remove( Constants.hideClass );
 		}
 	}
 

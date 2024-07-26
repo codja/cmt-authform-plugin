@@ -16,11 +16,15 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		return;
 	}
 
+	const modalLogin = document.querySelector( '#rgbcode-login' );
 	const modalSignUp = document.querySelector( '#rgbcode-signup' );
 	const modalDeposit = document.querySelector( '#rgbcode-deposit' );
 
 	Constants.storage.modal = new Modal();
 
+	if ( modalLogin ) {
+		new ValidateForm( modalLogin );
+	}
 	if ( modalSignUp ) {
 		new ValidateForm( modalSignUp, true );
 	}
