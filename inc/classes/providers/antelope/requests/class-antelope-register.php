@@ -7,6 +7,12 @@ use Rgbcode_authform\interfaces\CRM_Endpoint;
 
 class Antelope_Register implements CRM_Endpoint {
 
+	const REFERRAL_PARAMS = [
+		'referral'           => 'referral',
+		'sc'                 => 'clientSource',
+		'trackingcampaignId' => 'campaignCode',
+	];
+
 	public function get_endpoint(): string {
 		return Antelope_Affiliate::BASE_URL_API . 'registerUser';
 	}
@@ -22,12 +28,10 @@ class Antelope_Register implements CRM_Endpoint {
 			'apikey'     => ANTILOPE_API_AFFILIATE_KEY,
 		];
 
-		if ( ! empty( $data['referral']['referral'] ) ) {
-			$body['referral'] = sanitize_text_field( $data['referral']['referral'] );
-		}
-
-		if ( ! empty( $data['referral']['clientSource'] ) ) {
-			$body['sc'] = sanitize_text_field( $data['referral']['clientSource'] );
+		foreach ( self::REFERRAL_PARAMS as $param => $key ) {
+			if ( ! empty( $data['referral'][ $key ] ) ) {
+				$body[ $param ] = sanitize_text_field( $data['referral'][ $key ] );
+			}
 		}
 
 		return $body;
