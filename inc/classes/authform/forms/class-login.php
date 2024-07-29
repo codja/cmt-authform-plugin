@@ -24,17 +24,8 @@ class Login extends Baseform {
 		];
 	}
 
-	public static function render_login_btn( $atts = [] ): string {
-		$id      = $atts['id'] ?? '';
-		$classes = $atts['classes'] ?? '';
-		$text    = $atts['text'] ?? '';
-
-		return sprintf(
-			'<button id="%s" class="js-rgbcode-authform js-login-btn %s" data-target="rgbcode-login">%s</button>',
-			esc_attr( $id ),
-			esc_attr( $classes ),
-			esc_html( $text ),
-		);
+	public function render_login_btn( $atts = [] ): string {
+		return $this->shortcode_btn( 'login', $atts );
 	}
 
 }

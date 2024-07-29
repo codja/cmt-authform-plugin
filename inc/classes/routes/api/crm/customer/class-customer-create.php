@@ -73,28 +73,36 @@ class Customer_Create extends CRM {
 			return null;
 		}
 
+		// Decode the URL-encoded 'referral' string and split it into key-value pairs
 		$referral_src = urldecode( $referral_src );
 		$referral_arr = explode( '|', $referral_src );
 
+		// Initialize an array to store the parsed referral data
 		$referral_data = [];
 		foreach ( $referral_arr as $item ) {
 			$param = explode( '=', $item );
 
-			if ( $param ) {
+			// Only add valid key-value pairs to the referral data array
+			if ( ! empty( $param[0] && ! empty( $param[1] ) ) ) {
 				$referral_data[ $param[0] ] = $param[1] ?? '';
 			}
 		}
 
+		// Add the 'cid' to the referral data if it exists
 		if ( $cid ) {
 			$referral_data['cid'] = $cid;
 		}
 
+		// Extract and remove 'clientSource' from referral data
 		$client_source = $referral_data['clientSource'] ?? '';
-
 		if ( isset( $referral_data['clientSource'] ) ) {
 			unset( $referral_data['clientSource'] );
 		}
 
+		// Extract 'campaign_code' from referral data
+		$campaign_code = $referral_data['campaign_code'] ?? '';
+
+		// Rebuild the 'referral' string from the remaining referral data
 		$referral_back = [];
 		foreach ( $referral_data as $key => $value ) {
 			$referral_back[] = "$key=$value";
@@ -102,8 +110,9 @@ class Customer_Create extends CRM {
 		$referral = implode( '|', $referral_back );
 
 		return [
-			'clientSource' => $client_source,
-			'referral'     => $referral,
+			'clientSource'       => $client_source,
+			'trackingcampaignId' => $campaign_code,
+			'referral'           => $referral,
 		];
 	}
 
