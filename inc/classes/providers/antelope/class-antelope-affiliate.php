@@ -29,12 +29,12 @@ class Antelope_Affiliate extends Antelope {
 		$this->login    = new Antelope_Login();
 	}
 
-	public function send_request( CRM_Endpoint $endpoint, array $body, $method = 'POST' ) {
+	public function send_request( CRM_Endpoint $endpoint, array $body = [], $method = 'POST' ) {
 
 		return Request_Api::send_api(
 			$endpoint->get_endpoint() . '?' . http_build_query( $body ),
 			[],
-			'POST',
+			$method,
 			$this->get_headers()
 		);
 	}

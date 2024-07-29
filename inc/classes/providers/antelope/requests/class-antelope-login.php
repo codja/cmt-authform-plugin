@@ -24,7 +24,7 @@ class Antelope_Login implements CRM_Endpoint {
 
 		return [
 			'success' => $response['success'] ?? false,
-			'link'    => $response['result']['brokerLoginUrl'] ?? '',
+			'link'    => $response['result'] ?? '',
 		];
 	}
 
@@ -58,7 +58,15 @@ class Antelope_Login implements CRM_Endpoint {
 			wp_send_json_error( esc_html__( 'Incorrect Data', 'rgbcode-authform' ) );
 		}
 
-		return $user_data;
+		// get autologin link(regenerated)
+		$regenerate_autologin = new Regenerate_Autologin();
+		$regenerate_data      = $provider->send_request(
+			$regenerate_autologin,
+			$regenerate_autologin->get_body( [ 'user_id' => $user_id ] )
+		);
+		$provider->check_response( $regenerate_data );
+
+		return $regenerate_data;
 	}
 
 }
