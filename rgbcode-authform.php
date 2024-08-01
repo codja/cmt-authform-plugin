@@ -2,7 +2,7 @@
 /**
 * Plugin Name: Rgbcode Authform
 * Plugin URI: https://rgbcode.com/
-* Description: Forms for registering and login in panda.
+* Description: Forms for registering and login in crm.
 * Author: rgbcode
 * Author URI: https://rgbcode.com/
 * Version: 1.0.1
@@ -16,7 +16,6 @@ use Rgbcode_authform\classes\ajax\Ajax;
 use Rgbcode_authform\classes\authform\Authform;
 use Rgbcode_authform\classes\core\Error;
 use Rgbcode_authform\classes\core\Setup;
-use Rgbcode_authform\classes\Endpoint;
 use Rgbcode_authform\classes\plugins\ACF;
 use Rgbcode_authform\classes\plugins\elementor\Elementor;
 use Rgbcode_authform\classes\routes\Routes;
@@ -42,7 +41,6 @@ define( 'RGBCODE_AUTHFORM_PARTIALS', RGBCODE_AUTHFORM_PLUGIN_DIR . 'partials' );
 define( 'RGBCODE_AUTHFORM_IMAGES_DIR', RGBCODE_AUTHFORM_PLUGIN_DIR . 'assets/img' );
 
 require_once RGBCODE_AUTHFORM_PLUGIN_DIR . 'inc/autoload.php';
-require_once RGBCODE_AUTHFORM_PLUGIN_DIR . 'inc/functions.php';
 
 register_activation_hook( __FILE__, [ __NAMESPACE__ . '\\Rgbcode_authform', 'activation' ] );
 register_deactivation_hook( __FILE__, [ __NAMESPACE__ . '\\Rgbcode_authform', 'deactivation' ] );
@@ -62,7 +60,6 @@ final class Rgbcode_Authform {
 		new Authform();
 		new Ajax();
 		new Routes();
-//		new Endpoint();
 
 		load_plugin_textdomain(
 			'rgbcode-authform',
