@@ -11,6 +11,7 @@ class Antelope_Register implements CRM_Endpoint {
 		'referral'           => 'referral',
 		'sc'                 => 'clientSource',
 		'trackingcampaignId' => 'campaignCode',
+		'p6'                 => 'p6',
 	];
 
 	public function get_endpoint(): string {

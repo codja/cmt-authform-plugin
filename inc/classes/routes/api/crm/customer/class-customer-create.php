@@ -101,6 +101,7 @@ class Customer_Create extends CRM {
 
 		// Extract 'campaign_code' from referral data
 		$campaign_code = $referral_data['campaign_code'] ?? '';
+		$p6            = $referral_data['p6'] ?? '';
 
 		// Rebuild the 'referral' string from the remaining referral data
 		$referral_back = [];
@@ -110,9 +111,10 @@ class Customer_Create extends CRM {
 		$referral = implode( '|', $referral_back );
 
 		return [
-			'clientSource'       => $client_source,
-			'trackingcampaignId' => $campaign_code,
-			'referral'           => $referral,
+			'clientSource' => $client_source,
+			'campaignCode' => $campaign_code,
+			'p6'           => $p6,
+			'referral'     => $referral,
 		];
 	}
 
