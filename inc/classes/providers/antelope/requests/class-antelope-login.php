@@ -60,11 +60,13 @@ class Antelope_Login implements CRM_Endpoint {
 
 		// get autologin link(regenerated)
 		$regenerate_autologin = new Regenerate_Autologin();
-		$regenerate_data      = $provider->send_request(
-			$regenerate_autologin,
-			$regenerate_autologin->get_body( [ 'user_id' => $user_id ] )
+		$regenerate_data      = $antelope_crm->send_request(
+			$regenerate_autologin->get_endpoint(),
+			$regenerate_autologin->get_body( [ 'user_id' => $user_id ] ),
+			'POST',
+			true
 		);
-		$provider->check_response( $regenerate_data );
+		$antelope_crm->check_response( $regenerate_data );
 
 		return $regenerate_data;
 	}

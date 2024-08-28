@@ -19,14 +19,18 @@ class Antelope_CRM extends Antelope {
 	 *
 	 * @return false|mixed
 	 */
-	public function send_request( $endpoint, array $body, $method = 'POST' ) {
+	public function send_request( $endpoint, array $body, $method = 'POST', bool $body_query = false ) {
 		if ( ! $endpoint || ! $body ) {
 			return false;
 		}
 
+		$base_url = self::BASE_URL_API . $endpoint;
+		$url      = $body_query ? $base_url . '?' . http_build_query( $body ) : $base_url;
+		$body     = $body_query ? [] : wp_json_encode( $body );
+
 		return Request_Api::send_api(
-			self::BASE_URL_API . $endpoint,
-			wp_json_encode( $body ),
+			$url,
+			$body,
 			$method,
 			$this->get_headers()
 		);
