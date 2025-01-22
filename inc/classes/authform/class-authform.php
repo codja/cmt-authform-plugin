@@ -2,9 +2,11 @@
 
 namespace Rgbcode_authform\classes\authform;
 
+use Rgbcode_authform\classes\authform\forms\Deposit;
 use Rgbcode_authform\classes\authform\forms\Login;
 use Rgbcode_authform\classes\authform\forms\Sign_Up;
 use Rgbcode_authform\classes\core\Error;
+use Rgbcode_authform\classes\CRM_DB;
 use Rgbcode_authform\traits\Singleton;
 
 class Authform {
@@ -23,6 +25,7 @@ class Authform {
 		add_action( 'wp_footer', [ $this, 'render_forms' ] );
 		add_shortcode( 'authform-signup', [ Sign_Up::instance(), 'render_signup_btn' ] );
 		add_shortcode( 'authform-login', [ Login::instance(), 'render_login_btn' ] );
+		add_shortcode( 'authform-deposit', [ Deposit::instance(), 'render_form' ] );
 	}
 
 	public function render_forms() {
@@ -50,5 +53,56 @@ class Authform {
 
 	private function get_actual_forms(): array {
 		return self::ACTIVE_FORMS;
+	}
+
+	/**
+	 * Checks and retrieves user registration data based on provided parameters.
+	 *
+	 * @return array|null User data array if valid, null otherwise.
+	 */
+	public function get_check_register_user(): ?array {
+		// Sanitize input parameters
+		$email      = sanitize_email( $_GET['emailaddress'] ?? '' ); // phpcs:ignore
+		$account_no = sanitize_text_field( $_GET['account_no'] ?? '' ); // phpcs:ignore
+
+		// Validate email and account number
+		if ( ! $email || ! $account_no ) {
+			return null;
+		}
+
+		// Retrieve user registration data from the database
+		$result = CRM_DB::instance()->get_user_register_data(
+			'email',
+			$email,
+			'email, customer_id, birth_date, address, city, post_code'
+		);
+
+		if ( empty( $result ) || ! is_array( $result ) ) {
+			return null;
+		}
+
+		// Extract the customer ID from the result
+		$db_customer_id = $result['customer_id'] ?? null;
+
+		// Validate customer ID and account number match
+		if ( ! $db_customer_id || ! $this->is_account_no_match( (string) $db_customer_id, $account_no ) ) {
+			return null;
+		}
+
+		unset( $result['customer_id'] );
+
+		return $result;
+	}
+
+	/**
+	 * Validates if the account number matches the user ID.
+	 *
+	 * @param string $user_id    The customer ID retrieved from the database.
+	 * @param string $account_no The account number provided by the user.
+	 *
+	 * @return bool True if the IDs match, false otherwise.
+	 */
+	private function is_account_no_match( string $user_id, string $account_no ): bool {
+		return $user_id === $account_no;
 	}
 }

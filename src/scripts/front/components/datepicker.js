@@ -4,23 +4,36 @@ import localeEs from 'air-datepicker/locale/es';
 import localeAr from 'air-datepicker/locale/ar';
 import {Constants} from "../Constants.js";
 
-export function initDatepicker() {
+export function initDatepicker( selector = '#rgbcode-authform-birthday' ) {
+	if ( typeof AirDatepicker === 'undefined' ) {
+		return;
+	}
+
+	const inputElement = document.querySelector(selector);
+	if ( ! inputElement ) {
+		return;
+	}
+
+	/**
+	 * Determines the locale for the datepicker based on the current language setting.
+	 *
+	 * @returns {object} - The locale object for AirDatepicker.
+	 */
 	const getLocale = () => {
 		if ( ! rgbcode_authform ) {
 			return localeEn;
 		}
 
-		switch ( rgbcode_authform.lang ) {
-			case 'es':
-				return localeEs;
-			case 'ar':
-				return localeAr;
-			default:
-				return localeEn;
-		}
-	}
+		const locales = {
+			es: localeEs,
+			ar: localeAr,
+		};
+
+		return locales[ rgbcode_authform.lang ] || localeEn;
+	};
+
 	// https://air-datepicker.com/docs
-	Constants.storage.dp = new AirDatepicker('#rgbcode-authform-birthday', {
+	Constants.storage.dp = new AirDatepicker( selector, {
 		isMobile: true,
 		autoClose: true,
 		dateFormat: 'dd/MM/yyyy',

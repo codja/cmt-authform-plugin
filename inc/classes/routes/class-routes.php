@@ -21,10 +21,10 @@ class Routes {
 							'methods'  => WP_REST_SERVER::CREATABLE,
 							'callback' => [ new Customer_Create(), 'post' ],
 						],
-						//                      [
-						//                          'methods'  => 'PUT',
-						//                          'callback' => [ new Customer_Update(), 'put' ],
-						//                      ],
+						[
+							'methods'  => 'PUT',
+							'callback' => [ new Customer_Update(), 'put' ],
+						],
 					]
 				);
 			}
