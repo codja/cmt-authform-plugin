@@ -2,62 +2,48 @@
 
 namespace Rgbcode_authform\classes\routes\api\crm\customer;
 
-use Rgbcode_authform\classes\helpers\Request_Api;
-use Rgbcode_authform\classes\routes\api\crm\CRM;
+use Rgbcode_authform\classes\CRM_DB;
+use Rgbcode_authform\classes\providers\antelope\Antelope_CRM;
 use Rgbcode_authform\classes\routes\Routes;
 
-class Customer_Update extends CRM {
+class Customer_Update {
 
+	/**
+	 * Handles a PUT request to update user data and generate a redirect link.
+	 *
+	 * @param \WP_REST_Request $request The REST API request object.
+	 *
+	 * @return void
+	 */
 	public function put( \WP_REST_Request $request ) {
 		Routes::check_nonce( $request );
 
-		$data  = $request->get_params();
-		$email = sanitize_email( $data['email'] ?? '' );
+		$data        = $request->get_params();
+		$email       = sanitize_email( $data['email'] ?? '' );
+		$customer_id = sanitize_text_field( $data['customerID'] ?? '' );
 
-		if ( ! $email ) {
-			wp_send_json_error( __( 'Email is required', 'rgbcode-authform' ) );
+		if ( ! $email || ! $customer_id) {
+			wp_send_json_error( __( 'Required data not transmitted', 'rgbcode-authform' ) );
 		}
 
-		if ( $this->update_customer( $data, $email ) ) {
-			$this->send_join_link( $email );
+		// Fetch user registration data from the CRM database.
+		$user_data = CRM_DB::instance()->get_user_register_data(
+			'email',
+			$email,
+			'customer_id, accountid'
+		);
+
+		// Extract database values.
+		$db_customer_id     = $user_data['customer_id'] ?? '';
+		$data['account_id'] = $user_data['accountid'] ?? '';
+		if ( $db_customer_id !== $customer_id || ! $data['account_id'] ) {
+			wp_send_json_error( __( 'User not found', 'rgbcode-authform' ) );
 		}
-	}
 
-	protected function get_body( array $data ): array {
-		return [
-			'currency'   => sanitize_text_field( $data['currency'] ?? '' ),
-			'city'       => sanitize_text_field( trim( $data['city'] ?? '' ) ),
-			'address'    => sanitize_text_field( trim( $data['address'] ?? '' ) ),
-			'postalCode' => sanitize_text_field( trim( $data['postcode'] ?? '' ) ),
-			'country'    => sanitize_text_field( $data['country'] ?? '' ),
-			'birthday'   => $this->convert_date( $data['birthday'] ?? '' ),
-		];
-	}
+		$provider = new Antelope_CRM();
+		$response = $provider->send_request( $provider->update->get_endpoint(), $provider->update->get_body( $data ), 'PUT' );
 
-	private function update_customer( array $data, string $email ): bool {
-		$response = Request_Api::send_api(
-			$this->provider::BASE_URL_API . 'customers/' . rawurlencode( $email ),
-			wp_json_encode( $this->get_body( $data ) ),
-			'PUT',
-			$this->provider->get_headers()
-		);
-		$this->provider->check_response( $response );
-
-		return isset( $response['data']['status'] ) && $response['data']['status'] === 'ok';
-	}
-
-	private function send_join_link( string $email ) {
-		$response = Request_Api::send_api(
-			$this->provider::BASE_URL_API . 'system/loginToken',
-			wp_json_encode(
-				[
-					'email' => $email,
-				]
-			),
-			'POST',
-			$this->provider->get_headers()
-		);
-		$this->provider->check_response( $response );
+		$provider->check_response( $response );
 
 		/**
 		 * It is triggered after receiving data from panda with a generated redirect link.
@@ -70,31 +56,21 @@ class Customer_Update extends CRM {
 			'authform_link_for_redirect_after_deposit',
 			[
 				'success' => true,
-				'link'    => Request_Api::get_response_link( $response['data']['url'] ?? '' ),
+				'link'    => $this->create_link( $email, $customer_id ),
 			]
 		);
 
 		wp_send_json( $result );
 	}
 
-	/*
-	 * Expected incoming format DD/MM/YYY
-	 * Convert date to format YYYY-MM-DD
-	*/
-	private function convert_date( string $date ): ?string {
-		if ( ! $date ) {
-			return null;
-		}
+	private function create_link( string $email, string $customer_id ): string {
 
-		$date = sanitize_text_field( $date );
-		$date = explode( '/', $date );
-
-		if ( ! $date || empty( $date[0] ) || empty( $date[1] ) || empty( $date[2] ) ) {
-			wp_send_json_error( __( 'Error with date (birthday) format', 'rgbcode-authform' ) );
-		}
-
-		$date = "{$date[2]}/{$date[1]}/{$date[0]}";
-
-		return wp_date( 'Y-m-d', strtotime( $date ) );
+		return add_query_arg(
+			[
+				'emailaddress' => $email,
+				'account_no'   => $customer_id,
+			],
+			'https://services.cmtrading.com/autologin'
+		);
 	}
 }

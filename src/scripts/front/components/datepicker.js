@@ -32,6 +32,10 @@ export function initDatepicker( selector = '#rgbcode-authform-birthday' ) {
 		return locales[ rgbcode_authform.lang ] || localeEn;
 	};
 
+	const currentDate = new Date();
+	const defaultDate = new Date();
+	defaultDate.setFullYear(currentDate.getFullYear() - 18);
+
 	// https://air-datepicker.com/docs
 	Constants.storage.dp = new AirDatepicker( selector, {
 		isMobile: true,
@@ -39,6 +43,7 @@ export function initDatepicker( selector = '#rgbcode-authform-birthday' ) {
 		dateFormat: 'dd/MM/yyyy',
 		buttons: ['today', 'clear'],
 		locale: getLocale(),
+		startDate: defaultDate,
 		onSelect( {date, formattedDate, datepicker} ) {
 			datepicker.$el.dispatchEvent( new Event( 'change' ) );
 		}

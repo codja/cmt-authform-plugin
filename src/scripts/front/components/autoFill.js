@@ -39,6 +39,9 @@ export function autoFill() {
 					case 'email':
 						Constants.storage.clientEmail = newValue;
 						break;
+					case 'customer_id':
+						Constants.storage.customerID = newValue;
+						break;
 					case 'iso':
 						fillInput( '#rgbcode-authform-deposit-country', newValue, 'change' );
 						break;

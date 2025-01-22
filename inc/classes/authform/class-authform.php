@@ -89,8 +89,6 @@ class Authform {
 			return null;
 		}
 
-		unset( $result['customer_id'] );
-
 		return $result;
 	}
 

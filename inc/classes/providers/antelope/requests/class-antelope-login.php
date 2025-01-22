@@ -8,6 +8,7 @@ use Rgbcode_authform\interfaces\CRM_Endpoint;
 class Antelope_Login implements CRM_Endpoint {
 
 	const REDIRECT_BASE_URL = 'https://myaccount.cmtrading.com/#/authentication/auth/';
+
 	const DEFAULT_LINK = 'https://myaccount.cmtrading.com/#/login';
 
 	public function get_result( $response, $request ): array {
