@@ -62,7 +62,7 @@ class Authform {
 	 */
 	public function get_check_register_user(): ?array {
 		// Sanitize input parameters
-		$email      = sanitize_email( $_GET['emailaddress'] ?? '' ); // phpcs:ignore
+		$email      = sanitize_email( $_GET['email'] ?? '' ); // phpcs:ignore
 		$account_no = sanitize_text_field( $_GET['account_no'] ?? '' ); // phpcs:ignore
 
 		// Validate email and account number
