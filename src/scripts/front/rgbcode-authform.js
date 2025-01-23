@@ -37,10 +37,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		initFormSubmit();
 	} );
 
-	autoFill();
 	initDatepicker();
 	initTogglePass();
-	initCountryCurrency();
+	//initCountryCurrency();
 	new EmailSuggestions();
 	customSelect();
+	autoFill();
 } );

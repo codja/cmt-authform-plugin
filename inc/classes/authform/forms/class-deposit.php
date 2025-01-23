@@ -17,20 +17,65 @@ class Deposit extends Baseform {
 	public function get_template_data(): array {
 		return [
 			'title_block'      => get_field( 'rgbc_authform_deposit_title_block', 'option' ),
-			'country'          => get_field( 'rgbc_authform_deposit_country', 'option' ),
-			'currency'         => get_field( 'rgbc_authform_deposit_currency', 'option' ),
+			//'country'          => get_field( 'rgbc_authform_deposit_country', 'option' ),
+			//'currency'         => get_field( 'rgbc_authform_deposit_currency', 'option' ),
 			'city'             => get_field( 'rgbc_authform_deposit_city', 'option' ),
 			'address'          => get_field( 'rgbc_authform_deposit_address', 'option' ),
 			'postcode'         => get_field( 'rgbc_authform_deposit_postcode', 'option' ),
 			'birthday'         => get_field( 'rgbc_authform_deposit_birthday', 'option' ),
 			'submit'           => get_field( 'rgbc_authform_deposit_submit', 'option' ),
 			'logo'             => get_field( 'rgbc_authform_logo', 'option' ),
-			'whatsapp'         => $this->get_whatsapp_data(),
+			//'whatsapp'         => $this->get_whatsapp_data(),
 			'visibility_class' => Authform::HIDE_CLASS,
-			'countries'        => $this->get_countries_with_currency(),
-			'currencies'       => Location::DEFAULT_CURRENCIES,
-			'registered_user'  => Authform::instance()->get_registered_user(),
+			//'countries'        => $this->get_countries_with_currency(),
+			//'currencies'       => Location::DEFAULT_CURRENCIES,
+			'registered_user'  => Authform::instance()->get_check_register_user(),
 		];
+	}
+
+	/**
+	 * Renders the authentication form shortcode.
+	 *
+	 * Usage: [authform-deposit is_visible="true"]
+	 *
+	 * @param array $atts Shortcode attributes.
+	 *
+	 * @return string Rendered HTML form output.
+	 */
+	public function render_form( array $atts = [] ): string {
+		// Define default attributes
+		$default_atts = [
+			'is_visible' => true,
+			'is_modal'   => false,
+		];
+
+		// Merge user-provided attributes with defaults
+		$atts = shortcode_atts( $default_atts, $atts, 'authform-deposit' );
+
+		// Sanitize attributes
+		$atts['is_visible'] = filter_var( $atts['is_visible'], FILTER_VALIDATE_BOOLEAN );
+		$atts['is_modal']   = filter_var( $atts['is_modal'], FILTER_VALIDATE_BOOLEAN );
+
+		// Start output buffering
+		ob_start();
+
+		// Prepare data for the template
+		$args = $this->get_template_data() + $atts;
+		if ( empty( $args['registered_user'] ) ) {
+			echo esc_html__( 'User not found.', 'rgbc' );
+			return ob_get_clean();
+		}
+
+		// Include the template
+		$template_path = RGBCODE_AUTHFORM_TEMPLATES . '/' . self::TEMPLATE_NAME . '.php';
+		if ( file_exists( $template_path ) ) {
+			include $template_path;
+		} else {
+			echo esc_html__( 'Template not found.', 'rgbc' );
+		}
+
+		// Return the rendered content
+		return ob_get_clean();
 	}
 
 	private function get_countries_with_currency(): array {

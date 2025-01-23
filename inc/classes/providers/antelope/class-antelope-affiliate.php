@@ -2,6 +2,7 @@
 
 namespace Rgbcode_authform\classes\providers\antelope;
 
+use Rgbcode_authform\classes\core\Error;
 use Rgbcode_authform\classes\helpers\Request_Api;
 use Rgbcode_authform\classes\providers\antelope\requests\Antelope_Login;
 use Rgbcode_authform\classes\providers\antelope\requests\Antelope_Register;

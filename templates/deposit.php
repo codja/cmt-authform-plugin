@@ -1,9 +1,13 @@
 <?php
+	$is_visible       = $args['is_visible'] ?? false;
+	$is_modal         = $args['is_modal'] ?? false;
 	$visibility_class = $args['visibility_class'] ?? '';
 	$registered_user  = ! empty( $args['registered_user'] ) ? wp_json_encode( $args['registered_user'] ) : '';
 ?>
-<div class="rgbcode-authform-modal <?php echo esc_attr( $visibility_class ); ?>" id="rgbcode-deposit">
+<div class="rgbcode-authform-modal <?php echo esc_attr( $is_visible ? '' : $visibility_class ); ?>" id="rgbcode-deposit">
+	<?php if ( $is_modal ) : ?>
 	<button class="rgbcode-authform-modal__close rgbcode-authform-close" type="button"></button>
+	<?php endif; ?>
 	<form class="rgbcode-authform-form" data-user="<?php echo esc_attr( $registered_user ); ?>">
 
 		<?php

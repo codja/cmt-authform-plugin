@@ -101,6 +101,7 @@ export function initFormSubmit() {
 			const savedEmail = getCookie( Constants.cookieUserEmail );
 
 			data.email = Constants.storage.clientEmail ?? savedEmail;
+			data.customerID = Constants.storage.customerID ?? '';
 			submitter.classList.add( 'rgbcode-authform-button_loader' );
 			submitter.disabled = true;
 

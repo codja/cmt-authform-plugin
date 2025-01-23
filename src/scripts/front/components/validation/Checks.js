@@ -18,16 +18,29 @@ export class Checks {
 		input.addEventListener( 'input', limitHandler );
 	}
 	checkCurrency( string ) { return string.length === 3 }
+
 	checkAge( dateString ) {
-		const splitDate = dateString.split( '/' );
-		// Convert the date string to a Date object
-		const dob = new Date( splitDate[2], splitDate[1], splitDate[0] );
-		// Calculate the age in milliseconds
-		const ageInMs = Date.now() - dob.getTime();
+		// Split the date string into day, month, and year components
+		const [day, month, year] = dateString.split( '/' ).map( Number );
+
+		// Create a Date object for the given date of birth
+		const dob = new Date( year, month - 1, day ); // Month is zero-based in JavaScript
+		const today = new Date();
+
 		// Calculate the age in years
-		const ageInYears = ageInMs / (1000 * 60 * 60 * 24 * 365.25);
-		// Check if the age is greater than or equal to 18
-		return ageInYears >= 18 && ageInYears <= 100;
+		let age = today.getFullYear() - dob.getFullYear();
+
+		// Check if the birthday has passed this year
+		const isBirthdayPassed =
+			today.getMonth() > dob.getMonth() ||
+			(today.getMonth()===dob.getMonth() && today.getDate() >= dob.getDate());
+
+		if ( ! isBirthdayPassed ) {
+			age--; // Decrease age by 1 if the birthday has not yet occurred this year
+		}
+
+		// Return true if age is between 18 and 100 (inclusive)
+		return age >= 18 && age <= 100;
 	}
 
 }
