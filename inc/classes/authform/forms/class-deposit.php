@@ -59,10 +59,16 @@ class Deposit extends Baseform {
 		// Start output buffering
 		ob_start();
 
+		printf( '<div id="rgbcode-authform" class="rgbcode-authform-back">' );
+
 		// Prepare data for the template
 		$args = $this->get_template_data() + $atts;
 		if ( empty( $args['registered_user'] ) ) {
-			echo esc_html__( 'User not found.', 'rgbc' );
+			printf(
+				'<p style="color:white">%s</p>',
+				esc_html__( 'User not found.', 'rgbc' )
+			);
+
 			return ob_get_clean();
 		}
 
@@ -73,6 +79,8 @@ class Deposit extends Baseform {
 		} else {
 			echo esc_html__( 'Template not found.', 'rgbc' );
 		}
+
+		printf( '</div>' );
 
 		// Return the rendered content
 		return ob_get_clean();
