@@ -27,6 +27,10 @@ export function initFlagSelect() {
 		}
 
 		const countrySelect = modalDeposit.querySelector( '#rgbcode-authform-deposit-country' );
+		if ( ! countrySelect ) {
+			return;
+		}
+
 		countrySelect.value = country;
 		countrySelect.dispatchEvent( new Event( 'change' ) );
 	}
