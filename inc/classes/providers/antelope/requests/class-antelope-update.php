@@ -15,14 +15,14 @@ class Antelope_Update implements CRM_Endpoint {
 	public function get_body( $data ): array {
 		$city    = sanitize_text_field( trim( $data['city'] ?? '' ) );
 		$address = sanitize_text_field( trim( $data['address'] ?? '' ) );
-		$poBox   = sanitize_text_field( trim( $data['postcode'] ?? '' ) );
+		$zip     = sanitize_text_field( trim( $data['postcode'] ?? '' ) );
 
 		return [
 			'id'          => absint( $data['account_id'] ?? 0 ),
 			'city'        => $city,
 			'address'     => $address,
-			'fullAddress' => trim("$city $address $poBox"),
-			'poBox'       => $poBox,
+			'fullAddress' => trim("$city $address $zip"),
+			'zip'         => $zip,
 			'dateOfBirth' => $this->convert_date( $data['birthday'] ?? '' ),
 		];
 	}
