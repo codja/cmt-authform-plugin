@@ -20,13 +20,14 @@ class Antelope_Register implements CRM_Endpoint {
 
 	public function get_body( $data ): array {
 		$body = [
-			'firstname'  => sanitize_text_field( $data['firstname'] ?? '' ),
-			'lastname'   => sanitize_text_field( $data['lastname'] ?? '' ),
-			'email'      => sanitize_email( $data['email'] ?? '' ),
-			'telephone'  => sanitize_text_field( ( $data['phonecountry'] ?? '' ) . ( $data['phone'] ?? '' ) ),
-			'countryiso' => sanitize_text_field( $data['iso'] ?? '' ),
-			'password'   => sanitize_text_field( $data['password'] ?? '' ),
-			'apikey'     => ANTILOPE_API_AFFILIATE_KEY,
+			'firstname'   => sanitize_text_field( $data['firstname'] ?? '' ),
+			'lastname'    => sanitize_text_field( $data['lastname'] ?? '' ),
+			'email'       => sanitize_email( $data['email'] ?? '' ),
+			'telephone'   => sanitize_text_field( ( $data['phonecountry'] ?? '' ) . ( $data['phone'] ?? '' ) ),
+			'countryiso'  => sanitize_text_field( $data['iso'] ?? '' ),
+			'languageiso' => sanitize_text_field( $data['language'] ?? '' ),
+			'password'    => sanitize_text_field( $data['password'] ?? '' ),
+			'apikey'      => ANTILOPE_API_AFFILIATE_KEY,
 		];
 
 		foreach ( self::REFERRAL_PARAMS as $param => $key ) {

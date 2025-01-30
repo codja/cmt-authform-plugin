@@ -30,7 +30,7 @@ class Customer_Create extends CRM {
 
 	protected function get_body( array $data ): array {
 		$data['agree']    = $this->get_tcc_checked( sanitize_text_field( $data['agree'] ?? '' ) );
-		$data['lang']     = $this->get_site_language();
+		$data['language'] = $this->get_site_language();
 		$data['referral'] = $this->extract_referral_data( $data );
 
 		$result = $this->provider->register->get_body( $data );
@@ -49,16 +49,18 @@ class Customer_Create extends CRM {
 		$language = get_field( 'rgbc_authform_lang', 'option' );
 
 		if ( ! $language ) {
-			return 'enu';
+			return 'en';
 		}
 
-		$convert = [
-			'en' => 'enu',
-			'ar' => 'ara',
-			'es' => 'spa',
-		];
-
-		return $convert[ $language ] ?? 'enu';
+		return $language;
+//
+//		$convert = [
+//			'en' => 'enu',
+//			'ar' => 'ara',
+//			'es' => 'spa',
+//		];
+//
+//		return $convert[ $language ] ?? 'enu';
 	}
 
 	private function get_tcc_checked( string $agree ): bool {
