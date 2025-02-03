@@ -17,7 +17,7 @@ class Deposit extends Baseform {
 	public function get_template_data(): array {
 		return [
 			'title_block'      => get_field( 'rgbc_authform_deposit_title_block', 'option' ),
-			//'country'          => get_field( 'rgbc_authform_deposit_country', 'option' ),
+			'country'          => get_field( 'rgbc_authform_deposit_country', 'option' ),
 			//'currency'         => get_field( 'rgbc_authform_deposit_currency', 'option' ),
 			'city'             => get_field( 'rgbc_authform_deposit_city', 'option' ),
 			'address'          => get_field( 'rgbc_authform_deposit_address', 'option' ),
@@ -27,9 +27,8 @@ class Deposit extends Baseform {
 			'logo'             => get_field( 'rgbc_authform_logo', 'option' ),
 			//'whatsapp'         => $this->get_whatsapp_data(),
 			'visibility_class' => Authform::HIDE_CLASS,
-			//'countries'        => $this->get_countries_with_currency(),
+			'countries'        => $this->get_countries_with_currency(),
 			//'currencies'       => Location::DEFAULT_CURRENCIES,
-			'registered_user'  => Authform::instance()->get_check_register_user(),
 		];
 	}
 

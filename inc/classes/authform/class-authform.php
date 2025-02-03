@@ -16,16 +16,24 @@ class Authform {
 	const ACTIVE_FORMS = [
 		'signup' => 'Sign_Up',
 		'login'  => 'Login',
-//		'deposit' => 'Deposit',
+		'deposit' => 'Deposit',
 	];
 
 	const HIDE_CLASS = 'rgbcode-hidden';
+
+	const REDIRECT_LINK = 'https://myaccount.cmtrading.com/#/login';
+
+	/**
+	 * @var bool
+	 */
+	private $is_registered_user;
 
 	public function __construct() {
 		add_action( 'wp_footer', [ $this, 'render_forms' ] );
 		add_shortcode( 'authform-signup', [ Sign_Up::instance(), 'render_signup_btn' ] );
 		add_shortcode( 'authform-login', [ Login::instance(), 'render_login_btn' ] );
 		add_shortcode( 'authform-deposit', [ Deposit::instance(), 'render_form' ] );
+		$this->is_registered_user = (bool) $this->get_check_register_user();
 	}
 
 	public function render_forms() {
@@ -52,6 +60,12 @@ class Authform {
 	}
 
 	private function get_actual_forms(): array {
+		$actual_forms = self::ACTIVE_FORMS;
+
+		if ( $this->is_registered_user ) {
+			unset( $actual_forms['signup'] );
+		}
+
 		return self::ACTIVE_FORMS;
 	}
 
@@ -86,7 +100,8 @@ class Authform {
 
 		// Validate customer ID and account number match
 		if ( ! $db_customer_id || ! $this->is_account_no_match( (string) $db_customer_id, $account_no ) ) {
-			return null;
+			wp_redirect( self::REDIRECT_LINK );
+			exit;
 		}
 
 		return $result;

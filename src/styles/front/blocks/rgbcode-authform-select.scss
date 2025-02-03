@@ -1,11 +1,12 @@
 .rgbcode-authform-select {
-	width: 90%;
-
 	&.rgbcode-active .rgbcode-authform-select__country-menu-list {
 		display: block;
 	}
 
 	&__label {
+		margin-bottom: .3em;
+		margin-top: .7em;
+		display: inline-block;
 		color: #051225;
 		font: 14px roboto,sans-serif;
 	}

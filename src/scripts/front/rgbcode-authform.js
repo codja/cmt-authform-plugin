@@ -7,7 +7,7 @@ import {ValidateForm} from "./components/validation/ValidateForm";
 import customSelect from "./components/selectList.js";
 import {initDatepicker} from "./components/datepicker.js";
 import {Constants} from "./Constants.js";
-import {autoFill} from "./components/autoFill.js";
+// import {autoFill} from "./components/autoFill.js";
 import {EmailSuggestions} from "./components/EmailSuggestions";
 import {updateNonce} from "./components/system/updateNonce.js";
 
@@ -39,8 +39,8 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 	initDatepicker();
 	initTogglePass();
-	//initCountryCurrency();
+	initCountryCurrency();
 	new EmailSuggestions();
 	customSelect();
-	autoFill();
+	// autoFill();
 } );

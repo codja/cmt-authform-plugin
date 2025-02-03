@@ -30,106 +30,94 @@
 
 		<div class="rgbcode-authform-form__inputs">
 
-			<?php
-			$default_currencies = $args['currencies'] ?? [];
-			if ( ! empty( $args['country'] ) && ! empty( $args['countries'] ) ) :
-				?>
-
-			<div class="rgbcode-authform-form__two-selects">
-
-				<div class="rgbcode-authform-select js-select-list">
-					<div class="rgbcode-authform-select__country-menu">
-						<span class="rgbcode-authform-select__label"><?php echo esc_html( $args['country'] ); ?></span>
-						<div class="rgbcode-authform-select__country-menu-current js-select-list-current"></div>
-						<div class="rgbcode-authform-select__country-menu-list js-select-list-list"></div>
-					</div>
-					<select
-						id="rgbcode-authform-deposit-country"
-						class="rgbcode-authform-select__select js-select-list-select"
-						name="country"
-						tabindex="1"
-						autocomplete="off"
-						data-default-currencies="<?php echo esc_attr( wp_json_encode( $default_currencies ) ); ?>"
-						required
-					>
-						<?php
-						foreach ( $args['countries'] as $country => $data ) :
-							$currencies = $data['currencies'] ?? '';
-							$iso        = $data['iso'] ?? '';
-							?>
-							<option
-								value="<?php echo esc_attr( $iso ); ?>"
-								<?php if ( $currencies ) : ?>
-								data-currency="<?php echo esc_attr( $currencies ); ?>"
-								<?php endif; ?>
-							><?php echo esc_html( $country ); ?></option>
-						<?php endforeach; ?>
-					</select>
-				</div>
-
-				<div class="rgbcode-authform-input rgbcode-authform-input_currency">
+			<?php if ( ! empty( $args['birthday'] ) ) : ?>
+				<div class="rgbcode-authform-input">
 					<label class="rgbcode-authform-input__label">
-						<span><?php echo esc_html( $args['currency']['label'] ?? '' ); ?></span>
-						<select
-							id="rgbcode-authform-deposit-currency"
-							name="currency"
+						<span><?php echo esc_html( $args['birthday']['label'] ?? '' ); ?></span>
+						<input
+							id="rgbcode-authform-birthday"
+							type="text"
+							name="birthday"
+							tabindex="1"
+							autocomplete="off"
+							placeholder="<?php echo esc_html( $args['birthday']['placeholder'] ?? '' ); ?>"
+							required
+						>
+					</label>
+					<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
+					<?php echo esc_html( $args['birthday']['error_text'] ?? '' ); ?>
+				</span>
+				</div>
+			<?php endif; ?>
+
+			<?php if ( ! empty( $args['address'] ) ) : ?>
+				<div class="rgbcode-authform-input">
+					<label class="rgbcode-authform-input__label">
+						<span><?php echo esc_html( $args['address']['label'] ?? '' ); ?></span>
+						<input
+							type="text"
+							name="address"
+							maxlength="50"
+							minlength="2"
 							tabindex="2"
 							autocomplete="off"
 							required
 						>
-							<?php foreach ( $default_currencies as $currency ) : ?>
-							<option
-								value="<?php echo esc_attr( $currency ); ?>">
-								<?php echo esc_html( $currency ); ?>
-							</option>
-							<?php endforeach; ?>
-						</select>
 					</label>
 					<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
-						<?php echo esc_html( $args['currency']['error_text'] ?? '' ); ?>
-					</span>
+					<?php echo esc_html( $args['address']['error_text'] ?? '' ); ?>
+				</span>
 				</div>
-			</div>
-
 			<?php endif; ?>
 
 			<?php if ( ! empty( $args['city'] ) ) : ?>
-			<div class="rgbcode-authform-input">
-				<label class="rgbcode-authform-input__label">
-					<span><?php echo esc_html( $args['city']['label'] ?? '' ); ?></span>
-					<input
-						type="text"
-						name="city"
-						maxlength="50"
-						minlength="2"
-						tabindex="3"
-						autocomplete="off"
-						required
-					>
-				</label>
-				<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
+				<div class="rgbcode-authform-input">
+					<label class="rgbcode-authform-input__label">
+						<span><?php echo esc_html( $args['city']['label'] ?? '' ); ?></span>
+						<input
+							type="text"
+							name="city"
+							maxlength="50"
+							minlength="2"
+							tabindex="3"
+							autocomplete="off"
+							required
+						>
+					</label>
+					<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
 					<?php echo esc_html( $args['city']['error_text'] ?? '' ); ?>
 				</span>
-			</div>
+				</div>
 			<?php endif; ?>
 
-			<?php if ( ! empty( $args['address'] ) ) : ?>
-			<div class="rgbcode-authform-input">
-				<label class="rgbcode-authform-input__label">
-					<span><?php echo esc_html( $args['address']['label'] ?? '' ); ?></span>
-					<input
-						type="text"
-						name="address"
-						maxlength="50"
-						minlength="2"
-						tabindex="4"
-						autocomplete="off"
-						required
-					>
-				</label>
-				<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
-					<?php echo esc_html( $args['address']['error_text'] ?? '' ); ?>
-				</span>
+			<?php
+			$default_currencies = $args['currencies'] ?? [];
+			if ( ! empty( $args['country'] ) && ! empty( $args['countries'] ) ) :
+				?>
+			<div class="rgbcode-authform-select js-select-list">
+				<div class="rgbcode-authform-select__country-menu">
+					<span class="rgbcode-authform-select__label"><?php echo esc_html( $args['country'] ); ?></span>
+					<div class="rgbcode-authform-select__country-menu-current js-select-list-current"></div>
+					<div class="rgbcode-authform-select__country-menu-list js-select-list-list"></div>
+				</div>
+				<select
+					id="rgbcode-authform-deposit-country"
+					class="rgbcode-authform-select__select js-select-list-select"
+					name="country"
+					tabindex="4"
+					autocomplete="off"
+					data-default-currencies="<?php echo esc_attr( wp_json_encode( $default_currencies ) ); ?>"
+					required
+				>
+					<?php
+					foreach ( $args['countries'] as $country => $data ) :
+						$iso = $data['iso'] ?? '';
+						?>
+						<option
+							value="<?php echo esc_attr( $iso ); ?>"
+						><?php echo esc_html( $country ); ?></option>
+					<?php endforeach; ?>
+				</select>
 			</div>
 			<?php endif; ?>
 
@@ -151,26 +139,6 @@
 					<?php echo esc_html( $args['postcode']['error_text'] ?? '' ); ?>
 				</span>
 			</div>
-			<?php endif; ?>
-
-			<?php if ( ! empty( $args['birthday'] ) ) : ?>
-				<div class="rgbcode-authform-input">
-					<label class="rgbcode-authform-input__label">
-						<span><?php echo esc_html( $args['birthday']['label'] ?? '' ); ?></span>
-						<input
-							id="rgbcode-authform-birthday"
-							type="text"
-							name="birthday"
-							tabindex="6"
-							autocomplete="off"
-							placeholder="<?php echo esc_html( $args['birthday']['placeholder'] ?? '' ); ?>"
-							required
-						>
-					</label>
-					<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
-					<?php echo esc_html( $args['birthday']['error_text'] ?? '' ); ?>
-				</span>
-				</div>
 			<?php endif; ?>
 
 		</div>

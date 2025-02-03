@@ -20,10 +20,9 @@ class Customer_Update {
 
 		$data        = $request->get_params();
 		$email       = sanitize_email( $data['email'] ?? '' );
-		$customer_id = sanitize_text_field( $data['customerID'] ?? '' );
 
-		if ( ! $email || ! $customer_id) {
-			wp_send_json_error( __( 'Required data not transmitted', 'rgbcode-authform' ) );
+		if ( empty( $email ) ) {
+			wp_send_json_error( __( 'Email is required', 'rgbcode-authform' ) );
 		}
 
 		// Fetch user registration data from the CRM database.
@@ -34,9 +33,9 @@ class Customer_Update {
 		);
 
 		// Extract database values.
-		$db_customer_id     = $user_data['customer_id'] ?? '';
+		$customer_id        = $user_data['customer_id'] ?? '';
 		$data['account_id'] = $user_data['accountid'] ?? '';
-		if ( $db_customer_id !== $customer_id || ! $data['account_id'] ) {
+		if ( ! $data['account_id']|| ! $customer_id ) {
 			wp_send_json_error( __( 'User not found', 'rgbcode-authform' ) );
 		}
 
