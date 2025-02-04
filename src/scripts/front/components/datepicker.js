@@ -33,19 +33,20 @@ export function initDatepicker( selector = '#rgbcode-authform-birthday' ) {
 	};
 
 	const currentDate = new Date();
-	const defaultDate = new Date();
-	defaultDate.setFullYear(currentDate.getFullYear() - 18);
+	const minAllowedDate = new Date();
+	minAllowedDate.setFullYear(currentDate.getFullYear() - 18); // Restriction 18 years ago
 
 	// https://air-datepicker.com/docs
-	Constants.storage.dp = new AirDatepicker( selector, {
+	Constants.storage.dp = new AirDatepicker(selector, {
 		isMobile: true,
 		autoClose: true,
 		dateFormat: 'dd/MM/yyyy',
 		buttons: ['today', 'clear'],
 		locale: getLocale(),
-		startDate: defaultDate,
-		onSelect( {date, formattedDate, datepicker} ) {
-			datepicker.$el.dispatchEvent( new Event( 'change' ) );
+		startDate: minAllowedDate, // Set the start date to the minimum age
+		maxDate: minAllowedDate, // We prohibit the selection of dates under 18 years old
+		onSelect({ date, formattedDate, datepicker }) {
+			datepicker.$el.dispatchEvent(new Event('change'));
 		}
-	} );
+	});
 }
