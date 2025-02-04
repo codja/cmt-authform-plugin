@@ -3,6 +3,7 @@
 namespace Rgbcode_authform\classes\authform\forms;
 
 use Rgbcode_authform\classes\authform\Authform;
+use Rgbcode_authform\classes\helpers\Helpers;
 use Rgbcode_authform\classes\helpers\Location;
 use Rgbcode_authform\traits\Singleton;
 
@@ -89,12 +90,12 @@ class Deposit extends Baseform {
 	}
 
 	private function get_countries_with_currency(): array {
-		$countries_with_custom_currency = $this->countries_with_custom_currency();
+//		$countries_with_custom_currency = $this->countries_with_custom_currency();
 
 		$countries = [];
 		foreach ( Location::COUNTRIES as $iso => $country ) {
 			$countries[ $country['name'] ] = [
-				'currencies' => key_exists( $country['name'], $countries_with_custom_currency ) ? $countries_with_custom_currency[ $country['name'] ] : '',
+//				'currencies' => key_exists( $country['name'], $countries_with_custom_currency ) ? $countries_with_custom_currency[ $country['name'] ] : '',
 				'iso'        => $iso,
 			];
 		}
@@ -102,8 +103,7 @@ class Deposit extends Baseform {
 	}
 
 	private function countries_with_custom_currency(): array {
-		$raw_countries = get_field( 'rgbc_authform_currencies', 'option' );
-
+		$raw_countries = Helpers::get_array( get_field( 'rgbc_authform_currencies', 'option' ) ?? [] );
 		if ( ! $raw_countries ) {
 			return [];
 		}

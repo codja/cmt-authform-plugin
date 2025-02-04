@@ -16,7 +16,7 @@ class Authform {
 	const ACTIVE_FORMS = [
 		'signup' => 'Sign_Up',
 		'login'  => 'Login',
-		'deposit' => 'Deposit',
+//		'deposit' => 'Deposit',
 	];
 
 	const HIDE_CLASS = 'rgbcode-hidden';
@@ -44,7 +44,7 @@ class Authform {
 
 		printf(
 			'<div id="rgbcode-authform" class="rgbcode-authform-back %s">',
-			esc_attr( $this->registered_user ? '' : self::HIDE_CLASS )
+			esc_attr( self::HIDE_CLASS )
 		);
 
 		foreach ( $this->get_actual_forms() as $key => $form ) {
@@ -63,9 +63,9 @@ class Authform {
 	private function get_actual_forms(): array {
 		$actual_forms = self::ACTIVE_FORMS;
 
-		if ( $this->registered_user ) {
-			unset( $actual_forms['signup'] );
-		}
+//		if ( $this->registered_user ) {
+//			unset( $actual_forms['signup'] );
+//		}
 
 		return $actual_forms;
 	}

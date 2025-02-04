@@ -62,13 +62,13 @@ export function initFormSubmit() {
 			postData( '/wp-json/rgbcode/v1/customer', data )
 				.then( res => {
 					if ( res.success ) {
-						Constants.storage.clientEmail = data.email;
-						console.log(Constants.storage.clientEmail);
+						// Constants.storage.clientEmail = data.email;
 						errorBlockSignUp.classList.add( Constants.hideClass );
-						modalSignUp.remove();
-						modalDeposit.classList.remove( Constants.hideClass );
-						setCookie( Constants.cookieFirstStepName, true, { 'max-age': 86400 * 7 } )
-						setCookie( Constants.cookieUserEmail,  res.email, { 'max-age': 86400 * 7 } )
+						location.href = res.link;
+						// modalSignUp.remove();
+						// modalDeposit.classList.remove( Constants.hideClass );
+						// setCookie( Constants.cookieFirstStepName, true, { 'max-age': 86400 * 7 } )
+						// setCookie( Constants.cookieUserEmail,  res.email, { 'max-age': 86400 * 7 } )
 					} else {
 						errorBlockSignUp.classList.remove( Constants.hideClass );
 						errorBlockSignUp.textContent = res.message ? res.message : res.data;
