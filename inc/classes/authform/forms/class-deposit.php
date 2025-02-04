@@ -15,6 +15,7 @@ class Deposit extends Baseform {
 	const ACTION = 'forexDeposit';
 
 	public function get_template_data(): array {
+		$registered_user = Authform::instance()->get_registered_user();
 		return [
 			'title_block'      => get_field( 'rgbc_authform_deposit_title_block', 'option' ),
 			'country'          => get_field( 'rgbc_authform_deposit_country', 'option' ),
@@ -27,7 +28,9 @@ class Deposit extends Baseform {
 			'logo'             => get_field( 'rgbc_authform_logo', 'option' ),
 			//'whatsapp'         => $this->get_whatsapp_data(),
 			'visibility_class' => Authform::HIDE_CLASS,
+			'is_visible'       => (bool) $registered_user,
 			'countries'        => $this->get_countries_with_currency(),
+			'registered_user'  => $registered_user,
 			//'currencies'       => Location::DEFAULT_CURRENCIES,
 		];
 	}

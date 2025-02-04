@@ -23,17 +23,18 @@ class Authform {
 
 	const REDIRECT_LINK = 'https://myaccount.cmtrading.com/#/login';
 
-	/**
-	 * @var bool
-	 */
-	private $is_registered_user;
+	private $registered_user;
 
 	public function __construct() {
 		add_action( 'wp_footer', [ $this, 'render_forms' ] );
 		add_shortcode( 'authform-signup', [ Sign_Up::instance(), 'render_signup_btn' ] );
 		add_shortcode( 'authform-login', [ Login::instance(), 'render_login_btn' ] );
 		add_shortcode( 'authform-deposit', [ Deposit::instance(), 'render_form' ] );
-		$this->is_registered_user = (bool) $this->get_check_register_user();
+		$this->registered_user = $this->get_check_register_user();
+	}
+
+	public function get_registered_user(): ?array {
+		return $this->registered_user;
 	}
 
 	public function render_forms() {
@@ -43,7 +44,7 @@ class Authform {
 
 		printf(
 			'<div id="rgbcode-authform" class="rgbcode-authform-back %s">',
-			esc_attr( self::HIDE_CLASS )
+			esc_attr( $this->registered_user ? '' : self::HIDE_CLASS )
 		);
 
 		foreach ( $this->get_actual_forms() as $key => $form ) {
@@ -62,11 +63,11 @@ class Authform {
 	private function get_actual_forms(): array {
 		$actual_forms = self::ACTIVE_FORMS;
 
-		if ( $this->is_registered_user ) {
+		if ( $this->registered_user ) {
 			unset( $actual_forms['signup'] );
 		}
 
-		return self::ACTIVE_FORMS;
+		return $actual_forms;
 	}
 
 	/**
@@ -88,7 +89,7 @@ class Authform {
 		$result = CRM_DB::instance()->get_user_register_data(
 			'email',
 			$email,
-			'email, customer_id, birth_date, address, city, post_code'
+			'email, customer_id'
 		);
 
 		if ( empty( $result ) || ! is_array( $result ) ) {

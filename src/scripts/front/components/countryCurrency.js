@@ -1,3 +1,5 @@
+import {Constants} from "../Constants.js";
+
 export function initCountryCurrency() {
 	const modalDeposit = document.querySelector( '#rgbcode-deposit' );
 
@@ -22,7 +24,8 @@ export function initCountryCurrency() {
 		const selectedOption = countrySelect.options[ countrySelect.selectedIndex ];
 		// let currency = selectedOption.dataset.currency ?? countrySelect.dataset.defaultCurrencies;
 		// currency = JSON.parse( currency );
-		current.textContent = selectedOption.textContent;
+		current.innerHTML = `<img src="${Constants.imgFlagsPath}${selectedOption.value.toLowerCase()}.svg" alt=""><span>${selectedOption.label}</span>`;
+		// current.textContent = selectedOption.textContent;
 
 		// const newOptions = currency.map( ( item ) => new Option( item, item ) );
 		// newOptions.forEach( ( option ) => currencySelect.appendChild( option ) );

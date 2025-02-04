@@ -1,60 +1,67 @@
 import {Constants} from "../Constants.js";
 
 export default () => {
-	const containers = document.querySelectorAll( '.js-select-list' );
-	if ( ! containers.length ) {
+	const containers = document.querySelectorAll('.js-select-list');
+	if (!containers.length) {
 		return null;
 	}
 
-	containers.forEach((container) => {
-		const current = container.querySelector( '.js-select-list-current' );
-		const select = container.querySelector( '.js-select-list-select' );
-		const list = container.querySelector( '.js-select-list-list' );
+	for (const container of containers) {
+		const current = container.querySelector('.js-select-list-current');
+		const select = container.querySelector('.js-select-list-select');
+		const list = container.querySelector('.js-select-list-list');
 
-		if ( ! current || ! select || ! list ) {
-			return null;
+		if (!current || !select || !list) {
+			continue;
 		}
 
-		const options = Array.from( select.options );
-		if ( ! options.length ) {
-			return null;
+		const options = Array.from(select.options);
+		if (!options.length) {
+			continue;
 		}
 
-		// create search input
-		const searchHtml = document.createElement( 'input' );
-		searchHtml.classList.add( 'rgbcode-authform-select__search' );
-		searchHtml.type = 'search';
-		searchHtml.autocomplete = 'off';
-		searchHtml.role = 'textbox';
-		list.appendChild( searchHtml );
+		// Создаем поле поиска
+		const searchInput = document.createElement('input');
+		searchInput.classList.add('rgbcode-authform-select__search');
+		searchInput.type = 'search';
+		searchInput.autocomplete = 'off';
+		searchInput.role = 'textbox';
+		list.appendChild(searchInput);
 
-		current.innerHTML = select.selectedOptions[0].label;
+		// Устанавливаем начальное значение
+		const updateCurrentSelection = () => {
+			const selectedOption = select.selectedOptions[0];
+			current.innerHTML = `<img src="${Constants.imgFlagsPath}${selectedOption.value.toLowerCase()}.svg" alt=""><span>${selectedOption.label}</span>`;
+		};
+		updateCurrentSelection();
 
-		const ul = document.createElement( 'ul' );
-		ul.classList.add( 'select-list__list' )
+		const ul = document.createElement('ul');
+		ul.classList.add('select-list__list');
+		const fragment = document.createDocumentFragment();
+
 		options.forEach((option) => {
-			const li = document.createElement( 'li' );
-			li.classList.add( 'select-list__item' );
-			li.innerHTML = option.label;
-			ul.appendChild( li );
+			const li = document.createElement('li');
+			li.classList.add('select-list__item');
+			li.textContent = option.label;
+			fragment.appendChild(li);
 		});
-		list.appendChild( ul );
 
-		const listItems = container.querySelectorAll( '.select-list__item' );
-		listItems.forEach((item) => {
-			item.addEventListener('click', () => {
-				const optionToSelect = options.find( ( option) => option.label === item.textContent );
+		ul.appendChild(fragment);
+		list.appendChild(ul);
 
-				if ( ! optionToSelect ) {
-					return null;
-				}
+		const listItems = ul.querySelectorAll('.select-list__item');
+		ul.addEventListener('click', (event) => {
+			const item = event.target.closest('.select-list__item');
+			if (!item) return;
 
-				optionToSelect.selected = true;
-				select.dispatchEvent( new Event( 'change' ) );
+			const optionToSelect = options.find((option) => option.label===item.textContent);
+			if (!optionToSelect) return;
 
-				current.innerHTML = select.selectedOptions[0].label;
-				container.classList.remove('rgbcode-active');
-			});
+			optionToSelect.selected = true;
+			select.dispatchEvent(new Event('change'));
+
+			updateCurrentSelection();
+			container.classList.remove('rgbcode-active');
 		});
 
 		current.addEventListener('click', () => {
@@ -62,19 +69,17 @@ export default () => {
 		});
 
 		document.addEventListener('click', (e) => {
-			if ( ! container.contains( e.target ) ) {
+			if (!container.contains(e.target)) {
 				container.classList.remove('rgbcode-active');
 			}
 		});
 
-		const search = container.querySelector( '.rgbcode-authform-select__search' );
-		search.addEventListener( 'input', ( e ) => {
+		searchInput.addEventListener('input', (e) => {
 			const searchText = e.target.value.toLowerCase();
-			listItems.forEach( ( item, index ) => {
-				item.textContent.toLowerCase().includes( searchText )
-					? item.classList.remove( Constants.hideClass )
-					: item.classList.add( Constants.hideClass );
-			} );
-		} );
-	});
+			for (const item of listItems) {
+				const text = item.textContent.toLowerCase();
+				item.classList.toggle(Constants.hideClass, !text.includes(searchText));
+			}
+		});
+	}
 }

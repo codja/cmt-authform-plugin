@@ -7,13 +7,13 @@ export function autoFill() {
 	}
 
 	const registeredUserData = formDeposit.dataset.user ?? '';
-	const params = new URLSearchParams( document.location.search );
-	let action = params.get( 'action' );
-	action = action && action === 'personDetailsForm' ? 'forexSignup' : false;
+	// const params = new URLSearchParams( document.location.search );
+	// let action = params.get( 'action' );
+	// action = action && action === 'personDetailsForm' ? 'forexSignup' : false;
 
 	if ( registeredUserData ) {
 		const userData = JSON.parse( registeredUserData );
-		action = 'personDetailsForm';
+		// action = 'personDetailsForm';
 
 		const fillInput = ( selector, newValue, eventType = null ) => {
 			if ( ! selector || ! newValue ) {
@@ -38,9 +38,6 @@ export function autoFill() {
 				switch ( property ) {
 					case 'email':
 						Constants.storage.clientEmail = newValue;
-						break;
-					case 'customer_id':
-						Constants.storage.customerID = newValue;
 						break;
 					case 'iso':
 						fillInput( '#rgbcode-authform-deposit-country', newValue, 'change' );
@@ -70,7 +67,7 @@ export function autoFill() {
 		fillInputs();
 	}
 
-	if ( action ) {
-		Constants.storage.modal.autoOpen( action, true );
-	}
+	// if ( action ) {
+	// 	Constants.storage.modal.autoOpen( action, true );
+	// }
 }

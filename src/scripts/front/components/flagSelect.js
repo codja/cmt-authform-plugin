@@ -3,16 +3,13 @@ import {Constants} from "../Constants.js";
 
 export function initFlagSelect() {
 	const modalSignUp = document.querySelector( '#rgbcode-signup' );
-	if ( ! modalSignUp ) {
-		return;
-	}
-
-	const flagInput = modalSignUp.querySelector( '.rgbcode-authform-flag-input' );
-	if ( ! flagInput ) {
-		return;
-	}
+	const flagInput = modalSignUp ? modalSignUp.querySelector( '.rgbcode-authform-flag-input' ) : null;
 
 	const fillFlagInput = ( data ) => {
+		if ( ! flagInput ) {
+			return;
+		}
+
 		const telephoneCode = flagInput.querySelector( '.rgbcode-authform-flag-input__code' );
 		const flagImg = flagInput.querySelector( '.rgbcode-authform-flag-input__flag' );
 		flagImg.src = data.src;
@@ -35,7 +32,7 @@ export function initFlagSelect() {
 		countrySelect.dispatchEvent( new Event( 'change' ) );
 	}
 
-	const notAllowedMsg = modalSignUp.querySelector( '.rgbcode-authform-message' );
+	const notAllowedMsg = modalSignUp ? modalSignUp.querySelector( '.rgbcode-authform-message' ) : null;
 	postData( '/wp-json/rgbcode/v1/detect_location', {}, 'GET' )
 		.then( response => {
 			if ( response.success ) {
@@ -50,6 +47,10 @@ export function initFlagSelect() {
 		.catch( ( error ) => {
 			console.error('Error:', error);
 		} );
+
+	if ( ! modalSignUp || ! flagInput ) {
+		return;
+	}
 
 	const select = flagInput.querySelector( '.rgbcode-authform-flag-input__select' );
 	flagInput.addEventListener( 'click', () => {
