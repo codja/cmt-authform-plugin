@@ -21,11 +21,20 @@ class Authform {
 
 	const HIDE_CLASS = 'rgbcode-hidden';
 
+	const REDIRECT_LINK = 'https://myaccount.cmtrading.com/#/login';
+
+	private $registered_user;
+
 	public function __construct() {
 		add_action( 'wp_footer', [ $this, 'render_forms' ] );
 		add_shortcode( 'authform-signup', [ Sign_Up::instance(), 'render_signup_btn' ] );
 		add_shortcode( 'authform-login', [ Login::instance(), 'render_login_btn' ] );
 		add_shortcode( 'authform-deposit', [ Deposit::instance(), 'render_form' ] );
+		$this->registered_user = $this->get_check_register_user();
+	}
+
+	public function get_registered_user(): ?array {
+		return $this->registered_user;
 	}
 
 	public function render_forms() {
@@ -52,7 +61,13 @@ class Authform {
 	}
 
 	private function get_actual_forms(): array {
-		return self::ACTIVE_FORMS;
+		$actual_forms = self::ACTIVE_FORMS;
+
+//		if ( $this->registered_user ) {
+//			unset( $actual_forms['signup'] );
+//		}
+
+		return $actual_forms;
 	}
 
 	/**
@@ -86,7 +101,22 @@ class Authform {
 
 		// Validate customer ID and account number match
 		if ( ! $db_customer_id || ! $this->is_account_no_match( (string) $db_customer_id, $account_no ) ) {
-			return null;
+			wp_redirect( self::REDIRECT_LINK );
+			exit;
+		}
+
+		// check if the user has additional information
+		if ( ! in_array( '', array_map( 'trim', $result ), true ) ) {
+			$redirect_link = add_query_arg(
+				[
+					'emailaddress' => $email,
+					'account_no'   => $db_customer_id,
+				],
+				'https://services.cmtrading.com/autologin'
+			);
+
+			wp_redirect( esc_url_raw( $redirect_link ) );
+			exit;
 		}
 
 		return $result;

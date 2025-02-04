@@ -20,13 +20,8 @@ export function initFormSubmit() {
 			postData( '/wp-json/rgbcode/v1/login', data )
 				.then( data => {
 					if ( data.success ) {
-						//Constants.storage.clientEmail = data.email;
-						errorBlockLogin.classList.add( Constants.hideClass);
+						errorBlockLogin.classList.add( Constants.hideClass );
 						location.href = data.link;
-						//modalSignUp.remove();
-						//modalDeposit.classList.remove( Constants.hideClass);
-						// setCookie( Constants.cookieFirstStepName, true, { 'max-age': 86400 * 7 } )
-						// setCookie( Constants.cookieUserEmail,  data.email, { 'max-age': 86400 * 7 } )
 					} else {
 						errorBlockLogin.classList.remove( Constants.hideClass );
 						errorBlockLogin.textContent = data.message ? data.message : data.data;
@@ -65,18 +60,18 @@ export function initFormSubmit() {
 			submitter.disabled = true;
 
 			postData( '/wp-json/rgbcode/v1/customer', data )
-				.then( data => {
-					if ( data.success ) {
-						//Constants.storage.clientEmail = data.email;
-						errorBlockSignUp.classList.add( Constants.hideClass);
-						location.href = data.link;
-						//modalSignUp.remove();
-						//modalDeposit.classList.remove( Constants.hideClass);
+				.then( res => {
+					if ( res.success ) {
+						// Constants.storage.clientEmail = data.email;
+						errorBlockSignUp.classList.add( Constants.hideClass );
+						location.href = res.link;
+						// modalSignUp.remove();
+						// modalDeposit.classList.remove( Constants.hideClass );
 						// setCookie( Constants.cookieFirstStepName, true, { 'max-age': 86400 * 7 } )
-						// setCookie( Constants.cookieUserEmail,  data.email, { 'max-age': 86400 * 7 } )
+						// setCookie( Constants.cookieUserEmail,  res.email, { 'max-age': 86400 * 7 } )
 					} else {
 						errorBlockSignUp.classList.remove( Constants.hideClass );
-						errorBlockSignUp.textContent = data.message ? data.message : data.data;
+						errorBlockSignUp.textContent = res.message ? res.message : res.data;
 						submitter.classList.remove( 'rgbcode-authform-button_loader' );
 						submitter.disabled = false;
 					}
@@ -101,7 +96,6 @@ export function initFormSubmit() {
 			const savedEmail = getCookie( Constants.cookieUserEmail );
 
 			data.email = Constants.storage.clientEmail ?? savedEmail;
-			data.customerID = Constants.storage.customerID ?? '';
 			submitter.classList.add( 'rgbcode-authform-button_loader' );
 			submitter.disabled = true;
 
@@ -110,16 +104,16 @@ export function initFormSubmit() {
 				: null;
 
 			postData( '/wp-json/rgbcode/v1/customer', data, 'PUT' )
-				.then( data => {
-					if ( data.success ) {
+				.then( res => {
+					if ( res.success ) {
 						errorBlockDeposit.classList.add( Constants.hideClass );
 						if ( isWhatsAppBtn && windowRef ) {
 							windowRef.location = submitter.dataset.href;
 						}
-						location.href = data.link;
+						location.href = res.link;
 					} else {
 						errorBlockDeposit.classList.remove( Constants.hideClass );
-						errorBlockDeposit.textContent = data.message ? data.message : data.data;
+						errorBlockDeposit.textContent = res.message ? res.message : res.data;
 						submitter.classList.remove( 'rgbcode-authform-button_loader' );
 						submitter.disabled = false;
 					}

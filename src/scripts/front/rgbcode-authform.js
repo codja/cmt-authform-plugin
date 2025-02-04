@@ -39,7 +39,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 	initDatepicker();
 	initTogglePass();
-	//initCountryCurrency();
+	initCountryCurrency();
 	new EmailSuggestions();
 	customSelect();
 	autoFill();
