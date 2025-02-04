@@ -89,7 +89,7 @@ class Authform {
 		$result = CRM_DB::instance()->get_user_register_data(
 			'email',
 			$email,
-			'email, customer_id'
+			'email, customer_id, birth_date, address, city, post_code'
 		);
 
 		if ( empty( $result ) || ! is_array( $result ) ) {
@@ -102,6 +102,20 @@ class Authform {
 		// Validate customer ID and account number match
 		if ( ! $db_customer_id || ! $this->is_account_no_match( (string) $db_customer_id, $account_no ) ) {
 			wp_redirect( self::REDIRECT_LINK );
+			exit;
+		}
+
+		// check if the user has additional information
+		if ( ! in_array( '', array_map( 'trim', $result ), true ) ) {
+			$redirect_link = add_query_arg(
+				[
+					'emailaddress' => $email,
+					'account_no'   => $db_customer_id,
+				],
+				'https://services.cmtrading.com/autologin'
+			);
+
+			wp_redirect( esc_url_raw( $redirect_link ) );
 			exit;
 		}
 
