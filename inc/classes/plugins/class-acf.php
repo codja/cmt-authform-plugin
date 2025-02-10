@@ -139,6 +139,27 @@ class ACF {
 							'max_size'          => '',
 							'mime_types'        => '',
 						),
+						array(
+							'key'                 => 'field_65198085fd277',
+							'label'               => esc_attr__( 'Google Maps API Key', 'rscm' ),
+							'name'                => 'rgbc_authform_google_maps_api_key',
+							'aria-label'          => '',
+							'type'                => 'text',
+							'instructions'        => '',
+							'required'            => 0,
+							'conditional_logic'   => 0,
+							'wrapper'             => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'wpml_cf_preferences' => 1,
+							'default_value'       => '',
+							'maxlength'           => '',
+							'placeholder'         => '',
+							'prepend'             => '',
+							'append'              => '',
+						),
 						// Login
 						array(
 							'key'               => 'field_630b108gt3t455',

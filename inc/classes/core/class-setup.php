@@ -49,6 +49,18 @@ class Setup {
 			true
 		);
 
+		$google_map_api_key = get_field( 'rscm_google_maps_api_key', 'option' );
+		if ( $google_map_api_key ) {
+			wp_enqueue_script(
+				'rgbcode_authform_google_map_api',
+				'https://maps.googleapis.com/maps/api/js?key=' . esc_attr( $google_map_api_key ) . '&libraries=places',
+				[],
+				null,
+				true
+			);
+		}
+
+
 		// Localize our ajax
 		wp_localize_script(
 			'rgbcode_authform_script',
