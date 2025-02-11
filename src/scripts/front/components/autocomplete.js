@@ -77,7 +77,7 @@ export default class Autocomplete {
 	}
 
 	fillAddressFields(addressComponents) {
-		if (!Array.isArray(addressComponents)) {
+		if (!this.form || !Array.isArray(addressComponents)) {
 			console.warn('Invalid form or addressComponents');
 			return;
 		}
@@ -109,14 +109,26 @@ export default class Autocomplete {
 
 		for (const key in fields) {
 			const element = fields[key];
-			if (element && address[key] && element.value !== address[key]) {
-				element.value = address[key];
-			} else {
-				console.log(element);
-				element.value = '';
-				element.closest('.js-extra-field').classList.remove(Constants.hideClass);
+
+			if (!element) {
+				console.warn(`Field not found: ${key}`);
+				continue;
 			}
-			element.dispatchEvent(new Event(element.tagName === 'SELECT' ? 'change' : 'input'));
+
+			// Set a new value or clear the field
+			const newValue = address[key] || '';
+			if (element.value !== newValue) {
+				element.value = newValue;
+				element.dispatchEvent(new Event(element.tagName === 'SELECT' ? 'change' : 'input'));
+			}
+
+			// If the field is cleared, show the hidden block
+			if (!newValue) {
+				const extraField = element.closest('.js-extra-field');
+				if (extraField) {
+					extraField.classList.remove(Constants.hideClass);
+				}
+			}
 		}
 	}
 
