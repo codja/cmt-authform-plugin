@@ -41,6 +41,7 @@ class Setup {
 			[],
 			filemtime( RGBCODE_AUTHFORM_PLUGIN_DIR . 'assets/css/front/rgbcode-authform.min.css' )
 		);
+
 		wp_enqueue_script(
 			'rgbcode_authform_script',
 			RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/js/front/rgbcode-authform.min.js',
@@ -49,7 +50,7 @@ class Setup {
 			true
 		);
 
-		$google_map_api_key = get_field( 'rscm_google_maps_api_key', 'option' );
+		$google_map_api_key = get_field( 'rgbc_authform_google_maps_api_key', 'option' );
 		if ( $google_map_api_key ) {
 			wp_enqueue_script(
 				'rgbcode_authform_google_map_api',

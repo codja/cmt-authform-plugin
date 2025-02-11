@@ -10,6 +10,7 @@ import {Constants} from "./Constants.js";
 import {autoFill} from "./components/autoFill.js";
 import {EmailSuggestions} from "./components/EmailSuggestions";
 import {updateNonce} from "./components/system/updateNonce.js";
+import Autocomplete from "./components/autocomplete.js";
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	if ( ! document.getElementById( 'rgbcode-authform' ) ) {
@@ -43,4 +44,5 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	new EmailSuggestions();
 	customSelect();
 	autoFill();
+	new Autocomplete(modalDeposit);
 } );

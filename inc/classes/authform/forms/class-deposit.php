@@ -17,21 +17,24 @@ class Deposit extends Baseform {
 
 	public function get_template_data(): array {
 		$registered_user = Authform::instance()->get_registered_user();
+
 		return [
-			'title_block'      => get_field( 'rgbc_authform_deposit_title_block', 'option' ),
-			'country'          => get_field( 'rgbc_authform_deposit_country', 'option' ),
+			'title_block'       => get_field( 'rgbc_authform_deposit_title_block', 'option' ),
+			'country'           => get_field( 'rgbc_authform_deposit_country', 'option' ),
 			//'currency'         => get_field( 'rgbc_authform_deposit_currency', 'option' ),
-			'city'             => get_field( 'rgbc_authform_deposit_city', 'option' ),
-			'address'          => get_field( 'rgbc_authform_deposit_address', 'option' ),
-			'postcode'         => get_field( 'rgbc_authform_deposit_postcode', 'option' ),
-			'birthday'         => get_field( 'rgbc_authform_deposit_birthday', 'option' ),
-			'submit'           => get_field( 'rgbc_authform_deposit_submit', 'option' ),
-			'logo'             => get_field( 'rgbc_authform_logo', 'option' ),
+			'city'              => get_field( 'rgbc_authform_deposit_city', 'option' ),
+			'full_address'      => get_field( 'rgbc_authform_deposit_full_address', 'option' ),
+			'btn_is_not_listed' => get_field( 'rgbc_authform_btn_is_not_listed', 'option' ),
+			'address'           => get_field( 'rgbc_authform_deposit_address', 'option' ),
+			'postcode'          => get_field( 'rgbc_authform_deposit_postcode', 'option' ),
+			'birthday'          => get_field( 'rgbc_authform_deposit_birthday', 'option' ),
+			'submit'            => get_field( 'rgbc_authform_deposit_submit', 'option' ),
+			'logo'              => get_field( 'rgbc_authform_logo', 'option' ),
 			//'whatsapp'         => $this->get_whatsapp_data(),
-			'visibility_class' => Authform::HIDE_CLASS,
-			'is_visible'       => (bool) $registered_user,
-			'countries'        => $this->get_countries_with_currency(),
-			'registered_user'  => $registered_user,
+			'visibility_class'  => Authform::HIDE_CLASS,
+			'is_visible'        => (bool) $registered_user,
+			'countries'         => $this->get_countries_with_currency(),
+			'registered_user'   => $registered_user,
 			//'currencies'       => Location::DEFAULT_CURRENCIES,
 		];
 	}

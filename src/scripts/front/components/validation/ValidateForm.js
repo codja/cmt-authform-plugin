@@ -66,6 +66,7 @@ export class ValidateForm {
 				case 'agree':
 					this.checkAgree( input );
 					break;
+				case 'full_address':
 				case 'address':
 					this.enableValidation( 'addressTest', input );
 					break;
