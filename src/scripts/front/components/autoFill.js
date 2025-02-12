@@ -39,28 +39,28 @@ export function autoFill() {
 					case 'email':
 						Constants.storage.clientEmail = newValue;
 						break;
-					case 'iso':
-						fillInput( '#rgbcode-authform-deposit-country', newValue, 'change' );
-						break;
-					case 'base_currency':
-						const currencySelect = formDeposit.querySelector( '#rgbcode-authform-deposit-currency' );
-						setTimeout( () => {
-							currencySelect.value = newValue;
-							currencySelect.dispatchEvent( new Event( 'change' ) );
-						}, 1000 );
-						break;
-					case 'birth_date':
-						Constants.storage.dp.selectDate( newValue );
-						break;
-					case 'city':
-						fillInput( '[name=city]', newValue, 'input' );
-						break;
-					case 'address':
-						fillInput( '[name=address]', newValue, 'input' );
-						break;
-					case 'post_code':
-						fillInput( '[name=postcode]', newValue, 'input' );
-						break;
+					// case 'iso':
+					// 	fillInput( '#rgbcode-authform-deposit-country', newValue, 'change' );
+					// 	break;
+					// case 'base_currency':
+					// 	const currencySelect = formDeposit.querySelector( '#rgbcode-authform-deposit-currency' );
+					// 	setTimeout( () => {
+					// 		currencySelect.value = newValue;
+					// 		currencySelect.dispatchEvent( new Event( 'change' ) );
+					// 	}, 1000 );
+					// 	break;
+					// case 'birth_date':
+					// 	Constants.storage.dp.selectDate( newValue );
+					// 	break;
+					// case 'city':
+					// 	fillInput( '[name=city]', newValue, 'input' );
+					// 	break;
+					// case 'address':
+					// 	fillInput( '[name=address]', newValue, 'input' );
+					// 	break;
+					// case 'post_code':
+					// 	fillInput( '[name=postcode]', newValue, 'input' );
+					// 	break;
 				}
 			}
 		}

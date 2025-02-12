@@ -41,6 +41,7 @@ class Setup {
 			[],
 			filemtime( RGBCODE_AUTHFORM_PLUGIN_DIR . 'assets/css/front/rgbcode-authform.min.css' )
 		);
+
 		wp_enqueue_script(
 			'rgbcode_authform_script',
 			RGBCODE_AUTHFORM_PLUGIN_URL . 'assets/js/front/rgbcode-authform.min.js',
@@ -48,6 +49,18 @@ class Setup {
 			filemtime( RGBCODE_AUTHFORM_PLUGIN_DIR . 'assets/js/front/rgbcode-authform.min.js' ),
 			true
 		);
+
+		$google_map_api_key = get_field( 'rgbc_authform_google_maps_api_key', 'option' );
+		if ( $google_map_api_key ) {
+			wp_enqueue_script(
+				'rgbcode_authform_google_map_api',
+				'https://maps.googleapis.com/maps/api/js?key=' . esc_attr( $google_map_api_key ) . '&libraries=places',
+				[],
+				null,
+				true
+			);
+		}
+
 
 		// Localize our ajax
 		wp_localize_script(

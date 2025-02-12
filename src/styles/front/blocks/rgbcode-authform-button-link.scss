@@ -1,0 +1,14 @@
+.rgbcode-authform-button-link {
+	margin: .5em auto 0;
+	display: block;
+	border: none;
+	text-decoration: underline;
+	color: $accent;
+
+	&:hover,
+	&:focus {
+		background-color: transparent;
+		outline: none;
+		color: $accent;
+	}
+}

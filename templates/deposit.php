@@ -50,8 +50,33 @@
 				</div>
 			<?php endif; ?>
 
-			<?php if ( ! empty( $args['address'] ) ) : ?>
+			<?php if ( ! empty( $args['full_address'] ) ) : ?>
 				<div class="rgbcode-authform-input">
+					<label class="rgbcode-authform-input__label">
+						<span><?php echo esc_html( $args['full_address']['label'] ?? '' ); ?></span>
+						<input
+							class="js-address-input"
+							type="text"
+							name="full_address"
+							maxlength="100"
+							minlength="2"
+							tabindex="2"
+							autocomplete="off"
+							required
+						>
+					</label>
+					<span class="rgbcode-authform-input__error <?php echo esc_attr( $visibility_class ); ?>">
+					<?php echo esc_html( $args['full_address']['error_text'] ?? '' ); ?>
+				</span>
+				</div>
+			<?php endif; ?>
+
+			<?php if ( ! empty( $args['btn_is_not_listed'] ) ) : ?>
+				<button class="rgbcode-authform-button-link js-show-extra-fields" type="button"><?php echo esc_html( $args['btn_is_not_listed'] ); ?></button>
+			<?php endif; ?>
+
+			<?php if ( ! empty( $args['address'] ) ) : ?>
+				<div class="rgbcode-authform-input js-extra-field <?php echo esc_attr( $visibility_class ); ?>">
 					<label class="rgbcode-authform-input__label">
 						<span><?php echo esc_html( $args['address']['label'] ?? '' ); ?></span>
 						<input
@@ -59,7 +84,7 @@
 							name="address"
 							maxlength="50"
 							minlength="2"
-							tabindex="2"
+							tabindex="3"
 							autocomplete="off"
 							required
 						>
@@ -71,7 +96,7 @@
 			<?php endif; ?>
 
 			<?php if ( ! empty( $args['city'] ) ) : ?>
-				<div class="rgbcode-authform-input">
+				<div class="rgbcode-authform-input js-extra-field <?php echo esc_attr( $visibility_class ); ?>">
 					<label class="rgbcode-authform-input__label">
 						<span><?php echo esc_html( $args['city']['label'] ?? '' ); ?></span>
 						<input
@@ -79,7 +104,7 @@
 							name="city"
 							maxlength="50"
 							minlength="2"
-							tabindex="3"
+							tabindex="4"
 							autocomplete="off"
 							required
 						>
@@ -94,7 +119,7 @@
 			$default_currencies = $args['currencies'] ?? [];
 			if ( ! empty( $args['country'] ) && ! empty( $args['countries'] ) ) :
 				?>
-			<div class="rgbcode-authform-select js-select-list">
+			<div class="rgbcode-authform-select js-select-list js-extra-field <?php echo esc_attr( $visibility_class ); ?>">
 				<div class="rgbcode-authform-select__country-menu">
 					<span class="rgbcode-authform-select__label"><?php echo esc_html( $args['country'] ); ?></span>
 					<div class="rgbcode-authform-select__country-menu-current js-select-list-current"></div>
@@ -104,7 +129,7 @@
 					id="rgbcode-authform-deposit-country"
 					class="rgbcode-authform-select__select js-select-list-select"
 					name="country"
-					tabindex="4"
+					tabindex="5"
 					autocomplete="off"
 					data-default-currencies="<?php echo esc_attr( wp_json_encode( $default_currencies ) ); ?>"
 					required
@@ -122,7 +147,7 @@
 			<?php endif; ?>
 
 			<?php if ( ! empty( $args['postcode'] ) ) : ?>
-			<div class="rgbcode-authform-input">
+			<div class="rgbcode-authform-input js-extra-field <?php echo esc_attr( $visibility_class ); ?>">
 				<label class="rgbcode-authform-input__label">
 					<span><?php echo esc_html( $args['postcode']['label'] ?? '' ); ?></span>
 					<input
@@ -130,7 +155,7 @@
 						name="postcode"
 						maxlength="50"
 						minlength="2"
-						tabindex="5"
+						tabindex="6"
 						autocomplete="off"
 						required
 					>
@@ -170,5 +195,6 @@
 		</div>
 
 	</form>
+
 </div>
 
